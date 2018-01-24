@@ -28,7 +28,10 @@ public class ThongKeBaoCaoDataprovider implements Serializable {
         List<ThietBiModel> listThietBi = new ArrayList();
         String where = "1 = 1";
         if(filterName!=null && !filterName.isEmpty()){
-            where = " thietBiTen like '%"+filterName+"%' ";
+            where += " AND thietBiTen like '%"+filterName+"%' ";
+        }
+        if(filterTinhTrang != 0){
+            where += " AND tinhTrangID = "+filterTinhTrang;
         }
         try {
             session.beginTransaction();
