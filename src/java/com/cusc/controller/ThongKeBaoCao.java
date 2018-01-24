@@ -18,14 +18,48 @@ import javax.faces.bean.RequestScoped;
 @ManagedBean(name="ThongKeBaoCao")
 @RequestScoped
 public class ThongKeBaoCao {
-    /**
-     * Creates a new instance of ThongKeBaoCao
-     */
+    
+    private int selectedTinhTrang;
+    private String filterName;
+    private List<ThietBiModel> listThietBiModel;
+    ThongKeBaoCaoDataprovider tkbcDp = new ThongKeBaoCaoDataprovider();
+    
     public ThongKeBaoCao() {
+        actionGetListThongKeTonKho();
     }
     
     public List<ThietBiModel> actionGetListThongKeTonKho(){
-        ThongKeBaoCaoDataprovider tkbcDp = new ThongKeBaoCaoDataprovider();
-        return tkbcDp.getDsThongKeTonKho();
+        listThietBiModel = tkbcDp.getDsThongKeTonKho();
+        return listThietBiModel;
+    }
+    
+    public List<ThietBiModel> actionFilterListThongKeTonKho(){
+        listThietBiModel = tkbcDp.getDsThongKeTonKho(filterName, selectedTinhTrang);
+        return listThietBiModel;
+    } 
+    
+    
+    public int getSelectedTinhTrang() {
+        return selectedTinhTrang;
+    }
+
+    public void setSelectedTinhTrang(int selectedTinhTrang) {
+        this.selectedTinhTrang = selectedTinhTrang;
+    }
+
+    public String getFilterName() {
+        return filterName;
+    }
+
+    public void setFilterName(String filterName) {
+        this.filterName = filterName;
+    }
+
+    public List<ThietBiModel> getListThietBiModel() {
+        return listThietBiModel;
+    }
+
+    public void setListThietBiModel(List<ThietBiModel> listThietBiModel) {
+        this.listThietBiModel = listThietBiModel;
     }
 }

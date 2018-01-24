@@ -25,15 +25,7 @@ public class ThietBiModel implements Serializable {
     private Long thietBiID;
     
     @Column(name = "thietbi_ten")
-    private String theitBiTen;
-
-    public String getTheitBiTen() {
-        return theitBiTen;
-    }
-
-    public void setTheitBiTen(String theitBiTen) {
-        this.theitBiTen = theitBiTen;
-    }
+    private String thietBiTen;
     
     // --- Getter Setter
     public Long getThietBiID() {
@@ -42,6 +34,14 @@ public class ThietBiModel implements Serializable {
 
     public void setThietBiID(Long thietBiID) {
         this.thietBiID = thietBiID;
+    }
+
+    public String getThietBiTen() {
+        return thietBiTen;
+    }
+
+    public void setThietBiTen(String thietBiTen) {
+        this.thietBiTen = thietBiTen;
     }
 
 }

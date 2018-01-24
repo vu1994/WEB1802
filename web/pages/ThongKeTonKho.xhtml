@@ -35,13 +35,13 @@
                                             <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
                                                 <div class="form-group">
                                                     <label for="thietBiName">Tên thiết bị</label>
-                                                    <h:inputText styleClass="form-control" id="thietBiName"  a:placeholder="Nhập tên thiết bị..."/>
+                                                    <h:inputText styleClass="form-control" id="thietBiName"  a:placeholder="Nhập tên thiết bị..." value="#{ThongKeBaoCao.filterName}"/>
                                                 </div>
                                             </div>
                                             <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
                                                 <div class="form-group">
                                                     <label for="tinhTrang">Tình trạng</label>
-                                                    <h:selectOneMenu styleClass="form-control" id="tinhTrang">
+                                                    <h:selectOneMenu styleClass="form-control" id="tinhTrang" value="#{ThongKeBaoCao.selectedTinhTrang}">
                                                         <f:selectItem itemLabel="-- Tất cả --" itemValue="0"/>
                                                         
                                                     </h:selectOneMenu>
@@ -51,19 +51,21 @@
                                         <!-- /.box-body -->
                                         <div class="box-footer">
                                             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
-                                                <h:commandLink styleClass="btn btn-default">
+                                                <h:commandLink styleClass="btn btn-default"  action="#{ThongKeBaoCao.actionFilterListThongKeTonKho()}">
                                                     <i class="fa fa-search"> Lọc</i>
+                                                    
                                                 </h:commandLink>
                                             </div>
                                         </div>
                                         
                                         <div class="box-body">
                                             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                                                <h:dataTable value="#{ThongKeBaoCao.actionGetListThongKeTonKho()}"
-                                                             var="item">
+                                                <h:dataTable value="#{ThongKeBaoCao.listThietBiModel}"
+                                                             var="item"
+                                                             id="tableThongKeTonKho">
                                                     <h:column >
                                                         <f:facet name="header">Ten thiet bi</f:facet>
-                                                        #{item.theitBiTen}
+                                                        #{item.thietBiTen}
                                                     </h:column>
                                                 </h:dataTable>
                                             </div>

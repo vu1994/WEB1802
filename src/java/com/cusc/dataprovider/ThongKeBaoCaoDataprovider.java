@@ -7,7 +7,6 @@ package com.cusc.dataprovider;
 
 import com.cusc.util.HibernateUtil;
 import java.util.List;
-import java.util.Map;
 import java.io.Serializable;
 import java.util.ArrayList;
 import com.cusc.model.ThietBiModel;
@@ -27,9 +26,13 @@ public class ThongKeBaoCaoDataprovider implements Serializable {
     public List<ThietBiModel> getDsThongKeTonKho(String filterName, int filterTinhTrang){
         Session session = HibernateUtil.currentSession();
         List<ThietBiModel> listThietBi = new ArrayList();
+        String where = "1 = 1";
+        if(filterName!=null && !filterName.isEmpty()){
+            where = " thietBiTen like '%"+filterName+"%' ";
+        }
        try {
             session.beginTransaction();
-            listThietBi = session.createQuery("FROM ThietBiModel").list();
+            listThietBi = session.createQuery("FROM ThietBiModel WHERE "+where).list();
             session.getTransaction().commit();
 	} catch (Exception e) {
             e.printStackTrace();
