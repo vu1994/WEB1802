@@ -6,6 +6,8 @@
 package com.cusc.controller;
 
 import com.cusc.dataprovider.ThongKeBaoCaoDataprovider;
+import com.cusc.dataprovider.TinhTrangDataprovider;
+import com.cusc.model.DanhMucTinhTrangModel;
 import com.cusc.model.ThietBiModel;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
@@ -38,6 +40,10 @@ public class ThongKeBaoCao {
         return listThietBiModel;
     } 
     
+    public List<DanhMucTinhTrangModel> actionGetListDMTinhTrang(){
+        TinhTrangDataprovider dmttDp = new TinhTrangDataprovider();
+        return dmttDp.getDmTinhTrang();
+    }
     
     public int getSelectedTinhTrang() {
         return selectedTinhTrang;
