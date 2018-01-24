@@ -1,0 +1,85 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <body>
+        
+        <ui:composition template="./../mainTemplate.xhtml">
+
+            <ui:define name="content">
+
+                <div class="content-wrapper" style="min-height: 946px;">
+                    <!-- Content Header (Page header) -->
+                    <section class="content-header">
+                        <h1>
+                            Thống Kê Tồn Kho
+                        </h1>
+                        <ol class="breadcrumb">
+                            <li><a href="#{request.contextPath}"><i class="fa fa-dashboard"></i> Home</a></li>
+                            <li class="active"><a href="#{request.contextPath}/faces/pages/ThongKeTonKho.xhtml">Thống Kê Tồn Kho</a></li>
+                        </ol>
+                    </section>
+
+                    <!-- Main content -->
+                    <section class="content">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <!-- general form elements -->
+                                <div class="box box-primary">
+                                    <!-- form start -->
+                                    <h:form role="form">
+                                        <div class="box-body">
+                                            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+                                                <div class="form-group">
+                                                    <label for="thietBiName">Tên thiết bị</label>
+                                                    <h:inputText styleClass="form-control" id="thietBiName"  a:placeholder="Nhập tên thiết bị..."/>
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+                                                <div class="form-group">
+                                                    <label for="tinhTrang">Tình trạng</label>
+                                                    <h:selectOneMenu styleClass="form-control" id="tinhTrang">
+                                                        <f:selectItem itemLabel="-- Tất cả --" itemValue="0"/>
+                                                        
+                                                    </h:selectOneMenu>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- /.box-body -->
+                                        <div class="box-footer">
+                                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
+                                                <h:commandLink styleClass="btn btn-default">
+                                                    <i class="fa fa-search"> Lọc</i>
+                                                </h:commandLink>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="box-body">
+                                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                                <h:dataTable value="#{ThongKeBaoCao.actionGetListThongKeTonKho()}"
+                                                             var="item">
+                                                    <h:column >
+                                                        <f:facet name="header">Ten thiet bi</f:facet>
+                                                        #{item.theitBiTen}
+                                                    </h:column>
+                                                </h:dataTable>
+                                            </div>
+                                        </div>
+                                    </h:form>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.row -->
+                    </section>
+                    <!-- /.content -->
+                </div>
+
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

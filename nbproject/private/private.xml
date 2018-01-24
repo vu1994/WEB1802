@@ -3,12 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/E:/NPVU_PROJECT/NPVU-GitHub/WEB1802/web/template/top.xhtml</file>
-            <file>file:/E:/NPVU_PROJECT/NPVU-GitHub/WEB1802/web/mainTemplate.xhtml</file>
-            <file>file:/E:/NPVU_PROJECT/NPVU-GitHub/WEB1802/web/template/dashboard.xhtml</file>
-            <file>file:/E:/NPVU_PROJECT/NPVU-GitHub/WEB1802/web/template/bottom.xhtml</file>
-            <file>file:/E:/NPVU_PROJECT/NPVU-GitHub/WEB1802/web/template/setting.xhtml</file>
-            <file>file:/E:/NPVU_PROJECT/NPVU-GitHub/WEB1802/web/template/left.xhtml</file>
+            <file>file:/D:/PROJECT/RESEARCH/WEB1802-master/src/java/com/cusc/controller/ThongKeBaoCao.java</file>
+            <file>file:/D:/PROJECT/RESEARCH/WEB1802-master/src/java/com/cusc/model/ThietBiModel.java</file>
+            <file>file:/D:/PROJECT/RESEARCH/WEB1802-master/web/pages/ThongKeTonKho.xhtml</file>
+            <file>file:/D:/PROJECT/RESEARCH/WEB1802-master/web/template/dashboard.xhtml</file>
+            <file>file:/D:/PROJECT/RESEARCH/WEB1802-master/src/java/com/cusc/dataprovider/ThongKeBaoCaoDataprovider.java</file>
+            <file>file:/D:/PROJECT/RESEARCH/WEB1802-master/src/java/hibernate.cfg.xml</file>
+            <file>file:/D:/PROJECT/RESEARCH/WEB1802-master/web/resources/css/AdminLTE.min.css</file>
+            <file>file:/D:/PROJECT/RESEARCH/WEB1802-master/src/java/com/cusc/config/Connections.java</file>
         </group>
     </open-files>
 </project-private>
