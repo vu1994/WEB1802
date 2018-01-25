@@ -55,13 +55,29 @@ public class DanhMucThietBiDataProvider implements Serializable {
         return dmThietBi;
     }
     
-    public boolean updateDmThietBi(DanhMucThietBiModel dmThietBi){
+    public boolean addDmThietBi(DanhMucThietBiModel dmThietBi){
         Session session = HibernateUtil.currentSession();
         try {
             session.beginTransaction();
-            session.saveOrUpdate(dmThietBi);
+            session.createSQLQuery("INSERT INTO danhmuc_thietbi(danhmuc_thietbi_ten) VALUES('"+dmThietBi.getDmThietBiTen()+"')").executeUpdate();
             session.getTransaction().commit();
 	} catch (Exception e) {
+            e.printStackTrace();
+            return false;
+	} finally {
+            session.close();
+	}
+        return true;
+    }
+    
+    public boolean delDmThietBi(int dmThietBiID){
+        Session session = HibernateUtil.currentSession();
+        try {
+            session.beginTransaction();
+            session.createSQLQuery("DELETE FROM danhmuc_thietbi WHERE danhmuc_thietbi_id = "+dmThietBiID).executeUpdate();
+            session.getTransaction().commit();
+	} catch (Exception e) {
+            e.printStackTrace();
             return false;
 	} finally {
             session.close();

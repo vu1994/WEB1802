@@ -38,7 +38,7 @@ public class DanhMucThietBiController {
     }
     
     public void preActionThemThietBi(){
-       viewMode = 1;
+        viewMode = 1;
     }
     
     public void actionTroVe(){
@@ -46,11 +46,19 @@ public class DanhMucThietBiController {
     }
     
     public void actionThemThietBi(){
-        System.out.println("ndsadsa dsad asdsa das ");
         DanhMucThietBiModel dmThietBi = new DanhMucThietBiModel();
         dmThietBi.setDmThietBiTen(strEditTen);
-        if(dmThietBiDp.updateDmThietBi(dmThietBi)){
-            
+        if(dmThietBiDp.addDmThietBi(dmThietBi)){
+            System.out.println("true");
+        } else {
+            System.out.println("false");
+        }
+        listDmThietBi = dmThietBiDp.getListDmThietBi();
+        viewMode = 0;
+    }
+    
+    public void actionXoaDmThietBi(int dmThietBiID){
+        if(dmThietBiDp.delDmThietBi(dmThietBiID)){
             System.out.println("true");
         } else {
             System.out.println("false");

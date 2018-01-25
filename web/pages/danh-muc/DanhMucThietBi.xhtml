@@ -31,45 +31,39 @@
                                 <!-- general form elements -->
                                 <div class="box box-primary">
                                     <!-- form start -->
-                                    <h:form role="form">
+                                    <h:form>
                                         <div class="box-body">
-                                            <h:panelGroup rendered="#{DanhMucThietBiController.viewMode == 0}">
-                                                <div class="row">
-                                                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                                                        <b:dataTable value="#{DanhMucThietBiController.listDmThietBi}" var="item"
-                                                                     searching="true"
-                                                                     excel="true"
-                                                                     class="listDmThietBi">
-                                                            <b:dataTableColumn label="Tên danh mục">
-                                                                <b:inputText value="#{DanhMucThietBiController.strEditTen}" rendered="#{item.editTen}" />
-                                                                <h:outputText value="#{item.danhmuc_thietbi_ten}" rendered="#{!item.editTen}"/>
-                                                            </b:dataTableColumn>
-                                                            <b:dataTableColumn label="">
-                                                                <b:commandButton actionListener="#{DanhMucThietBiController.preActionEditTenThietBi(item)}" 
-                                                                                 value="Sửa" 
-                                                                                 rendered="#{!item.editTen}"/>                                                          
-                                                            </b:dataTableColumn>
-                                                        </b:dataTable>
-                                                    </div>
+                                            <div class="row">
+                                                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                                                    <h:inputText a:placeholder="Nhập tên danh mục thiết bị..." value="#{DanhMucThietBiController.strEditTen}" styleClass="form-control"/>
                                                 </div>
-                                                <div class="row">
-                                                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-right">
-                                                        <h:commandButton value="Thêm mới" actionListener="#{DanhMucThietBiController.preActionThemThietBi()}" styleClass="btn btn-danger"/>
-                                                    </div>
+                                                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                                                    <h:commandButton value="Thêm" actionListener="#{DanhMucThietBiController.actionThemThietBi()}" styleClass="btn btn-danger" />
                                                 </div>
-                                            </h:panelGroup>
-                                            <h:panelGroup rendered="#{DanhMucThietBiController.viewMode == 1}">
-                                                <div class="row">
-                                                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-                                                        <h:inputText a:placeholder="Nhập tên danh mục thiết bị..." value="#{DanhMucThietBiController.strEditTen}" styleClass="form-control"/>
-                                                    </div>
-                                                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-                                                        <h:commandButton value="Thêm" actionListener="#{DanhMucThietBiController.actionThemThietBi()}" styleClass="btn btn-danger" />
-                                                        <h:commandButton value="Trở về" actionListener="#{DanhMucThietBiController.actionTroVe()}" styleClass="btn btn-default"/>
-                                                    </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                                    <b:dataTable value="#{DanhMucThietBiController.listDmThietBi}" var="item"
+                                                                 searching="true"
+                                                                 excel="true"
+                                                                 class="listDmThietBi">
+                                                        <b:dataTableColumn label="Tên danh mục">
+                                                            <b:inputText value="#{DanhMucThietBiController.strEditTen}" rendered="#{item.editTen}" />
+                                                            <h:outputText value="#{item.danhmuc_thietbi_ten}" rendered="#{!item.editTen}"/>
+                                                        </b:dataTableColumn>
+                                                        <b:dataTableColumn label="">
+                                                            <b:commandButton actionListener="#{DanhMucThietBiController.preActionEditTenThietBi(item)}" 
+                                                                             value="Sửa" 
+                                                                             rendered="#{!item.editTen}"/>                                                          
+                                                        </b:dataTableColumn>
+                                                        <b:dataTableColumn label="">
+                                                            <b:commandButton actionListener="#{DanhMucThietBiController.actionXoaDmThietBi(item.danhmuc_thietbi_id)}" 
+                                                                             value="Xoa" 
+                                                                             />                                                          
+                                                        </b:dataTableColumn>
+                                                    </b:dataTable>
                                                 </div>
-                                            </h:panelGroup>
-
+                                            </div>
                                         </div>
                                     </h:form>
                                 </div>
