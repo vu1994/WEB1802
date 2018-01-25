@@ -27,6 +27,10 @@ public class DanhMucThietBiModel implements Serializable {
     @Column(name = "danhmuc_thietbi_ten")
     private String dmThietBiTen;
     
+    public DanhMucThietBiModel(){
+        
+    }
+    
     // --- Getter Setter
 
     public Long getDmThietBiID() {

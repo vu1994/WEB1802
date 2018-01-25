@@ -16,7 +16,7 @@ import javax.persistence.Table;
  * @author npvu
  */
 @Entity
-    @Table(name = "ThietBi")
+@Table(name = "ThietBi")
 public class ThietBiModel implements Serializable {
 
     @Id
@@ -37,6 +37,10 @@ public class ThietBiModel implements Serializable {
     
     @Column(name = "tinhtrang_ten")
     private String tinhTrangTen;
+    
+    public ThietBiModel(){
+        
+    }
     
     // --- Getter Setter
     public Long getThietBiID() {

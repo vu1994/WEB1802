@@ -47,5 +47,6 @@ Contributor(s):
     <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/thietbi</property>
     <mapping class="com.cusc.model.ThietBiModel"/>
     <mapping class="com.cusc.model.DanhMucTinhTrangModel"/>
+    <mapping class="com.cusc.model.DanhMucThietBiModel"/>
   </session-factory>
 </hibernate-configuration>

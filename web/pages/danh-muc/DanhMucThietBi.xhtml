@@ -1,0 +1,88 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"    
+      xmlns:b="http://bootsfaces.net/ui">
+    <body>
+        
+        <ui:composition template="./../../mainTemplate.xhtml">
+            <ui:define name="title">DANH MỤC THIẾT BỊ</ui:define>
+            <ui:define name="content">
+
+                <div class="content-wrapper" style="min-height: 946px;">
+                    <!-- Content Header (Page header) -->
+                    <section class="content-header">
+                        <h1>
+                            Danh Mục Thiết Bị
+                        </h1>
+                        <ol class="breadcrumb">
+                            <li><a href="#{request.contextPath}"><i class="fa fa-dashboard"></i> Home</a></li>
+                            <li class="active"><a href="#{request.contextPath}/faces/pages/danh-muc/DanhMucThietBi.xhtml">Danh Mục Thiết Bị</a></li>
+                        </ol>
+                    </section>
+
+                    <!-- Main content -->
+                    <section class="content">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <!-- general form elements -->
+                                <div class="box box-primary">
+                                    <!-- form start -->
+                                    <h:form role="form">
+                                        <div class="box-body">
+                                            <h:panelGroup rendered="#{DanhMucThietBiController.viewMode == 0}">
+                                                <div class="row">
+                                                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                                        <b:dataTable value="#{DanhMucThietBiController.listDmThietBi}" var="item"
+                                                                     searching="true"
+                                                                     excel="true"
+                                                                     class="listDmThietBi">
+                                                            <b:dataTableColumn label="Tên danh mục">
+                                                                <b:inputText value="#{DanhMucThietBiController.strEditTen}" rendered="#{item.editTen}" />
+                                                                <h:outputText value="#{item.danhmuc_thietbi_ten}" rendered="#{!item.editTen}"/>
+                                                            </b:dataTableColumn>
+                                                            <b:dataTableColumn label="">
+                                                                <b:commandButton actionListener="#{DanhMucThietBiController.preActionEditTenThietBi(item)}" 
+                                                                                 value="Sửa" 
+                                                                                 rendered="#{!item.editTen}"/>                                                          
+                                                            </b:dataTableColumn>
+                                                        </b:dataTable>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-right">
+                                                        <h:commandButton value="Thêm mới" actionListener="#{DanhMucThietBiController.preActionThemThietBi()}" styleClass="btn btn-danger"/>
+                                                    </div>
+                                                </div>
+                                            </h:panelGroup>
+                                            <h:panelGroup rendered="#{DanhMucThietBiController.viewMode == 1}">
+                                                <div class="row">
+                                                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                                                        <h:inputText a:placeholder="Nhập tên danh mục thiết bị..." value="#{DanhMucThietBiController.strEditTen}" styleClass="form-control"/>
+                                                    </div>
+                                                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                                                        <h:commandButton value="Thêm" actionListener="#{DanhMucThietBiController.actionThemThietBi()}" styleClass="btn btn-danger" />
+                                                        <h:commandButton value="Trở về" actionListener="#{DanhMucThietBiController.actionTroVe()}" styleClass="btn btn-default"/>
+                                                    </div>
+                                                </div>
+                                            </h:panelGroup>
+
+                                        </div>
+                                    </h:form>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.row -->
+                    </section>
+                    <!-- /.content -->
+                </div>
+
+            </ui:define>
+
+        </ui:composition>
+        
+    </body>
+</html>
