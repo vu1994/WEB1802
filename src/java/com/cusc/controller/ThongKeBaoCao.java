@@ -10,6 +10,7 @@ import com.cusc.dataprovider.TinhTrangDataprovider;
 import com.cusc.model.DanhMucTinhTrangModel;
 import com.cusc.model.ThietBiModel;
 import java.util.List;
+import java.util.Map;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 
@@ -23,19 +24,19 @@ public class ThongKeBaoCao {
     
     private int selectedTinhTrang;
     private String filterName;
-    private List<ThietBiModel> listThietBiModel;
+    private List<Map> listThietBiModel;
     ThongKeBaoCaoDataprovider tkbcDp = new ThongKeBaoCaoDataprovider();
     
     public ThongKeBaoCao() {
         actionGetListThongKeTonKho();
     }
     
-    public List<ThietBiModel> actionGetListThongKeTonKho(){
+    public List<Map> actionGetListThongKeTonKho(){
         listThietBiModel = tkbcDp.getDsThongKeTonKho();
         return listThietBiModel;
     }
     
-    public List<ThietBiModel> actionFilterListThongKeTonKho(){
+    public List<Map> actionFilterListThongKeTonKho(){
         listThietBiModel = tkbcDp.getDsThongKeTonKho(filterName, selectedTinhTrang);
         return listThietBiModel;
     } 
@@ -61,11 +62,11 @@ public class ThongKeBaoCao {
         this.filterName = filterName;
     }
 
-    public List<ThietBiModel> getListThietBiModel() {
+    public List<Map> getListThietBiModel() {
         return listThietBiModel;
     }
 
-    public void setListThietBiModel(List<ThietBiModel> listThietBiModel) {
+    public void setListThietBiModel(List<Map> listThietBiModel) {
         this.listThietBiModel = listThietBiModel;
     }
 }

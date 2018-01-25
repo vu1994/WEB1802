@@ -14,7 +14,7 @@ public class HibernateUtil {
 
 	private static final Logger log = LoggerFactory.getLogger(HibernateUtil.class);
 	private static Configuration configuration;
-    private static SessionFactory sessionFactory;
+        private static SessionFactory sessionFactory;
     
     static {
             try {

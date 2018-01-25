@@ -9,7 +9,6 @@ import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 /**
@@ -30,8 +29,14 @@ public class ThietBiModel implements Serializable {
     @Column(name = "danhmuc_thietbi_id")
     private String dmThietBiID;
     
+    @Column(name = "danhmuc_thietbi_ten")
+    private String dmThietBiTen;
+    
     @Column(name = "tinhtrang_id")
     private String tinhTrangID;
+    
+    @Column(name = "tinhtrang_ten")
+    private String tinhTrangTen;
     
     // --- Getter Setter
     public Long getThietBiID() {
@@ -64,6 +69,22 @@ public class ThietBiModel implements Serializable {
 
     public void setTinhTrangID(String tinhTrangID) {
         this.tinhTrangID = tinhTrangID;
+    }
+
+    public String getDmThietBiTen() {
+        return dmThietBiTen;
+    }
+
+    public void setDmThietBiTen(String dmThietBiTen) {
+        this.dmThietBiTen = dmThietBiTen;
+    }
+
+    public String getTinhTrangTen() {
+        return tinhTrangTen;
+    }
+
+    public void setTinhTrangTen(String tinhTrangTen) {
+        this.tinhTrangTen = tinhTrangTen;
     }
 
 }
