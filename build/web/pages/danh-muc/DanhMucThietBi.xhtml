@@ -1,0 +1,105 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"    
+      xmlns:b="http://bootsfaces.net/ui">
+    <body>
+        
+        <ui:composition template="./../../mainTemplate.xhtml">
+            <ui:define name="title">DANH MỤC THIẾT BỊ</ui:define>
+            <ui:define name="content">
+
+                <div class="content-wrapper" style="min-height: 946px;">
+                    <!-- Content Header (Page header) -->
+                    <section class="content-header">
+                        <h1>
+                            Danh Mục Thiết Bị
+                        </h1>
+                        <ol class="breadcrumb">
+                            <li><a href="#{request.contextPath}"><i class="fa fa-dashboard"></i> Home</a></li>
+                            <li class="active"><a href="#{request.contextPath}/faces/pages/danh-muc/DanhMucThietBi.xhtml">Danh Mục Thiết Bị</a></li>
+                        </ol>
+                    </section>
+
+                    <!-- Main content -->
+                    <section class="content">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <!-- general form elements -->
+                                <div class="box box-primary">
+                                    <!-- form start -->
+                                    <h:form>
+                                        <div class="box-body">
+                                            <div class="row" style="display:#{DanhMucThietBiController.viewMode == 1? 'block':'none'}">
+                                                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                                                    <h:inputText a:placeholder="Nhập tên danh mục thiết bị..." value="#{DanhMucThietBiController.strEditTen}" styleClass="form-control"/>
+                                                </div>
+                                                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                                                    <h:commandLink action="#{DanhMucThietBiController.actionThemThietBi()}" styleClass="btn btn-danger margin-r-5" >
+                                                        <i class="fa fa-plus"></i> Thêm
+                                                    </h:commandLink>
+                                                    <h:commandLink action="#{DanhMucThietBiController.actionTroVe()}" styleClass="btn btn-default" >
+                                                        <i class="fa fa-mail-reply"></i> Trở về
+                                                    </h:commandLink>
+                                                </div>
+                                            </div>
+                                            <div class="row" style="display:#{DanhMucThietBiController.viewMode == 2? 'block':'none'}">
+                                                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                                                    <h:inputText a:placeholder="Nhập tên danh mục thiết bị..." value="#{DanhMucThietBiController.strEditTen}" styleClass="form-control"/>
+                                                </div>
+                                                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                                                    <h:commandLink action="#{DanhMucThietBiController.actionEditTenThietBi()}" styleClass="btn btn-danger margin-r-5" >
+                                                        <i class="fa fa-save"></i> Lưu
+                                                    </h:commandLink>
+                                                    <h:commandLink action="#{DanhMucThietBiController.actionTroVe()}" styleClass="btn btn-default" >
+                                                        <i class="fa fa-mail-reply"></i> Hủy bỏ
+                                                    </h:commandLink>
+                                                </div>
+                                            </div>
+                                            <div class="row" style="display:#{DanhMucThietBiController.viewMode == 0? 'block':'none'}">
+                                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                                    <b:dataTable value="#{DanhMucThietBiController.listDmThietBi}" var="item"
+                                                                 searching="true"
+                                                                 paginated="false"
+                                                                 class="listDmThietBi">
+                                                        <b:dataTableColumn label="Tên danh mục" headerStyle="text-align:center">
+                                                            <b:inputText value="#{DanhMucThietBiController.strEditTen}" rendered="#{item.editTen}" />
+                                                            <h:outputText value="#{item.danhmuc_thietbi_ten}" rendered="#{!item.editTen}"/>
+                                                        </b:dataTableColumn>
+                                                        <b:dataTableColumn label="Hành động" style="width:15%" class="text-center">
+                                                            <h:commandLink action="#{DanhMucThietBiController.preActionEditTenThietBi(item)}" styleClass="btn">
+                                                                <i class="fa fa-edit"></i>
+                                                            </h:commandLink>
+                                                            <h:commandLink action="#{DanhMucThietBiController.actionXoaDmThietBi(item.danhmuc_thietbi_id)}"
+                                                                           styleClass="btn text-red"
+                                                                           onclick="return verifyDelete();">
+                                                                <i class="fa fa-trash"></i>
+                                                            </h:commandLink>
+                                                        </b:dataTableColumn>
+                                                    </b:dataTable>
+                                                </div>
+                                            </div>
+                                            <div class="row" style="display:#{DanhMucThietBiController.viewMode == 0? 'block':'none'}">
+                                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-right">
+                                                    <h:commandButton value="Thêm mới" actionListener="#{DanhMucThietBiController.preActionThemThietBi()}" styleClass="btn btn-danger" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </h:form>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.row -->
+                    </section>
+                    <!-- /.content -->
+                </div>
+
+            </ui:define>
+
+        </ui:composition>
+        
+    </body>
+</html>
