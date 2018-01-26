@@ -48,6 +48,7 @@ public class DanhMucThietBiDataProvider implements Serializable {
             dmThietBi = (DanhMucThietBiModel) session.createQuery("FROM DanhMucThietBiModel WHERE dmThietBiID ="+dmThietBiID).uniqueResult();
             session.getTransaction().commit();
 	} catch (Exception e) {
+            session.getTransaction().rollback();
             e.printStackTrace();
 	} finally {
             session.close();
@@ -62,6 +63,26 @@ public class DanhMucThietBiDataProvider implements Serializable {
             session.createSQLQuery("INSERT INTO danhmuc_thietbi(danhmuc_thietbi_ten) VALUES('"+dmThietBi.getDmThietBiTen()+"')").executeUpdate();
             session.getTransaction().commit();
 	} catch (Exception e) {
+            session.getTransaction().rollback();
+            e.printStackTrace();
+            return false;
+	} finally {
+            session.close();
+	}
+        return true;
+    }
+    
+    public boolean updateDmThietBi(DanhMucThietBiModel dmThietBi){
+        Session session = HibernateUtil.currentSession();
+        try {
+            session.beginTransaction();
+            session.createSQLQuery("UPDATE danhmuc_thietbi"
+                    + " SET danhmuc_thietbi_ten = '"+dmThietBi.getDmThietBiTen()+"'"
+                    + " WHERE danhmuc_thietbi_id = "+dmThietBi.getDmThietBiID())
+                    .executeUpdate();
+            session.getTransaction().commit();
+	} catch (Exception e) {
+            session.getTransaction().rollback();
             e.printStackTrace();
             return false;
 	} finally {
@@ -77,6 +98,7 @@ public class DanhMucThietBiDataProvider implements Serializable {
             session.createSQLQuery("DELETE FROM danhmuc_thietbi WHERE danhmuc_thietbi_id = "+dmThietBiID).executeUpdate();
             session.getTransaction().commit();
 	} catch (Exception e) {
+            session.getTransaction().rollback();
             e.printStackTrace();
             return false;
 	} finally {

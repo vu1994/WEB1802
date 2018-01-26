@@ -1,0 +1,24 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Jan 26, 2018, 2:20:05 PM
+    Author     : npvu
+*/
+
+.table-bordered>thead>tr>th,
+.table-bordered>tbody>tr>th,
+.table-bordered>tfoot>tr>th,
+.table-bordered>thead>tr>td,
+.table-bordered>tbody>tr>td,
+.table-bordered>tfoot>tr>td {
+    border:1px solid #ddd !important
+}
+.form-inline label, input {
+    margin-right: 0px !important;
+}
+.margin-r-5 {
+    margin-right: 5px !important;
+}

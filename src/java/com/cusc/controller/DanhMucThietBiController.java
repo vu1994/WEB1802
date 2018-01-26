@@ -23,6 +23,7 @@ public class DanhMucThietBiController {
     private List<Map> listDmThietBi;
     private int viewMode = 0;
     private String strEditTen;
+    private long longEditID;
     
     public DanhMucThietBiController(){
         this.actionGetListDmThietBi();
@@ -33,16 +34,13 @@ public class DanhMucThietBiController {
     }
     
     public void preActionEditTenThietBi(Map mapDmThietBi){
+        longEditID = Long.parseLong(mapDmThietBi.get("danhmuc_thietbi_id").toString());
         strEditTen = mapDmThietBi.get("danhmuc_thietbi_ten").toString();
-        mapDmThietBi.put("editTen", true);
+        viewMode = 2;
     }
     
     public void preActionThemThietBi(){
         viewMode = 1;
-    }
-    
-    public void actionTroVe(){
-        viewMode = 0;
     }
     
     public void actionThemThietBi(){
@@ -50,6 +48,20 @@ public class DanhMucThietBiController {
         dmThietBi.setDmThietBiTen(strEditTen);
         if(dmThietBiDp.addDmThietBi(dmThietBi)){
             System.out.println("true");
+        } else {
+            System.out.println("false");
+        }
+        listDmThietBi = dmThietBiDp.getListDmThietBi();
+        viewMode = 0;
+    }
+    
+    public void actionEditTenThietBi(long ID){
+        DanhMucThietBiModel dmThietBiModel = new DanhMucThietBiModel();
+        System.out.println("true " +ID + " - "+longEditID);
+        dmThietBiModel.setDmThietBiID(ID);
+        dmThietBiModel.setDmThietBiTen(strEditTen);
+        if(dmThietBiDp.updateDmThietBi(dmThietBiModel)){
+            System.out.println("true" +dmThietBiModel.getDmThietBiID());
         } else {
             System.out.println("false");
         }
@@ -67,8 +79,8 @@ public class DanhMucThietBiController {
         viewMode = 0;
     }
     
-    public void actionEditTenThietBi(Map mapDmThietBi){
-        
+    public void actionTroVe(){
+        viewMode = 0;
     }
     
     // Getter & Setter
@@ -104,4 +116,13 @@ public class DanhMucThietBiController {
     public void setDmThietBiDp(DanhMucThietBiDataProvider dmThietBiDp) {
         this.dmThietBiDp = dmThietBiDp;
     }
+
+    public long getLongEditID() {
+        return longEditID;
+    }
+
+    public void setLongEditID(long longEditID) {
+        this.longEditID = longEditID;
+    }
+
 }

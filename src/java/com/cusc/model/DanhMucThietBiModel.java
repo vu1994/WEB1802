@@ -22,7 +22,7 @@ public class DanhMucThietBiModel implements Serializable {
 
     @Id
     @Column(name = "danhmuc_thietbi_id", unique = true, nullable = false)
-    private Long dmThietBiID;
+    private long dmThietBiID;
     
     @Column(name = "danhmuc_thietbi_ten")
     private String dmThietBiTen;
@@ -33,11 +33,11 @@ public class DanhMucThietBiModel implements Serializable {
     
     // --- Getter Setter
 
-    public Long getDmThietBiID() {
+    public long getDmThietBiID() {
         return dmThietBiID;
     }
 
-    public void setDmThietBiID(Long dmThietBiID) {
+    public void setDmThietBiID(long dmThietBiID) {
         this.dmThietBiID = dmThietBiID;
     }
 
