@@ -17,7 +17,7 @@ body {
     padding: 0;
 /*    margin-left: 0;
     margin-right: 0;*/
-    font-family: 'roboto', sans-serif;
+    font-family: Times New Roman Georgia;
     font-weight: 300;
     margin: 0px;
 }
@@ -266,10 +266,81 @@ section .subtitle-half h5 {
     width: 100%;
     padding: 50px 0px;
 }
-.home-overlay-fluid {
-    background-color: rgba(0, 0, 0, 0.60);
-    width: 100%;
-    padding: 266px 0px;
+@media (min-width: 991px) {
+    .home-overlay-fluid {
+        background-color: rgba(0, 0, 0, 0.60);
+        width: 100%;
+        padding: 225px 0px;
+
+    }
+    
+    /* Home Section */
+.home{
+    background: url(../img/homebg.jpg) no-repeat 100% 100%;
+    text-align: center;
+}
+
+}
+/* Portrait tablets and small desktops */
+@media  (min-width:769px) and (max-width: 990px) {
+    .home-overlay-fluid {
+        background-color: rgba(0, 0, 0, 0.60);
+        width: 100%;
+        padding: 50px 0px;
+
+    }
+    
+    /* Home Section */
+    .home{
+        background: url(../img/home1.jpg) no-repeat 100% 100%;
+        text-align: center;
+    }
+
+}
+
+/* Landscape phones and portrait tablets */
+@media (min-width:480px) and (max-width: 768px) {
+    .home-overlay-fluid {
+        background-color: rgba(0, 0, 0, 0.60);
+        width: 100%;
+        padding: 0px 0px;
+
+    }
+       /* Home Section */
+    .home{
+        background: url(../img/home1.jpg) no-repeat 100% 100%;
+        text-align: center;
+    }
+}
+
+/* Landscape phones and portrait tablets */
+@media (min-width:380px) and (max-width: 480px) {
+    .home-overlay-fluid {
+        background-color: rgba(0, 0, 0, 0.60);
+        width: 100%;
+        padding: 125px 0px 186px;
+
+    }
+       /* Home Section */
+    .home{
+        background: url(../img/home1.jpg) no-repeat 100% 100%;
+        text-align: center;
+    }
+}
+
+
+@media (max-width: 380px) {
+    .home-overlay-fluid {
+        background-color: rgba(0, 0, 0, 0.60);
+        width: 100%;
+        padding: 110px 0px 110px;
+
+    }
+       /* Home Section */
+    .home{
+        background: url(../img/home1.jpg) no-repeat 100% 100%;
+        text-align: center;
+    }
 }
 .overlay-img {
     background: rgba(0, 0, 0, 0.3);
@@ -330,9 +401,9 @@ Button
 .btn {
     border: 1px solid #3c3c3c;
     display: inline-block;
-    min-width: 160px;
     padding: 1em;
-    height: 55px;
+/*    min-width: 160px;
+    height: 55px;*/
     text-align: center;
     color: #3c3c3c;
     font-style: normal;
@@ -341,7 +412,7 @@ Button
     font-size: 16px;
     font-weight: 300;
     border-radius: 0;
-    margin-top: 30px;
+/*    margin-top: 30px;*/
 }
 .btn:hover {
 	background-color: transparent;
@@ -561,11 +632,6 @@ input:-ms-input-placeholder {
 
 
 
-/* Home Section */
-.home{
-    background: url(../img/homebg.jpg) no-repeat 100% 100%;
-    text-align: center;
-}
 
 
 
@@ -616,7 +682,7 @@ input:-ms-input-placeholder {
     background: #21424a;
 }
 .single_register{
-    background: #2fac6c;
+    background: darkgoldenrod;
     transform: skewX(-20deg);
 }
 .single_register a{
@@ -1119,4 +1185,15 @@ i:hover{
 	margin-left: -6px;
 	text-decoration: none;
 
+}
+
+.dangnhap a{
+    color: red;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.dangnhap a:hover{
+    color: #00FF00 !important;
+    background-color: transparent !important;
 }
