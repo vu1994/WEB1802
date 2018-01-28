@@ -1,0 +1,163 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"    
+      xmlns:b="http://bootsfaces.net/ui">
+
+    <body>
+
+        <ui:composition template="./../../mainTemplate.xhtml">
+
+            <ui:define name="title">
+                DANH SÁCH THIẾT BỊ
+            </ui:define>
+
+            <ui:define name="content">
+                <div class="content-wrapper" style="min-height: 946px;">
+                    <!-- Content Header (Page header) -->
+                    <section class="content-header">
+                        <h1>
+                            DANH SÁCH THIẾT BỊ
+                        </h1>
+                        <ol class="breadcrumb">
+                            <li><a href="#{request.contextPath}"><i class="fa fa-dashboard"></i> Home</a></li>
+                            <li class="active"><a href="#{request.contextPath}/faces/pages/QuanLyThietBi.xhtml">Danh Sách Thiết Bị</a></li>
+                        </ol>
+                    </section>
+
+                    <!-- Main content -->
+                    <section class="content">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <!-- general form elements -->
+                                <div class="box box-primary">
+                                    <!-- form start -->
+                                    <b:form id="formQuanLyThietBi">
+                                        <div class="box-body">
+                                            <h:panelGroup rendered="#{QuanLyThietBiController.viewMode == 0}">
+                                                <div class="row">
+                                                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-right">
+                                                        <h:commandButton value="Nhập thiết bị" actionListener="#{QuanLyThietBiController.preActionThemThietBi()}" styleClass="btn btn-danger" />
+                                                    </div>
+                                                </div>
+                                                <div class="row margin-t-5">
+                                                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                                        <b:dataTable value="#{QuanLyThietBiController.listThietBi}" var="item"
+                                                                     excel="true"
+                                                                     searching="true"
+                                                                     pageLength="10">
+                                                            <b:dataTableColumn style="width: 5%;" styleClass="text-center" label="STT" value="#{item.rowIndex}"/>
+                                                            <b:dataTableColumn headerStyleClass="text-center" label="Tên thiết bị" value="#{item.thietbi_ten}"/>
+                                                            <b:dataTableColumn headerStyleClass="text-center" label="Nhóm thiết bị" value="#{item.danhmuc_thietbi_ten}"/>
+                                                            <b:dataTableColumn headerStyleClass="text-center" label="Tình trạng" value="#{item.tinhtrang_ten}"/>
+                                                            <b:dataTableColumn styleClass="text-center" label="Ngày nhập" value="#{item.thietbi_ngaynhap}"/>
+                                                        </b:dataTable>
+                                                    </div>
+                                                </div>
+                                            </h:panelGroup>
+                                            <h:panelGroup rendered="#{QuanLyThietBiController.viewMode == 1}">
+                                                <div class="row">
+                                                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                                                        <h:outputLabel value="Tên thiết bị"/>
+                                                        <b:inputText id="txtTenThietBi" class="required"
+                                                                     value=""
+                                                                     rendered="true"
+                                                                     requiredMessage="Vui lòng nhập tên thiết bị."/>
+                                                        <b:message for="txtTenThietBi"/>
+                                                    </div>
+                                                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                                                        <h:outputLabel value="Nhóm thiết bị"/>
+                                                        <b:selectOneMenu id="selectNhomThietBi" class="required"
+                                                                         value="#{QuanLyThietBiController.selectedNhomThietBi}"
+                                                                         required="true"
+                                                                         requiredMessage="Vui lòng chọn nhóm thiết bị.">
+                                                            <f:selectItem itemLabel="-- Chọn nhóm thiết bị --" itemValue="" />
+                                                            <f:selectItems value="#{DanhMucThietBiController.listDmThietBi}"
+                                                                           var="item"
+                                                                           itemLabel="#{item.danhmuc_thietbi_ten}"
+                                                                           itemValue="#{item.danhmuc_thietbi_id}"/>
+                                                        </b:selectOneMenu>
+                                                        <b:message for="selectNhomThietBi" show-icon="true"/>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                                                        <h:outputLabel value="Tình trạng"/>
+                                                        <b:selectOneMenu id="selectTinhTrang" class="required"
+                                                                         value="#{QuanLyThietBiController.selectedTinhTrang}"
+                                                                         required="true"
+                                                                         requiredMessage="Vui lòng chọn tình trạng thiết bị.">
+                                                            <f:selectItem itemLabel="-- Chọn tình trạng --" itemValue="" />
+                                                            <f:selectItem itemLabel="Mới" itemValue="1" />
+                                                            <f:selectItem itemLabel="Đang sử dụng" itemValue="2" />
+                                                            <f:selectItem itemLabel="Đã qua sử dụng" itemValue="3" />
+                                                            <f:selectItem itemLabel="Bị hỏng" itemValue="4" />
+                                                        </b:selectOneMenu>
+                                                        <b:message for="selectTinhTrang" show-icon="true"/>
+                                                    </div>
+                                                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                                                        <h:outputLabel value="Ngày nhập"/>
+                                                        <b:datepicker id="dateNgayNhap" class="required"
+                                                                      value="#{QuanLyThietBiController.selectedNgayNhap}"
+                                                                      required="true"
+                                                                      requiredMessage="Vui lòng chọn ngày nhập thiết bị"
+                                                                      mode="popup-icon"/>
+                                                        <b:message for="dateNgayNhap"/>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                                        Chọn nhân viên cấp phát
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                                                        <h:outputLabel value="Chọn phòng ban"/>
+                                                        <b:selectOneMenu id="selectPhongBan"
+                                                                         value="">
+
+                                                        </b:selectOneMenu>
+                                                        <b:message for="selectPhongBan"/>
+                                                    </div>
+                                                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                                                        <h:outputLabel value="Chọn nhân viên"/>
+                                                        <b:selectOneMenu id="selectNhanVien"
+                                                                         value="">
+
+                                                        </b:selectOneMenu>
+                                                        <b:message for="selectNhanVien"/>
+                                                    </div>
+                                                </div>  
+
+                                                <div class="row margin-t-15">
+                                                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
+                                                        <b:commandLink action="#{QuanLyThietBiController.actionThemThietBi()}"
+                                                                       styleClass="btn btn-danger margin-r-5"
+                                                                       process="@form" update="@form">
+                                                            <i class="fa fa-save"></i> Lưu
+                                                        </b:commandLink>
+                                                        <h:commandLink styleClass="btn btn-default" >
+                                                            <f:ajax listener="#{QuanLyThietBiController.actionTroVe()}" render="formQuanLyThietBi" />
+                                                            <i class="fa fa-mail-reply"></i> Hủy bỏ
+                                                        </h:commandLink>
+                                                    </div>
+                                                </div>
+                                            </h:panelGroup>
+                                        </div>
+                                    </b:form>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.row -->
+                    </section>
+                    <!-- /.content -->
+                </div>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

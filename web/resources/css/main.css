@@ -25,3 +25,16 @@ and open the template in the editor.
 .margin-t-5 {
     margin-top: 5px !important;
 }
+.margin-t-10 {
+    margin-top: 10px !important;
+}
+.margin-t-15 {
+    margin-top: 15px !important;
+}
+.bficon-error-circle-o:before {
+    color: #ffffff !important;
+    content: "\e088";
+}
+.required {
+    border-left: 3px solid red;
+}
