@@ -6,21 +6,25 @@
       xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
       xmlns:f="http://xmlns.jcp.org/jsf/core"    
       xmlns:b="http://bootsfaces.net/ui">
-    <body>
-        
-        <ui:composition template="./../mainTemplate.xhtml">
-            <ui:define name="title">THỐNG KÊ TỒN KHO</ui:define>
-            <ui:define name="content">
 
+    <body>
+
+        <ui:composition template="./../mainTemplate.xhtml">
+
+            <ui:define name="title">
+                DANH SÁCH THIẾT BỊ
+            </ui:define>
+
+            <ui:define name="content">
                 <div class="content-wrapper" style="min-height: 946px;">
                     <!-- Content Header (Page header) -->
                     <section class="content-header">
                         <h1>
-                            Thống Kê Tồn Kho
+                            Danh Sách Thiết Bị
                         </h1>
                         <ol class="breadcrumb">
                             <li><a href="#{request.contextPath}"><i class="fa fa-dashboard"></i> Home</a></li>
-                            <li class="active"><a href="#{request.contextPath}/faces/pages/ThongKeTonKho.xhtml">Thống Kê Tồn Kho</a></li>
+                            <li class="active"><a href="#{request.contextPath}/faces/pages/QuanLyThietBi.xhtml">Quản Lý Thiết Bị</a></li>
                         </ol>
                     </section>
 
@@ -31,21 +35,15 @@
                                 <!-- general form elements -->
                                 <div class="box box-primary">
                                     <!-- form start -->
-                                    <h:form role="form">
-
-                                        
+                                    <h:form>
                                         <div class="box-body">
-                                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                                                <b:dataTable id='myTable' value="#{ThongKeBaoCaoController.listThietBiModel}"
-                                                             var="item"
-                                                             searching="true"
-                                                             excel="true"
-                                                             pdf="true"
-                                                             >
-                                                    <b:dataTableColumn value="#{item.thietbi_ten}" label="Tên thiết bị"/>
-                                                    <b:dataTableColumn value="#{item.tinhtrang_ten}" label="Tình trạng"/>
-                                                </b:dataTable>
-                                            </div>
+                                            <h:panelGroup rendered="#{QuanLyThietBiController.viewMode == 0}">
+                                                <div class="row">
+                                                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                                        
+                                                    </div>
+                                                </div>
+                                            </h:panelGroup>
                                             
                                         </div>
                                     </h:form>
@@ -56,10 +54,9 @@
                     </section>
                     <!-- /.content -->
                 </div>
-
             </ui:define>
 
         </ui:composition>
-        
+
     </body>
 </html>

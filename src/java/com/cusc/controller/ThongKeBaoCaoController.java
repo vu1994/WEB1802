@@ -11,14 +11,14 @@ import com.cusc.model.DanhMucTinhTrangModel;
 import java.util.List;
 import java.util.Map;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
+import javax.faces.bean.ViewScoped;
 
 /**
  *
  * @author npvu
  */
 @ManagedBean(name="ThongKeBaoCaoController")
-@RequestScoped
+@ViewScoped
 public class ThongKeBaoCaoController {
     
     private int selectedTinhTrang;

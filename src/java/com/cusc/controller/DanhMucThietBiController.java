@@ -10,17 +10,17 @@ import com.cusc.model.DanhMucThietBiModel;
 import java.util.List;
 import java.util.Map;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
-
+import javax.faces.bean.ViewScoped;
 /**
  *
  * @author npvu
  */
 @ManagedBean(name="DanhMucThietBiController")
-@RequestScoped
+@ViewScoped
 public class DanhMucThietBiController {
     private DanhMucThietBiDataProvider dmThietBiDp = new DanhMucThietBiDataProvider();
     private List<Map> listDmThietBi;
+    private DanhMucThietBiModel objDmThietBi = new DanhMucThietBiModel();
     private int viewMode = 0;
     private String strEditTen;
     private long longEditID;
@@ -34,12 +34,13 @@ public class DanhMucThietBiController {
     }
     
     public void preActionEditTenThietBi(Map mapDmThietBi){
-        longEditID = Long.parseLong(mapDmThietBi.get("danhmuc_thietbi_id").toString());
-        strEditTen = mapDmThietBi.get("danhmuc_thietbi_ten").toString();
+        objDmThietBi.setDmThietBiID(Long.parseLong(mapDmThietBi.get("danhmuc_thietbi_id").toString()));
+        objDmThietBi.setDmThietBiTen(mapDmThietBi.get("danhmuc_thietbi_ten").toString());
         viewMode = 2;
     }
     
     public void preActionThemThietBi(){
+        strEditTen = "";
         viewMode = 1;
     }
     
@@ -55,13 +56,9 @@ public class DanhMucThietBiController {
         viewMode = 0;
     }
     
-    public void actionEditTenThietBi(long ID){
-        DanhMucThietBiModel dmThietBiModel = new DanhMucThietBiModel();
-        System.out.println("true " +ID + " - "+longEditID);
-        dmThietBiModel.setDmThietBiID(ID);
-        dmThietBiModel.setDmThietBiTen(strEditTen);
-        if(dmThietBiDp.updateDmThietBi(dmThietBiModel)){
-            System.out.println("true" +dmThietBiModel.getDmThietBiID());
+    public void actionEditTenThietBi(){
+        if(dmThietBiDp.updateDmThietBi(objDmThietBi)){
+            System.out.println("true" +objDmThietBi.getDmThietBiID());
         } else {
             System.out.println("false");
         }
@@ -123,6 +120,14 @@ public class DanhMucThietBiController {
 
     public void setLongEditID(long longEditID) {
         this.longEditID = longEditID;
+    }
+
+    public DanhMucThietBiModel getObjDmThietBi() {
+        return objDmThietBi;
+    }
+
+    public void setObjDmThietBi(DanhMucThietBiModel objDmThietBi) {
+        this.objDmThietBi = objDmThietBi;
     }
 
 }
