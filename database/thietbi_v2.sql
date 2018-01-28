@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.5.2
--- https://www.phpmyadmin.net/
+-- version 4.5.1
+-- http://www.phpmyadmin.net
 --
--- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th1 25, 2018 lúc 09:03 SA
--- Phiên bản máy phục vụ: 10.1.21-MariaDB
--- Phiên bản PHP: 5.6.30
+-- Host: 127.0.0.1
+-- Generation Time: Jan 28, 2018 at 12:57 PM
+-- Server version: 10.1.9-MariaDB
+-- PHP Version: 5.6.15
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,13 +17,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Cơ sở dữ liệu: `thietbi`
+-- Database: `capphatthietbi`
 --
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `thietbi`
+-- Table structure for table `thietbi`
 --
 
 CREATE TABLE `thietbi` (
@@ -31,23 +31,27 @@ CREATE TABLE `thietbi` (
   `thietbi_ten` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
   `danhmuc_thietbi_id` int(11) NOT NULL,
   `tinhtrang_id` int(11) NOT NULL,
-  `thietbi_ngaynhap` date NOT NULL
+  `thietbi_ngaynhap` date NOT NULL,
+  `thietbi_ngaycap` date DEFAULT NULL,
+  `thietbi_capcho` int(11) DEFAULT NULL,
+  `thietbi_nguoicap` int(11) DEFAULT NULL,
+  `thietbi_ngaythuhoi` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `thietbi`
+-- Dumping data for table `thietbi`
 --
 
-INSERT INTO `thietbi` (`thietbi_id`, `thietbi_ten`, `danhmuc_thietbi_id`, `tinhtrang_id`, `thietbi_ngaynhap`) VALUES
-(1, 'PC Intel Core i7 4790 3.6GHz', 1, 1, '2018-01-24'),
-(2, 'PC Intel Core i7 4790 3.6GHz', 1, 2, '2018-01-17');
+INSERT INTO `thietbi` (`thietbi_id`, `thietbi_ten`, `danhmuc_thietbi_id`, `tinhtrang_id`, `thietbi_ngaynhap`, `thietbi_ngaycap`, `thietbi_capcho`, `thietbi_nguoicap`, `thietbi_ngaythuhoi`) VALUES
+(1, 'PC Intel Core i7 4790 3.6GHz', 1, 1, '2018-01-24', NULL, NULL, NULL, NULL),
+(2, 'Dell ', 2, 2, '2018-01-17', NULL, NULL, NULL, NULL);
 
 --
--- Chỉ mục cho các bảng đã đổ
+-- Indexes for dumped tables
 --
 
 --
--- Chỉ mục cho bảng `thietbi`
+-- Indexes for table `thietbi`
 --
 ALTER TABLE `thietbi`
   ADD PRIMARY KEY (`thietbi_id`),
@@ -55,20 +59,20 @@ ALTER TABLE `thietbi`
   ADD KEY `fk_tinhtrang` (`tinhtrang_id`);
 
 --
--- AUTO_INCREMENT cho các bảng đã đổ
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT cho bảng `thietbi`
+-- AUTO_INCREMENT for table `thietbi`
 --
 ALTER TABLE `thietbi`
   MODIFY `thietbi_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
--- Các ràng buộc cho các bảng đã đổ
+-- Constraints for dumped tables
 --
 
 --
--- Các ràng buộc cho bảng `thietbi`
+-- Constraints for table `thietbi`
 --
 ALTER TABLE `thietbi`
   ADD CONSTRAINT `fk_danhmuc` FOREIGN KEY (`danhmuc_thietbi_id`) REFERENCES `danhmuc_thietbi` (`danhmuc_thietbi_id`),
