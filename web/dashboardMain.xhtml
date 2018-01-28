@@ -5,10 +5,12 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
       xmlns:f="http://xmlns.jcp.org/jsf/core"    
-      xmlns:b="http://bootsfaces.net/ui">
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:p="http://primefaces.org/ui">
     <h:head>
         <title>CẤP PHÁT THIẾT BỊ</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
         <h:outputStylesheet name="css/style.css" />
         <h:outputStylesheet name="css/stylesheet.css"/>
@@ -22,6 +24,7 @@
         <h:outputStylesheet name="css/AdminLTE.min.css" library="resources"/>
         <h:outputStylesheet name="css/main.css" library="resources"/>
         <h:outputStylesheet name="css/animation.css" library="resources"/>
+        <h:outputStylesheet name="css/responsive.css" library="resources"/>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic"/>
         
         <h:outputScript name="js/bootstrap/jquery.min.js" library="resources"/>
@@ -41,16 +44,43 @@
 
     </h:head>
     <h:body>
-        <section id="home" class="home">
+        <style>
+            .modal.in .modal-dialog{
+                margin-top: 150px;
+            }
+            .modal-header{
+                padding: 5px 15px;
+                background: antiquewhite;
+                border-bottom: 1px solid #e5e5e5;
+                height: 50px;
+                font-family: initial;
+                font-weight: bold;
+            }
+            .close{
+                padding: 10px 10px 10px 10px !important;
+                color: #993333
+            }
+            .label{
+                font-family: Times New Roman Georgia !important;
+            }
+            .register a:hover{
+                 color: #00FF00 !important;
+                 background-color: transparent !important;
+                 text-decoration: none;
+            }
+        </style>
+       <h:form>        
+        
+       <section id="home" class="home">
             <div class="home-overlay-fluid">
                 <div class="container">
-                    <div class="row">
+                   <div class="row">
                         <div class="main_slider_area">
                             <div class="slider">
                                 <div class="container">
                                     <div class="row">
                                         <div class="main_service text-center">
-                                            <div class="col-md-3 col-sm-6 col-xs-12 icon1">
+                                            <div class="col-md-3 col-sm-6 col-xs-6 icon1">
                                                 <div class="single_service wow fadeIn " data-wow-duration=".6s">
                                                     <div class="single_service_icon icon_one hvr-buzz ">
                                                         <h:outputLink value="faces/mainTemplate.xhtml"> <i class="fa fa-home"></i></h:outputLink>
@@ -60,7 +90,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-md-3 col-sm-6 col-xs-12 icon1">
+                                            <div class="col-md-3 col-sm-6 col-xs-6 icon1">
                                                 <div class="single_service wow fadeIn" data-wow-duration="1.2s">
                                                     <div class="single_service_icon icon_two hvr-float-shadow">
                                                         <a href=""><i class="fa fa-bar-chart fa-lg"  ></i></a>
@@ -70,20 +100,20 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-md-3 col-sm-6 col-xs-12 icon1">
+                                            <div class="col-md-3 col-sm-6 col-xs-6 icon1">
                                                 <div class="single_service wow fadeIn" data-wow-duration="1.7s">
                                                     <div class="single_service_icon icon_three hvr-wobble-to-bottom-right">
-                                                        <a href=""><i class="fa fa-wrench"></i></a>
+                                                        <a href=""><i class="fa fa-desktop"></i></a>
                                                     </div>
                                                     <div class="single_service_deatels">
-                                                        <h4>YÊU CẦU CẤP PHÁT</h4>
+                                                        <h4>CẤP PHÁT</h4>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-md-3 col-sm-6 col-xs-12 icon1 ">
+                                            <div class="col-md-3 col-sm-6 col-xs-6 icon1 ">
                                                 <div class="single_service wow fadeIn" data-wow-duration="2s">
                                                     <div class="single_service_icon icon_four hvr-wobble-horizontal">
-                                                        <h:outputLink value="#"><i class="fa fa-users"></i></h:outputLink>
+                                                        <h:outputLink value="faces/pages/phongban/phongbanTemplate.xhtml"><i class="fa fa-users"></i></h:outputLink>
                                                     </div>
                                                     <div class="single_service_deatels">
                                                         <h4>PHÒNG BAN</h4>
@@ -98,7 +128,43 @@
                     </div>
                 </div>
             </div>
+            <div id="register" class="register">
+                <div class="container-fullwidth">
+                       <div class="row text-center">
+                           <div class="col-sm-6 col-xs-6 no-padding">
+                               <div class="single_register single_login">
+                                  <b:link onclick="$('.dangNhapPopUp').modal()" ><i class="fa fa-key fa-spin"/> ĐĂNG NHẬP</b:link>
+                               </div>
+                           </div>
+                           <div class="col-sm-6 col-xs-6 no-padding">
+                               <div class="single_register">
+                                   <b:link onclick="$('.dangNhapPopUp').modal()" ><i class="fa fa-wrench fa-spin"/> YÊU CẦU SỬA CHỮA </b:link>
+                               </div>
+                           </div>
+                       </div>
+                </div>    
+            </div>
         </section><!-- End of Banner Section -->
+        
+        </h:form>
+        
+        
+      
+        
+        <b:modal id="amodal2" title="ĐĂNG NHẬP" styleClass=" dangNhapPopUp"
+                 closable="true"  close-on-escape="true" backdrop="true">
+            <b:form id="loginForm">
+                <b:inputText id="usernameDiv" fieldId="j_username" name="j_username"
+                             value="#{loginBean.username}"
+                             label="TÀI KHOẢN"/>
+                <b:message for="@previous" />
+                <b:inputSecret id="passwordDiv" fieldId="j_password" name="j_password"
+                               value="#{loginBean.password}"
+                               label="MẬT KHẨU"  />
+                <b:message for="passwordDiv" />
+                <b:commandButton update="@form" value="ĐĂNG NHẬP" onclick="ajax:loginBean.login2()" class="btn-danger"/>
+            </b:form>
+        </b:modal>
     </h:body>
 </html>
 

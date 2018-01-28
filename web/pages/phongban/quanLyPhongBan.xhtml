@@ -1,0 +1,81 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"    
+      xmlns:b="http://bootsfaces.net/ui">
+    <body>
+        
+        <ui:composition template="phongbanTemplate.xhtml">
+            <ui:define name="title">QUẢN LÝ PHÒNG BAN</ui:define>
+            <ui:define name="content">
+                <header class="main-header">
+                    <nav class="navbar navbar-static-top">
+                      <!-- Sidebar toggle button-->
+                      <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+                        <span class="sr-only">Toggle navigation</span>
+                      </a>
+
+                    </nav>
+                </header>
+                <div class="content-wrapper" style="min-height: 946px;">
+                    <!-- Content Header (Page header) -->
+                    <section class="content-header">
+                        <h1>
+                            QUẢN LÝ PHÒNG BAN 
+                        </h1>
+                        <ol class="breadcrumb">
+                            <li><a href="#{request.contextPath}"><i class="fa fa-dashboard"></i> Home</a></li>
+                            <li class="active"><a href="#{request.contextPath}/faces/pages/phongban/quanLyPhongBan.xhtml">Quản lý phòng ban</a></li>
+                        </ol>
+                    </section>
+
+                    <!-- Main content -->
+                    <section class="content">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <!-- general form elements -->
+                                <div class="box box-primary">
+                                    <!-- form start -->
+                                    <h:form role="form">
+
+                                        
+                                        <div class="box-body">
+                                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                                <b:dataTable id='myTable' value="#{DanhMucNhanVienController.listDmNhanVien}"
+                                                             var="item"
+                                                             searching="true"
+                                                             excel="true"
+                                                             pdf="true"
+                                                             >
+                                                    
+                                                    <b:dataTableColumn value="#{item.nv_ten}" label="Họ tên Nhân viên"/>
+                                                    <b:dataTableColumn value="" label="Ngày sinh">
+                                                        <h:outputText value="#{item.nv_ngaysinh}">
+                                                            <f:convertDateTime pattern = "dd-MM-yyyy" locale="vi_VN"/>
+                                                        </h:outputText>
+                                                    </b:dataTableColumn>
+                                                    <b:dataTableColumn value="#{item.nv_email}" label="Email"/>
+                                                    <b:dataTableColumn value="#{item.nv_diachi}" label="Địa chỉ"/>
+                                                    <b:dataTableColumn value="#{item.pb_ten}" label="Phòng ban"/>
+                                                </b:dataTable>
+                                            </div>
+                                            
+                                        </div>
+                                    </h:form>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.row -->
+                    </section>
+                    <!-- /.content -->
+                </div>
+
+            </ui:define>
+
+        </ui:composition>
+        
+    </body>
+</html>

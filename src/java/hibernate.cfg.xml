@@ -48,5 +48,6 @@ Contributor(s):
     <mapping class="com.cusc.model.ThietBiModel"/>
     <mapping class="com.cusc.model.DanhMucTinhTrangModel"/>
     <mapping class="com.cusc.model.DanhMucThietBiModel"/>
+    <mapping class="com.cusc.model.NhanVienModel"/>
   </session-factory>
 </hibernate-configuration>
