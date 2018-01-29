@@ -21,7 +21,7 @@ import javax.faces.bean.ViewScoped;
 @ManagedBean (name="QuanLyThietBiController")
 @ViewScoped
 public class QuanLyThietBiController {
-    QuanLyThietBiDataProvider thietBiDp = new QuanLyThietBiDataProvider();
+    QuanLyThietBiDataProvider tbProvider = new QuanLyThietBiDataProvider();
     private List<Map> listThietBi = new ArrayList<>();
     private ThietBiModel objThietBi = new ThietBiModel();
     private boolean selectedCapPhat = false;
@@ -35,7 +35,7 @@ public class QuanLyThietBiController {
     }
     
     public void actionGetListThietBi(){
-        listThietBi = thietBiDp.getListThietBi();
+        listThietBi = tbProvider.getListThietBi();
     }
     
     public void preActionThemThietBi(){
@@ -45,7 +45,12 @@ public class QuanLyThietBiController {
     }
     
     public void actionThemThietBi(){
-        
+        System.out.println("npvu test");
+        if(tbProvider.addThietBi(objThietBi)){
+            System.out.println("true");
+        }else {
+            System.out.println("false");
+        }
     }
     
     public void showFormCapPhat(){

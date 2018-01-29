@@ -21,6 +21,7 @@ import javax.faces.bean.RequestScoped;
 public class NhanVienController {
     private NhanVienProvider nvProvider = new NhanVienProvider();
     private List<Map> listDmNhanVien;
+    private int selectedPhongBan;
    
     
     public NhanVienController(){
@@ -30,13 +31,29 @@ public class NhanVienController {
     public void actionGetListDmNhanVien(){
         listDmNhanVien = nvProvider.getListNhanVien();
     }
-
+    
+    public void actionChangePhongBan(){
+        if(selectedPhongBan == 0){
+            this.actionGetListDmNhanVien();
+        }else{
+            listDmNhanVien = nvProvider.getListNhanVienTheoPhongBan(selectedPhongBan);
+        } 
+    }
+    
     public List<Map> getListDmNhanVien() {
         return listDmNhanVien;
     }
 
     public void setListDmNhanVien(List<Map> listDmNhanVien) {
         this.listDmNhanVien = listDmNhanVien;
+    }
+
+    public int getSelectedPhongBan() {
+        return selectedPhongBan;
+    }
+
+    public void setSelectedPhongBan(int selectedPhongBan) {
+        this.selectedPhongBan = selectedPhongBan;
     }
     
     

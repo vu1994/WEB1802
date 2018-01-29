@@ -9,6 +9,8 @@ import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -22,6 +24,7 @@ import javax.persistence.Temporal;
 public class ThietBiModel implements Serializable {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "thietbi_id", unique = true, nullable = false)
     private Long thietBiID;
     
@@ -152,6 +155,14 @@ public class ThietBiModel implements Serializable {
 
     public void setThietBiNgayThuHoi(Date thietBiNgayThuHoi) {
         this.thietBiNgayThuHoi = thietBiNgayThuHoi;
+    }
+
+    public int getThietBiTrangThaiCapPhat() {
+        return thietBiTrangThaiCapPhat;
+    }
+
+    public void setThietBiTrangThaiCapPhat(int thietBiTrangThaiCapPhat) {
+        this.thietBiTrangThaiCapPhat = thietBiTrangThaiCapPhat;
     }
 
 }

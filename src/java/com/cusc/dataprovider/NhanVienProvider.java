@@ -40,5 +40,22 @@ public class NhanVienProvider implements Serializable {
         return listNhanVien;
     }
     
+    public List<Map> getListNhanVienTheoPhongBan(int pbID){
+        Session session = HibernateUtil.currentSession();
+        List<Map> listNhanVien = new ArrayList();
+        try {
+            session.beginTransaction();
+            listNhanVien = session.createSQLQuery("SELECT nv.* ,pb_ten"
+                    + " FROM nhanvien nv"
+                    + " INNER JOIN phongban pb ON pb.pb_id = nv.pb_id"
+                    + " WHERE pb.pb_id = "+pbID).setResultTransformer(Transformers.ALIAS_TO_ENTITY_MAP).list();
+            session.getTransaction().commit();
+	} catch (Exception e) {
+            e.printStackTrace();
+	} finally {
+            session.close();
+	}
+        return listNhanVien;
+    }
 
 }

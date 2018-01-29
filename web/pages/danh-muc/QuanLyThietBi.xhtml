@@ -39,7 +39,7 @@
                                         <div class="box-body">
                                             <h:panelGroup rendered="#{QuanLyThietBiController.viewMode == 0}">
                                                 <div class="row">
-                                                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-right">
+                                                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-right btn-add-position">
                                                         <h:commandButton value="Nhập thiết bị" actionListener="#{QuanLyThietBiController.preActionThemThietBi()}" styleClass="btn btn-danger" />
                                                     </div>
                                                 </div>
@@ -50,7 +50,7 @@
                                                                      searching="true"
                                                                      pageLength="10"
                                                                      responsive="true"
-                                                                     style="width:100% !important">
+                                                                     style="width:100% !important;">
                                                             <b:dataTableColumn style="width: 5%;" styleClass="text-center" label="STT" value="#{item.rowIndex}"/>
                                                             <b:dataTableColumn headerStyleClass="text-center" label="Tên thiết bị" value="#{item.thietbi_ten}"/>
                                                             <b:dataTableColumn headerStyleClass="text-center" label="Nhóm thiết bị" value="#{item.danhmuc_thietbi_ten}"/>
@@ -118,47 +118,58 @@
                                                 <br/>
                                                 <div class="row">
                                                     <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-                                                        <h:outputLabel value="Chọn phòng ban"/>
+                                                        <h:outputLabel value="Phòng ban"/>
                                                         <b:selectOneMenu id="selectPhongBan"
-                                                                         value="">
-
+                                                                         value="#{DanhMucNhanVienController.selectedPhongBan}">
+                                                            <f:selectItem itemLabel="-- Tất cả --" itemValue="0"/>
+                                                            <f:selectItem itemLabel="GOV" itemValue="1"/>
+                                                            <f:selectItem itemLabel="BIZ" itemValue="2"/>
+                                                            <f:selectItem itemLabel="UNI" itemValue="3"/>
+                                                            <f:selectItem itemLabel="ITO" itemValue="4"/>
+                                                            <f:ajax listener="#{DanhMucNhanVienController.actionChangePhongBan()}" render="selectNhanVien" />
                                                         </b:selectOneMenu>
-                                                        <b:message for="selectPhongBan"/>
+                                                        
                                                     </div>
                                                     <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-                                                        <h:outputLabel value="Chọn nhân viên"/>
+                                                        <h:outputLabel value="Nhân viên"/>
                                                         <b:selectOneMenu id="selectNhanVien"
                                                                          value="#{QuanLyThietBiController.objThietBi.capChoNhanVienID}">
-
+                                                            <f:selectItem itemLabel="-- Chọn nhân viên --" itemValue=""/>
+                                                            <f:selectItems value="#{DanhMucNhanVienController.listDmNhanVien}" var="item"
+                                                                           itemLabel="#{item.nv_ten}" itemValue="#{item.nv_id}"/>
                                                         </b:selectOneMenu>
-                                                        <b:message for="selectNhanVien"/>
+                                                        
                                                     </div>
                                                 </div>
                                                 <div class="row">
                                                     <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
                                                         <h:outputLabel value="Trạng thái cấp phát"/>
                                                         <b:selectOneMenu id="selectTrangThaiCapPhat"
-                                                                         value="">
-
+                                                                         value="#{QuanLyThietBiController.objThietBi.thietBiTrangThaiCapPhat}">
+                                                            <f:selectItem itemLabel="-- Chọn trạng thái cấp phát --" itemValue="0"/>
+                                                            <f:selectItem itemLabel="Cấp mới" itemValue="1"/>
+                                                            <f:selectItem itemLabel="Cấp bổ sung" itemValue="2"/>
+                                                            <f:selectItem itemLabel="Đã thu hồi" itemValue="3"/>
                                                         </b:selectOneMenu>
-                                                        <b:message for="selectTrangThaiCapPhat"/>
+                                                        
                                                     </div>
                                                     <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
                                                         <h:outputLabel value="Ngày cấp"/>
                                                         <b:datepicker id="dateNgayCap"
                                                                       value="#{QuanLyThietBiController.objThietBi.thietBiNgayCap}"
                                                                       mode="popup-icon"/>
-                                                        <b:message for="dateNgayCap"/>
+                                                        
                                                     </div>
                                                 </div>
 
                                                 <div class="row margin-t-15">
                                                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
-                                                        <b:commandLink action="#{QuanLyThietBiController.actionThemThietBi()}"
+                                                        <b:commandButton action="#{QuanLyThietBiController.actionThemThietBi()}"
                                                                        styleClass="btn btn-danger margin-r-5"
-                                                                       process="@form" update="@form">
+                                                                       style="color:white"
+                                                                       process="@form" update="@form" >
                                                             <i class="fa fa-save"></i> Lưu
-                                                        </b:commandLink>
+                                                        </b:commandButton>
                                                         <h:commandLink styleClass="btn btn-default" >
                                                             <f:ajax listener="#{QuanLyThietBiController.actionTroVe()}" render="formQuanLyThietBi" />
                                                             <i class="fa fa-mail-reply"></i> Hủy bỏ

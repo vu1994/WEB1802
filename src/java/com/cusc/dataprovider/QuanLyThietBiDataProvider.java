@@ -5,6 +5,7 @@
  */
 package com.cusc.dataprovider;
 
+import com.cusc.model.ThietBiModel;
 import com.cusc.util.HibernateUtil;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -41,5 +42,27 @@ public class QuanLyThietBiDataProvider implements Serializable{
             session.close();
 	}
         return listThietBi;
+    }
+    
+    public boolean addThietBi(ThietBiModel objThietBi){
+        Session session = HibernateUtil.currentSession();
+        try {
+            session.beginTransaction();
+            session.createSQLQuery("INSERT INTO"
+                    + " thietbi(thietbi_ten, danhmuc_thietbi_id, tinhtrang_id, thietbi_ngaynhap,"
+                    + " thietbi_ngaycap, thietbi_capcho, thietbi_nguoicap, thietbi_ngaythuhoi, "
+                    + " thietbi_trangthai_capphat)"
+                    + " VALUES('"+objThietBi.getThietBiTen()+"',"+objThietBi.getDmThietBiID()+","
+                    + objThietBi.getTinhTrangID()+", '"+objThietBi.getThietBiNgayNhap()+"',"
+                    + "'"+objThietBi.getThietBiNgayCap()+"',0,0,null,0").executeUpdate();
+            session.getTransaction().commit();
+	} catch (Exception e) {
+            session.getTransaction().rollback();
+            e.printStackTrace();
+            return false;
+	} finally {
+            session.close();
+	}
+        return true;
     }
 }

@@ -38,14 +38,25 @@ and open the template in the editor.
 .required {
     border-left: 3px solid red;
 }
-input[type='search']{
-    content: 'Nhập từ khóa cần tìm ...';
-}
-@media screen and (max-width: 767px){
-    .dataTables_filter {
-        text-align: right !important;
-    }
+.dataTables_filter {
+        text-align: left !important;
 }
 a:hover {
     text-decoration: none !important;
+}
+.btn-add-position {
+    position: absolute !important;
+}
+@media screen and (max-width: 767px){
+    .dataTables_filter {
+        text-align: left !important;
+    }
+}
+@media screen and (max-width: 400px){
+    .btn-add-position {
+        position: static !important;
+    }
+    .dataTables_filter {
+        text-align: right !important;
+    }
 }
