@@ -51,15 +51,15 @@
                                                              pdf="true"
                                                              >
                                                     
-                                                    <b:dataTableColumn value="#{item.nv_ten}" label="Họ tên Nhân viên"/>
-                                                    <b:dataTableColumn value="" label="Ngày sinh">
+                                                    <b:dataTableColumn value="#{item.nv_ten}" label="Họ tên Nhân viên" headerStyleClass="text-center"/>
+                                                    <b:dataTableColumn value="" label="Ngày sinh" class="text-center">
                                                         <h:outputText value="#{item.nv_ngaysinh}">
-                                                            <f:convertDateTime pattern = "dd-MM-yyyy" locale="vi_VN"/>
+                                                            <f:convertDateTime pattern = "dd/MM/yyyy" timeZone="GMT+7"/>
                                                         </h:outputText>
                                                     </b:dataTableColumn>
-                                                    <b:dataTableColumn value="#{item.nv_email}" label="Email"/>
-                                                    <b:dataTableColumn value="#{item.nv_diachi}" label="Địa chỉ"/>
-                                                    <b:dataTableColumn value="#{item.pb_ten}" label="Phòng ban"/>
+                                                    <b:dataTableColumn value="#{item.nv_email}" label="Email" headerStyleClass="text-center"/>
+                                                    <b:dataTableColumn value="#{item.nv_diachi}" label="Địa chỉ" headerStyleClass="text-center"/>
+                                                    <b:dataTableColumn value="#{item.pb_ten}" label="Phòng ban" headerStyleClass="text-center"/>
                                                 </b:dataTable>
                                             </div>
                                             
