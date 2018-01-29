@@ -48,12 +48,18 @@
                                                         <b:dataTable value="#{QuanLyThietBiController.listThietBi}" var="item"
                                                                      excel="true"
                                                                      searching="true"
-                                                                     pageLength="10">
+                                                                     pageLength="10"
+                                                                     responsive="true"
+                                                                     style="width:100% !important">
                                                             <b:dataTableColumn style="width: 5%;" styleClass="text-center" label="STT" value="#{item.rowIndex}"/>
                                                             <b:dataTableColumn headerStyleClass="text-center" label="Tên thiết bị" value="#{item.thietbi_ten}"/>
                                                             <b:dataTableColumn headerStyleClass="text-center" label="Nhóm thiết bị" value="#{item.danhmuc_thietbi_ten}"/>
                                                             <b:dataTableColumn headerStyleClass="text-center" label="Tình trạng" value="#{item.tinhtrang_ten}"/>
-                                                            <b:dataTableColumn styleClass="text-center" label="Ngày nhập" value="#{item.thietbi_ngaynhap}"/>
+                                                            <b:dataTableColumn styleClass="text-center" label="Ngày nhập">
+                                                                <h:outputText value="#{item.thietbi_ngaynhap}">
+                                                                    <f:convertDateTime pattern="dd/MM/yyyy" timeZone="GMT+7" />
+                                                                </h:outputText>
+                                                            </b:dataTableColumn>
                                                         </b:dataTable>
                                                     </div>
                                                 </div>
@@ -63,15 +69,16 @@
                                                     <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
                                                         <h:outputLabel value="Tên thiết bị"/>
                                                         <b:inputText id="txtTenThietBi" class="required"
-                                                                     value=""
-                                                                     rendered="true"
+                                                                     value="#{QuanLyThietBiController.objThietBi.thietBiTen}"
+                                                                     a:placeholder="Nhập tên thiết bị ..."
+                                                                     required="true"
                                                                      requiredMessage="Vui lòng nhập tên thiết bị."/>
                                                         <b:message for="txtTenThietBi"/>
                                                     </div>
                                                     <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
                                                         <h:outputLabel value="Nhóm thiết bị"/>
                                                         <b:selectOneMenu id="selectNhomThietBi" class="required"
-                                                                         value="#{QuanLyThietBiController.selectedNhomThietBi}"
+                                                                         value="#{QuanLyThietBiController.objThietBi.dmThietBiID}"
                                                                          required="true"
                                                                          requiredMessage="Vui lòng chọn nhóm thiết bị.">
                                                             <f:selectItem itemLabel="-- Chọn nhóm thiết bị --" itemValue="" />
@@ -87,7 +94,7 @@
                                                     <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
                                                         <h:outputLabel value="Tình trạng"/>
                                                         <b:selectOneMenu id="selectTinhTrang" class="required"
-                                                                         value="#{QuanLyThietBiController.selectedTinhTrang}"
+                                                                         value="#{QuanLyThietBiController.objThietBi.tinhTrangID}"
                                                                          required="true"
                                                                          requiredMessage="Vui lòng chọn tình trạng thiết bị.">
                                                             <f:selectItem itemLabel="-- Chọn tình trạng --" itemValue="" />
@@ -101,18 +108,14 @@
                                                     <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
                                                         <h:outputLabel value="Ngày nhập"/>
                                                         <b:datepicker id="dateNgayNhap" class="required"
-                                                                      value="#{QuanLyThietBiController.selectedNgayNhap}"
+                                                                      value="#{QuanLyThietBiController.objThietBi.thietBiNgayNhap}"
                                                                       required="true"
                                                                       requiredMessage="Vui lòng chọn ngày nhập thiết bị"
                                                                       mode="popup-icon"/>
                                                         <b:message for="dateNgayNhap"/>
                                                     </div>
                                                 </div>
-                                                <div class="row">
-                                                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                                                        Chọn nhân viên cấp phát
-                                                    </div>
-                                                </div>
+                                                <br/>
                                                 <div class="row">
                                                     <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
                                                         <h:outputLabel value="Chọn phòng ban"/>
@@ -125,12 +128,29 @@
                                                     <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
                                                         <h:outputLabel value="Chọn nhân viên"/>
                                                         <b:selectOneMenu id="selectNhanVien"
-                                                                         value="">
+                                                                         value="#{QuanLyThietBiController.objThietBi.capChoNhanVienID}">
 
                                                         </b:selectOneMenu>
                                                         <b:message for="selectNhanVien"/>
                                                     </div>
-                                                </div>  
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                                                        <h:outputLabel value="Trạng thái cấp phát"/>
+                                                        <b:selectOneMenu id="selectTrangThaiCapPhat"
+                                                                         value="">
+
+                                                        </b:selectOneMenu>
+                                                        <b:message for="selectTrangThaiCapPhat"/>
+                                                    </div>
+                                                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                                                        <h:outputLabel value="Ngày cấp"/>
+                                                        <b:datepicker id="dateNgayCap"
+                                                                      value="#{QuanLyThietBiController.objThietBi.thietBiNgayCap}"
+                                                                      mode="popup-icon"/>
+                                                        <b:message for="dateNgayCap"/>
+                                                    </div>
+                                                </div>
 
                                                 <div class="row margin-t-15">
                                                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">

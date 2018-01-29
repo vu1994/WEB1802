@@ -6,10 +6,12 @@
 package com.cusc.model;
 
 import java.io.Serializable;
+import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
 
 /**
  *
@@ -37,6 +39,27 @@ public class ThietBiModel implements Serializable {
     
     @Column(name = "tinhtrang_ten")
     private String tinhTrangTen;
+    
+    @Column(name = "thietbi_ngaynhap")
+    @Temporal(javax.persistence.TemporalType.DATE)
+    private Date thietBiNgayNhap;
+    
+    @Column(name = "thietbi_ngaycap")
+    @Temporal(javax.persistence.TemporalType.DATE)
+    private Date thietBiNgayCap;
+    
+    @Column(name = "thietbi_capcho")
+    private int capChoNhanVienID;
+    
+    @Column(name = "thietbi_nguoicap")
+    private int thietBiNguoiCap;
+    
+    @Column(name = "thietbi_trangthai_capphat")
+    private int thietBiTrangThaiCapPhat;
+    
+    @Column(name = "thietbi_ngaythuhoi")
+    @Temporal(javax.persistence.TemporalType.DATE)
+    private Date thietBiNgayThuHoi;
     
     public ThietBiModel(){
         
@@ -89,6 +112,46 @@ public class ThietBiModel implements Serializable {
 
     public void setTinhTrangTen(String tinhTrangTen) {
         this.tinhTrangTen = tinhTrangTen;
+    }
+
+    public Date getThietBiNgayNhap() {
+        return thietBiNgayNhap;
+    }
+
+    public void setThietBiNgayNhap(Date thietBiNgayNhap) {
+        this.thietBiNgayNhap = thietBiNgayNhap;
+    }
+
+    public Date getThietBiNgayCap() {
+        return thietBiNgayCap;
+    }
+
+    public void setThietBiNgayCap(Date thietBiNgayCap) {
+        this.thietBiNgayCap = thietBiNgayCap;
+    }
+
+    public int getCapChoNhanVienID() {
+        return capChoNhanVienID;
+    }
+
+    public void setCapChoNhanVienID(int capChoNhanVienID) {
+        this.capChoNhanVienID = capChoNhanVienID;
+    }
+
+    public int getThietBiNguoiCap() {
+        return thietBiNguoiCap;
+    }
+
+    public void setThietBiNguoiCap(int thietBiNguoiCap) {
+        this.thietBiNguoiCap = thietBiNguoiCap;
+    }
+
+    public Date getThietBiNgayThuHoi() {
+        return thietBiNgayThuHoi;
+    }
+
+    public void setThietBiNgayThuHoi(Date thietBiNgayThuHoi) {
+        this.thietBiNgayThuHoi = thietBiNgayThuHoi;
     }
 
 }
