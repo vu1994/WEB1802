@@ -125,14 +125,14 @@ input[type="color"],
 .uneditable-input {
     outline: none;
 }
-.form-control {
+/*.form-control {
     border: 1px solid rgba(0, 0, 0, 0.08);
     font-size: 16px;
     height: 45px;
 }
 .form-control:focus {
     border-color: #f56363;
-}
+}*/
 
 h1,
 h2,
@@ -398,12 +398,12 @@ Button
 
 
 
-.btn {
+/*.btn {
     border: 1px solid #3c3c3c;
     display: inline-block;
     padding: 1em;
-/*    min-width: 160px;
-    height: 55px;*/
+    min-width: 160px;
+    height: 55px;
     text-align: center;
     color: #3c3c3c;
     font-style: normal;
@@ -412,13 +412,13 @@ Button
     font-size: 16px;
     font-weight: 300;
     border-radius: 0;
-/*    margin-top: 30px;*/
-}
-.btn:hover {
+    margin-top: 30px;
+}*/
+/*.btn:hover {
 	background-color: transparent;
 	color: #000;
 	text-decoration: none;
-}
+}*/
 
 .btn-primary {
     color: #fff;
@@ -1201,4 +1201,37 @@ i:hover{
 .btn-huybo{
     background: #bfbfbf !important;
     color: #ffffff !important;
+}
+
+.modal.in .modal-dialog{
+    margin-top: 150px;
+    width: 60%;
+}
+.modal-header{
+    padding: 5px 15px;
+    background: antiquewhite;
+    border-bottom: 1px solid #e5e5e5;
+    height: 50px;
+    font-family: Times New Roman Georgia !important;
+    font-weight: bold;
+    background: #d7f7fa;
+}
+.close{
+    padding: 10px 10px 10px 10px !important;
+    color: #993333
+}
+.label{
+    font-family: Times New Roman Georgia !important;
+}
+h4{
+    font-family: Times New Roman Georgia !important;
+    font-weight: bold;
+}
+.selectRadio td, th {
+    padding-left: 10px;
+    padding-top: 5px;
+}
+
+.selectRadio label{
+    padding-left: 5px;
 }
