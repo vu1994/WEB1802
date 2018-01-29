@@ -48,13 +48,7 @@ public class QuanLyThietBiDataProvider implements Serializable{
         Session session = HibernateUtil.currentSession();
         try {
             session.beginTransaction();
-            session.createSQLQuery("INSERT INTO"
-                    + " thietbi(thietbi_ten, danhmuc_thietbi_id, tinhtrang_id, thietbi_ngaynhap,"
-                    + " thietbi_ngaycap, thietbi_capcho, thietbi_nguoicap, thietbi_ngaythuhoi, "
-                    + " thietbi_trangthai_capphat)"
-                    + " VALUES('"+objThietBi.getThietBiTen()+"',"+objThietBi.getDmThietBiID()+","
-                    + objThietBi.getTinhTrangID()+", '"+objThietBi.getThietBiNgayNhap()+"',"
-                    + "'"+objThietBi.getThietBiNgayCap()+"',0,0,null,0").executeUpdate();
+            session.saveOrUpdate(objThietBi);
             session.getTransaction().commit();
 	} catch (Exception e) {
             session.getTransaction().rollback();

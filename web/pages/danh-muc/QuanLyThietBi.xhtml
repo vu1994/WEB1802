@@ -72,7 +72,11 @@
                                                                      value="#{QuanLyThietBiController.objThietBi.thietBiTen}"
                                                                      a:placeholder="Nhập tên thiết bị ..."
                                                                      required="true"
-                                                                     requiredMessage="Vui lòng nhập tên thiết bị."/>
+                                                                     requiredMessage="Vui lòng nhập tên thiết bị.">
+                                                            <f:facet name="prepend">
+                                                                <b:iconAwesome name="fa-desktop" />
+                                                            </f:facet>
+                                                        </b:inputText>
                                                         <b:message for="txtTenThietBi"/>
                                                     </div>
                                                     <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
@@ -147,9 +151,9 @@
                                                         <b:selectOneMenu id="selectTrangThaiCapPhat"
                                                                          value="#{QuanLyThietBiController.objThietBi.thietBiTrangThaiCapPhat}">
                                                             <f:selectItem itemLabel="-- Chọn trạng thái cấp phát --" itemValue="0"/>
-                                                            <f:selectItem itemLabel="Cấp mới" itemValue="1"/>
-                                                            <f:selectItem itemLabel="Cấp bổ sung" itemValue="2"/>
-                                                            <f:selectItem itemLabel="Đã thu hồi" itemValue="3"/>
+                                                            <f:selectItem itemLabel="Cấp mới" itemValue="Cấp mới"/>
+                                                            <f:selectItem itemLabel="Cấp bổ sung" itemValue="Cấp bổ sung"/>
+                                                            <f:selectItem itemLabel="Đã thu hồi" itemValue="Đã thu hồi"/>
                                                         </b:selectOneMenu>
                                                         
                                                     </div>

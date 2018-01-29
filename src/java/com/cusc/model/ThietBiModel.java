@@ -14,6 +14,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
+import javax.persistence.Transient;
 
 /**
  *
@@ -34,13 +35,13 @@ public class ThietBiModel implements Serializable {
     @Column(name = "danhmuc_thietbi_id")
     private String dmThietBiID;
     
-    @Column(name = "danhmuc_thietbi_ten")
+    @Transient
     private String dmThietBiTen;
     
     @Column(name = "tinhtrang_id")
     private String tinhTrangID;
     
-    @Column(name = "tinhtrang_ten")
+    @Transient
     private String tinhTrangTen;
     
     @Column(name = "thietbi_ngaynhap")
@@ -58,7 +59,7 @@ public class ThietBiModel implements Serializable {
     private int thietBiNguoiCap;
     
     @Column(name = "thietbi_trangthai_capphat")
-    private int thietBiTrangThaiCapPhat;
+    private String thietBiTrangThaiCapPhat;
     
     @Column(name = "thietbi_ngaythuhoi")
     @Temporal(javax.persistence.TemporalType.DATE)
@@ -157,11 +158,11 @@ public class ThietBiModel implements Serializable {
         this.thietBiNgayThuHoi = thietBiNgayThuHoi;
     }
 
-    public int getThietBiTrangThaiCapPhat() {
+    public String getThietBiTrangThaiCapPhat() {
         return thietBiTrangThaiCapPhat;
     }
 
-    public void setThietBiTrangThaiCapPhat(int thietBiTrangThaiCapPhat) {
+    public void setThietBiTrangThaiCapPhat(String thietBiTrangThaiCapPhat) {
         this.thietBiTrangThaiCapPhat = thietBiTrangThaiCapPhat;
     }
 

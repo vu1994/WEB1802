@@ -45,12 +45,13 @@ public class QuanLyThietBiController {
     }
     
     public void actionThemThietBi(){
-        System.out.println("npvu test");
         if(tbProvider.addThietBi(objThietBi)){
             System.out.println("true");
         }else {
             System.out.println("false");
         }
+        this.actionGetListThietBi();
+        viewMode = 0;
     }
     
     public void showFormCapPhat(){

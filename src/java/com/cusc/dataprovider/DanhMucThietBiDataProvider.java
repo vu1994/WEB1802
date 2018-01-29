@@ -60,7 +60,7 @@ public class DanhMucThietBiDataProvider implements Serializable {
         Session session = HibernateUtil.currentSession();
         try {
             session.beginTransaction();
-            session.createSQLQuery("INSERT INTO danhmuc_thietbi(danhmuc_thietbi_ten) VALUES('"+dmThietBi.getDmThietBiTen()+"')").executeUpdate();
+            session.saveOrUpdate(dmThietBi);
             session.getTransaction().commit();
 	} catch (Exception e) {
             session.getTransaction().rollback();
