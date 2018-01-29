@@ -55,6 +55,14 @@
                             font-family: Times New Roman Georgia !important;
                             font-weight: bold;
                         }
+                        .selectRadio td, th {
+                            padding-left: 10px;
+                            padding-top: 5px;
+                        }
+                        
+                        .selectRadio label{
+                            padding-left: 5px;
+                        }
                     </style>
                     <!-- Main content -->
                     <section class="content">
@@ -102,17 +110,56 @@
                     <!-- /.content -->
                     <b:modal id="amodal" title="THÊM NHÂN VIÊN" styleClass="themNhanVienPopUp"
                         closable="true"  close-on-escape="true" backdrop="true">
-                        <b:form id="themNVForm">
+                        <b:form id="themNVForm" horizontal="false">
                             <div class="row">
                                 <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
                                     <h:outputLabel value="Họ tên nhân viên" />
-                                    <b:inputText id="txtTenNV" class="required" value="#{QuanLyThietBiController.objThietBi.thietBiTen}" a:placeholder="Nhập họ tên ..." required="true" requiredMessage="Vui lòng nhập tên thiết bị." />
+                                        <b:inputText id="txtTenNV"  value="#{DanhMucNhanVienController.objNhanVien.nhanvienTen}" placeholder="Nhập họ tên ..." required="true" requiredMessage="Vui lòng nhập tên thiết bị." >
+                                            <f:facet name="prepend">
+                                                <b:iconAwesome name="fa-user" />
+                                            </f:facet>
+                                        </b:inputText>    
+                                        <b:message for="txtTenNV" />
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 selectRadio">
+                                    <h:outputLabel value="Giới tính" />
+                                        <h:selectOneRadio id="radioGioiTinhNV" value="#{DanhMucNhanVienController.objNhanVien.nhanvienGioitinh}">
+                                            <f:selectItem itemLabel="Nam" itemValue="1" />
+                                            <f:selectItem itemLabel="Nữ" itemValue="0"/>
+                                        </h:selectOneRadio>
+                                    <b:message for="radioGioiTinhNV" />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                                    <h:outputLabel value="Địa chỉ" />
+                                    <b:inputText  id="txtDchiNV"  value="#{DanhMucNhanVienController.objNhanVien.nhanvienDiaChi}" a:placeholder="Nhập địa chỉ ..." required="true" requiredMessage="Vui lòng nhập tên thiết bị." >
+                                        <f:facet name="prepend">
+                                            <b:iconAwesome name="fa-home" />
+                                        </f:facet>
+                                    </b:inputText>
                                     <b:message for="txtTenNV" />
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-                                    <h:outputLabel value="Địa chỉ" />
-                                    <b:inputText id="txtDchiNV" class="required" value="#{QuanLyThietBiController.objThietBi.thietBiTen}" a:placeholder="Nhập địa chỉ ..." required="true" requiredMessage="Vui lòng nhập tên thiết bị." />
-                                    <b:message for="txtDchiNV" />
+                                    <h:outputLabel value="Email" />
+                                    <b:inputText id="txtEmailNV"  value="#{DanhMucNhanVienController.objNhanVien.nhanvienEmail}" a:placeholder="Nhập email ..." required="true" requiredMessage="Vui lòng nhập tên thiết bị." />
+                                    <b:message for="txtEmailNV" />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                                    <h:outputLabel value="Số điện thoại" />
+                                    <b:inputText id="txtSdtNV"  value="#{DanhMucNhanVienController.objNhanVien.nhanvienSdt}" a:placeholder="Nhập số điện thoại..." required="true" requiredMessage="Vui lòng nhập tên thiết bị." >
+                                        <f:facet name="prepend">
+                                                <b:iconAwesome name="fa-phone" />
+                                        </f:facet>
+                                    </b:inputText>
+                                    <b:message for="txtSdtNV" />
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                                    <h:outputLabel value="Phòng ban" />
+                                    <b:inputText id="txtPhongBanNV" class="required" value="#{DanhMucNhanVienController.objNhanVien.nhanvienSdt}" a:placeholder="Nhập số điện thoại..." required="true" requiredMessage="Vui lòng nhập tên thiết bị." />
+                                    <b:message for="txtPhongBanNV" />
                                 </div>
                             </div>
                             <div class="row margin-t-15">
