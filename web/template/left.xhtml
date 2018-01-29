@@ -8,6 +8,7 @@ and open the template in the editor.
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html">
+    
 <aside class="main-sidebar">
     <!-- sidebar: style can be found in sidebar.less -->
     <section class="sidebar" style="height: auto;">
@@ -34,6 +35,21 @@ and open the template in the editor.
       <!-- /.search form -->
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu tree" data-widget="tree">
+        <li class="header">QUẢN LÝ PHÒNG BAN</li>
+        <li class="treeview">
+          <a href="">
+            <i class="fa fa-home"></i> <span>CUSC</span>
+            <span class="pull-right-container">
+              <span class="label label-primary pull-right">4</span>
+            </span>
+          </a>
+            <ul class="treeview-menu">
+            <li><a href="#{request.contextPath}/faces/pages/phongban/quanLyPhongBan.xhtml" ><i class="fa fa-circle-o"></i> BIZ</a></li>
+            <li><a href="#{request.contextPath}/faces/pages/KiemKeKho.xhtml"><i class="fa fa-circle-o"></i> UNI</a></li>
+            <li><a href="#{request.contextPath}/faces/pages/ThongKeTonKho.xhtml" ><i class="fa fa-circle-o"></i>ITO</a></li>
+            <li><a href="#{request.contextPath}/faces/pages/KiemKeKho.xhtml"><i class="fa fa-circle-o"></i> GOV</a></li>
+          </ul>
+        </li>
         <li class="header">QUẢN LÝ THIẾT BỊ TIN HỌC</li>
         <li class="treeview">
           <a href="#">

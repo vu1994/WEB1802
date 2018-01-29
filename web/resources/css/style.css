@@ -1197,3 +1197,8 @@ i:hover{
     color: #00FF00 !important;
     background-color: transparent !important;
 }
+
+.btn-huybo{
+    background: #bfbfbf !important;
+    color: #ffffff !important;
+}

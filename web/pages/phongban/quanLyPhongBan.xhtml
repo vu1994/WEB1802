@@ -7,19 +7,18 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"    
       xmlns:b="http://bootsfaces.net/ui">
     <body>
-        
-        <ui:composition template="phongbanTemplate.xhtml">
+       <ui:composition template="./../../mainTemplate.xhtml">
             <ui:define name="title">QUẢN LÝ PHÒNG BAN</ui:define>
             <ui:define name="content">
-                <header class="main-header">
+<!--                <header class="main-header">
                     <nav class="navbar navbar-static-top">
-                      <!-- Sidebar toggle button-->
+                       Sidebar toggle button
                       <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
                         <span class="sr-only">Toggle navigation</span>
                       </a>
 
                     </nav>
-                </header>
+                </header>-->
                 <div class="content-wrapper" style="min-height: 946px;">
                     <!-- Content Header (Page header) -->
                     <section class="content-header">
@@ -31,7 +30,32 @@
                             <li class="active"><a href="#{request.contextPath}/faces/pages/phongban/quanLyPhongBan.xhtml">Quản lý phòng ban</a></li>
                         </ol>
                     </section>
-
+                    <style>
+                        .modal.in .modal-dialog{
+                            margin-top: 150px;
+                            width: 60%;
+                        }
+                        .modal-header{
+                            padding: 5px 15px;
+                            background: antiquewhite;
+                            border-bottom: 1px solid #e5e5e5;
+                            height: 50px;
+                            font-family: Times New Roman Georgia !important;
+                            font-weight: bold;
+                            background: #d7f7fa;
+                        }
+                        .close{
+                            padding: 10px 10px 10px 10px !important;
+                            color: #993333
+                        }
+                        .label{
+                            font-family: Times New Roman Georgia !important;
+                        }
+                        h4{
+                            font-family: Times New Roman Georgia !important;
+                            font-weight: bold;
+                        }
+                    </style>
                     <!-- Main content -->
                     <section class="content">
                         <div class="row">
@@ -41,7 +65,11 @@
                                     <!-- form start -->
                                     <h:form role="form">
 
-                                        
+                                         <div class="row">
+                                                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-right">
+                                                        <b:button value="Thêm nhân viên" look="success" onclick="$('.themNhanVienPopUp').modal()" styleClass="btn btn-danger" />
+                                                    </div>
+                                        </div>
                                         <div class="box-body">
                                             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                                                 <b:dataTable id='myTable' value="#{DanhMucNhanVienController.listDmNhanVien}"
@@ -69,13 +97,42 @@
                             </div>
                         </div>
                         <!-- /.row -->
+                           
                     </section>
                     <!-- /.content -->
+                    <b:modal id="amodal" title="THÊM NHÂN VIÊN" styleClass="themNhanVienPopUp"
+                        closable="true"  close-on-escape="true" backdrop="true">
+                        <b:form id="themNVForm">
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                                    <h:outputLabel value="Họ tên nhân viên" />
+                                    <b:inputText id="txtTenNV" class="required" value="#{QuanLyThietBiController.objThietBi.thietBiTen}" a:placeholder="Nhập họ tên ..." required="true" requiredMessage="Vui lòng nhập tên thiết bị." />
+                                    <b:message for="txtTenNV" />
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                                    <h:outputLabel value="Địa chỉ" />
+                                    <b:inputText id="txtDchiNV" class="required" value="#{QuanLyThietBiController.objThietBi.thietBiTen}" a:placeholder="Nhập địa chỉ ..." required="true" requiredMessage="Vui lòng nhập tên thiết bị." />
+                                    <b:message for="txtDchiNV" />
+                                </div>
+                            </div>
+                            <div class="row margin-t-15">
+                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
+                                    <b:commandLink action="#{QuanLyThietBiController.actionThemThietBi()}" styleClass="btn btn-danger margin-r-5" process="@form" update="@form">
+                                        <i class="fa fa-save"></i> Lưu
+                                    </b:commandLink>
+                                    <b:button class="btn-huybo" dismiss="modal" icon-awesome="fa-mail-reply" value="Hủy bỏ">
+                                        
+                                        
+                                    </b:button>
+                                </div>
+                            </div>
+                        </b:form>
+                    </b:modal>
                 </div>
-
+             
             </ui:define>
 
         </ui:composition>
-        
+         
     </body>
 </html>
