@@ -60,6 +60,24 @@
                                                                     <f:convertDateTime pattern="dd/MM/yyyy" timeZone="GMT+7" />
                                                                 </h:outputText>
                                                             </b:dataTableColumn>
+                                                            <b:dataTableColumn class="text-center" label="Hành động" orderable="false">
+                                                                <b:commandButton tooltip="Chỉnh sửa thông tin thiết bị"
+                                                                                 action="#{QuanLyThietBiController.preActionEditThietBi(item)}"
+                                                                                 >
+                                                                    <i class="fa fa-edit"></i>
+                                                                </b:commandButton>
+                                                                <b:commandButton tooltip="Cấp phát thiết bị"
+                                                                                 action="#{QuanLyThietBiController.preActionCapPhat(item)}"
+                                                                                 >
+                                                                    <i class="fa fa-child"></i>
+                                                                </b:commandButton>
+                                                                <b:commandButton tooltip="Xóa thiết bị"
+                                                                               action="#{QuanLyThietBiController.actionXoaThietBi(item.thietbi_id)}"
+                                                                               styleClass="btn text-red"
+                                                                               onclick="return verifyDelete();">
+                                                                    <i class="fa fa-trash"></i>
+                                                                </b:commandButton>
+                                                            </b:dataTableColumn>
                                                         </b:dataTable>
                                                     </div>
                                                 </div>
@@ -118,10 +136,8 @@
                                                                       value="#{QuanLyThietBiController.objThietBi.thietBiNgayNhap}"
                                                                       required="true"
                                                                       requiredMessage="Vui lòng chọn ngày nhập thiết bị"
-                                                                      mode="popup">
-                                                            <f:facet name="prepend">
-                                                                <b:iconAwesome name="fa-calendar" />
-                                                            </f:facet>
+                                                                      mode="icon-popup">
+                                                            
                                                         </b:datepicker>
                                                         <b:message for="dateNgayNhap"/>
                                                     </div>
@@ -130,8 +146,7 @@
                                                 <div class="row">
                                                     <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
                                                         <h:outputLabel value="Phòng ban"/>
-                                                        <b:selectOneMenu id="selectPhongBan"
-                                                                         value="#{DanhMucNhanVienController.selectedPhongBan}">
+                                                        <b:selectOneMenu value="#{DanhMucNhanVienController.selectedPhongBan}">
                                                             <f:selectItem itemLabel="-- Tất cả --" itemValue="0"/>
                                                             <f:selectItem itemLabel="GOV" itemValue="1"/>
                                                             <f:selectItem itemLabel="BIZ" itemValue="2"/>
@@ -143,8 +158,7 @@
                                                     </div>
                                                     <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
                                                         <h:outputLabel value="Nhân viên"/>
-                                                        <b:selectOneMenu id="selectNhanVien"
-                                                                         value="#{QuanLyThietBiController.objThietBi.capChoNhanVienID}">
+                                                        <b:selectOneMenu value="#{QuanLyThietBiController.objThietBi.capChoNhanVienID}">
                                                             <f:selectItem itemLabel="-- Chọn nhân viên --" itemValue=""/>
                                                             <f:selectItems value="#{DanhMucNhanVienController.listDmNhanVien}" var="item"
                                                                            itemLabel="#{item.nv_ten}" itemValue="#{item.nv_id}"/>
@@ -155,14 +169,82 @@
                                                 <div class="row">
                                                     <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
                                                         <h:outputLabel value="Trạng thái cấp phát"/>
-                                                        <b:selectOneMenu id="selectTrangThaiCapPhat"
-                                                                         value="#{QuanLyThietBiController.objThietBi.thietBiTrangThaiCapPhat}">
+                                                        <b:selectOneMenu value="#{QuanLyThietBiController.objThietBi.thietBiTrangThaiCapPhat}">
                                                             <f:selectItem itemLabel="-- Chọn trạng thái cấp phát --" itemValue="0"/>
                                                             <f:selectItem itemLabel="Cấp mới" itemValue="Cấp mới"/>
                                                             <f:selectItem itemLabel="Cấp bổ sung" itemValue="Cấp bổ sung"/>
                                                             <f:selectItem itemLabel="Đã thu hồi" itemValue="Đã thu hồi"/>
                                                         </b:selectOneMenu>
                                                         
+                                                    </div>
+                                                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                                                        <h:outputLabel value="Ngày cấp"/>
+                                                        <b:datepicker value="#{QuanLyThietBiController.objThietBi.thietBiNgayCap}"
+                                                                      mode="popup"/>
+                                                        
+                                                    </div>
+                                                </div>
+
+                                                <div class="row margin-t-15">
+                                                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
+                                                        <b:commandButton action="#{QuanLyThietBiController.actionThemThietBi()}"
+                                                                       styleClass="btn btn-danger margin-r-5"
+                                                                       style="color:white"
+                                                                       process="@form" update="@form" >
+                                                            <i class="fa fa-save"></i> Lưu
+                                                        </b:commandButton>
+                                                        <h:commandLink styleClass="btn btn-default" >
+                                                            <f:ajax listener="#{QuanLyThietBiController.actionTroVe()}" render="formQuanLyThietBi" />
+                                                            <i class="fa fa-mail-reply"></i> Hủy bỏ
+                                                        </h:commandLink>
+                                                    </div>
+                                                </div>
+                                            </h:panelGroup>
+                                            <h:panelGroup rendered="#{QuanLyThietBiController.viewMode == 2}">
+                                                <div class="row">
+                                                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                                                        <h:outputLabel value="Phòng ban"/>
+                                                        <b:selectOneMenu value="#{DanhMucNhanVienController.selectedPhongBan}">
+                                                            <f:selectItem itemLabel="-- Tất cả --" itemValue="0"/>
+                                                            <f:selectItem itemLabel="GOV" itemValue="1"/>
+                                                            <f:selectItem itemLabel="BIZ" itemValue="2"/>
+                                                            <f:selectItem itemLabel="UNI" itemValue="3"/>
+                                                            <f:selectItem itemLabel="ITO" itemValue="4"/>
+                                                            <f:ajax listener="#{DanhMucNhanVienController.actionChangePhongBan()}" render="selectNhanVien" />
+                                                        </b:selectOneMenu>
+                                                    </div>
+                                                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                                                        <h:outputLabel value="Nhân viên"/>
+                                                        <b:selectOneMenu id="selectNhanVien"
+                                                                         required="true"
+                                                                         requiredMessage="Vui lòng chọn nhân viên nhận thiết bị"
+                                                                         value="#{QuanLyThietBiController.objThietBi.capChoNhanVienID}">
+                                                            <f:selectItem itemLabel="-- Chọn nhân viên --" itemValue=""/>
+                                                            <f:selectItems value="#{DanhMucNhanVienController.listDmNhanVien}" var="item"
+                                                                           itemLabel="#{item.nv_ten}" itemValue="#{item.nv_id}"/>
+                                                            <f:facet name="prepend">
+                                                                <b:iconAwesome name="fa-user" />
+                                                            </f:facet>
+                                                        </b:selectOneMenu>
+                                                        <b:message for="selectNhanVien"/>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                                                        <h:outputLabel value="Trạng thái cấp phát"/>
+                                                        <b:selectOneMenu id="selectTrangThaiCapPhat"
+                                                                         required="true"
+                                                                         requiredMessage="Vui lòng chọn trạng thái cấp phát"
+                                                                         value="#{QuanLyThietBiController.objThietBi.thietBiTrangThaiCapPhat}">
+                                                            <f:selectItem itemLabel="-- Chọn trạng thái cấp phát --" itemValue=""/>
+                                                            <f:selectItem itemLabel="Cấp mới" itemValue="Cấp mới"/>
+                                                            <f:selectItem itemLabel="Cấp bổ sung" itemValue="Cấp bổ sung"/>
+                                                            <f:selectItem itemLabel="Đã thu hồi" itemValue="Đã thu hồi"/>
+                                                            <f:facet name="prepend">
+                                                                <b:iconAwesome name="fa-list" />
+                                                            </f:facet>
+                                                        </b:selectOneMenu>
+                                                        <b:message for="selectTrangThaiCapPhat"/>
                                                     </div>
                                                     <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
                                                         <h:outputLabel value="Ngày cấp"/>

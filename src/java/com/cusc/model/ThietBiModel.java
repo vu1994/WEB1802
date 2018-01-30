@@ -33,13 +33,13 @@ public class ThietBiModel implements Serializable {
     private String thietBiTen;
     
     @Column(name = "danhmuc_thietbi_id")
-    private String dmThietBiID;
+    private int dmThietBiID;
     
     @Transient
     private String dmThietBiTen;
     
     @Column(name = "tinhtrang_id")
-    private String tinhTrangID;
+    private int tinhTrangID;
     
     @Transient
     private String tinhTrangTen;
@@ -86,19 +86,19 @@ public class ThietBiModel implements Serializable {
         this.thietBiTen = thietBiTen;
     }
 
-    public String getDmThietBiID() {
+    public int getDmThietBiID() {
         return dmThietBiID;
     }
 
-    public void setDmThietBiID(String dmThietBiID) {
+    public void setDmThietBiID(int dmThietBiID) {
         this.dmThietBiID = dmThietBiID;
     }
 
-    public String getTinhTrangID() {
+    public int getTinhTrangID() {
         return tinhTrangID;
     }
 
-    public void setTinhTrangID(String tinhTrangID) {
+    public void setTinhTrangID(int tinhTrangID) {
         this.tinhTrangID = tinhTrangID;
     }
 
