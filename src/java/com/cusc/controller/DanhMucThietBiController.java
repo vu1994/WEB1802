@@ -7,6 +7,8 @@ package com.cusc.controller;
 
 import com.cusc.dataprovider.DanhMucThietBiDataProvider;
 import com.cusc.model.DanhMucThietBiModel;
+import com.cusc.util.WindowUitls;
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 import javax.faces.bean.ManagedBean;
@@ -44,7 +46,7 @@ public class DanhMucThietBiController {
         viewMode = 1;
     }
     
-    public void actionThemThietBi(){
+    public void actionThemThietBi() throws IOException{
         DanhMucThietBiModel dmThietBi = new DanhMucThietBiModel();
         dmThietBi.setDmThietBiTen(strEditTen);
         if(dmThietBiDp.addDmThietBi(dmThietBi)){
@@ -52,8 +54,7 @@ public class DanhMucThietBiController {
         } else {
             System.out.println("false");
         }
-        listDmThietBi = dmThietBiDp.getListDmThietBi();
-        viewMode = 0;
+        WindowUitls.reload();
     }
     
     public void actionEditTenThietBi(){

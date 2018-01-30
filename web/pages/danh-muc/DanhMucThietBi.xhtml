@@ -128,9 +128,10 @@
                             </div>
                             <div class="row">
                                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center margin-t-5">
-                                    <b:commandButton action="#{DanhMucThietBiController.actionThemThietBi()}"
+                                    <b:commandButton actionListener="#{DanhMucThietBiController.actionThemThietBi()}"
                                                      styleClass="btn btn-danger margin-r-5"
                                                      process="@form" update="@form" 
+                                                     ajax="true"
                                                      >
                                         <i class="fa fa-save"></i> Lưu
                                     </b:commandButton>
