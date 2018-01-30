@@ -5,9 +5,8 @@
  */
 package com.cusc.controller;
 
-import com.cusc.dataprovider.ThongKeBaoCaoDataprovider;
-import com.cusc.dataprovider.TinhTrangDataprovider;
-import com.cusc.model.DanhMucTinhTrangModel;
+import com.cusc.dataprovider.PhongBanProvider;
+import com.cusc.model.PhongBanModel;
 import java.util.List;
 import java.util.Map;
 import javax.faces.bean.ManagedBean;
@@ -21,39 +20,36 @@ import javax.faces.bean.RequestScoped;
 @RequestScoped
 public class QuanLyPhongBanController {
     
-    private int selectedTinhTrang;
-    private String filterName;
-    private List<Map> listThietBiModel;
-    ThongKeBaoCaoDataprovider tkbcDp = new ThongKeBaoCaoDataprovider();
-    
+    private PhongBanModel objPhongBan = new PhongBanModel();
+    private List<Map> listPhongBan;
+    private PhongBanProvider pbProvider = new PhongBanProvider();
 
-    
-    public List<DanhMucTinhTrangModel> actionGetListDMTinhTrang(){
-        TinhTrangDataprovider dmttDp = new TinhTrangDataprovider();
-        return dmttDp.getDmTinhTrang();
+    public QuanLyPhongBanController() {
+        this.actionGetListPhongBan();
     }
     
-    public int getSelectedTinhTrang() {
-        return selectedTinhTrang;
+    public List<Map> actionGetListPhongBan(){
+        setListPhongBan(pbProvider.getListPhongBan());
+        return listPhongBan;
+    }
+    
+     public void actionThemPhongBan(){
+        if(pbProvider.addPhongBan(objPhongBan)){
+            System.out.println("true");
+        }else {
+            System.out.println("false");
+        }
+        this.actionGetListPhongBan();
+        
     }
 
-    public void setSelectedTinhTrang(int selectedTinhTrang) {
-        this.selectedTinhTrang = selectedTinhTrang;
+    public List<Map> getListPhongBan() {
+        return listPhongBan;
     }
 
-    public String getFilterName() {
-        return filterName;
+    public void setListPhongBan(List<Map> listPhongBan) {
+        this.listPhongBan = listPhongBan;
     }
 
-    public void setFilterName(String filterName) {
-        this.filterName = filterName;
-    }
-
-    public List<Map> getListThietBiModel() {
-        return listThietBiModel;
-    }
-
-    public void setListThietBiModel(List<Map> listThietBiModel) {
-        this.listThietBiModel = listThietBiModel;
-    }
+   
 }

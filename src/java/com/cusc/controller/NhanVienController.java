@@ -6,7 +6,10 @@
 package com.cusc.controller;
 
 import com.cusc.dataprovider.NhanVienProvider;
+import com.cusc.model.DanhMucThietBiModel;
 import com.cusc.model.NhanVienModel;
+import com.cusc.util.WindowUitls;
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 import javax.faces.bean.ManagedBean;
@@ -24,6 +27,38 @@ public class NhanVienController {
     private int selectedPhongBan;
     private NhanVienModel objNhanVien = new NhanVienModel();
 
+    
+    public NhanVienController(){
+        this.actionGetListDmNhanVien();
+    }
+    
+    public void actionGetListDmNhanVien(){
+        listDmNhanVien = nvProvider.getListNhanVien();
+    }
+    
+     public void actionThemNhanVien() throws IOException{
+         System.out.println("tstststs");
+        nvProvider.addNhanVien(objNhanVien);
+        WindowUitls.reload();
+    }
+    
+    public void actionChangePhongBan(){
+        if(selectedPhongBan == 0){
+            this.actionGetListDmNhanVien();
+        }else{
+            listDmNhanVien = nvProvider.getListNhanVienTheoPhongBan(selectedPhongBan);
+        } 
+    }
+    
+     public void preActionEditNhanVien(Map mapDmNhanVien){
+         System.out.println("com.cusc.contr");
+         objNhanVien = new NhanVienModel();
+        objNhanVien.setNhanvienID(Long.parseLong(mapDmNhanVien.get("nv_id").toString()));
+        objNhanVien.setNhanvienTen(mapDmNhanVien.get("nv_ten").toString());
+        objNhanVien.setNhanvienDiaChi(mapDmNhanVien.get("nv_diachi").toString());
+        
+    }
+    
     public NhanVienProvider getNvProvider() {
         return nvProvider;
     }
@@ -38,23 +73,6 @@ public class NhanVienController {
 
     public void setObjNhanVien(NhanVienModel objNhanVien) {
         this.objNhanVien = objNhanVien;
-    }
-   
-    
-    public NhanVienController(){
-        this.actionGetListDmNhanVien();
-    }
-    
-    public void actionGetListDmNhanVien(){
-        listDmNhanVien = nvProvider.getListNhanVien();
-    }
-    
-    public void actionChangePhongBan(){
-        if(selectedPhongBan == 0){
-            this.actionGetListDmNhanVien();
-        }else{
-            listDmNhanVien = nvProvider.getListNhanVienTheoPhongBan(selectedPhongBan);
-        } 
     }
     
     public List<Map> getListDmNhanVien() {

@@ -246,6 +246,13 @@ Separator
     display: inline-block;
     transform: skewX(20deg);
 }
+.register .single_login:hover{
+    background: #33869a;
+ }
+ .single_register:hover{
+     background: rosybrown;
+ }
+
 
 /* domainsearce section */
 .domainsearce{
@@ -758,7 +765,7 @@ Separator
     width: 60%;
 }
 .modal-header{
-    padding: 5px 15px;
+    padding: 5px 15px !important;
     background: antiquewhite;
     border-bottom: 1px solid #e5e5e5;
     height: 50px;

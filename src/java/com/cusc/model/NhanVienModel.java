@@ -6,8 +6,11 @@
 package com.cusc.model;
 
 import java.io.Serializable;
+import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
@@ -21,6 +24,7 @@ import javax.persistence.Table;
 public class NhanVienModel implements Serializable {
 
     @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
     @Column(name = "nv_id", unique = true, nullable = false)
     private long nhanvienID;
     
@@ -37,10 +41,10 @@ public class NhanVienModel implements Serializable {
     private String nhanvienSdt;
     
     @Column(name = "nv_gioitinh")
-    private int nhanvienGioitinh;
+    private Boolean nhanvienGioitinh=true;
     
     @Column(name = "nv_ngaysinh")
-    private String nhanvienNgaysinh;
+    private Date nhanvienNgaysinh;
     
     @Column(name = "pb_id")
     private String nhanvienPhongban;
@@ -90,28 +94,28 @@ public class NhanVienModel implements Serializable {
         this.nhanvienSdt = nhanvienSdt;
     }
 
-    public int getNhanvienGioitinh() {
-        return nhanvienGioitinh;
-    }
-
-    public void setNhanvienGioitinh(int nhanvienGioitinh) {
-        this.nhanvienGioitinh = nhanvienGioitinh;
-    }
-
-    public String getNhanvienNgaysinh() {
-        return nhanvienNgaysinh;
-    }
-
-    public void setNhanvienNgaysinh(String nhanvienNgaysinh) {
-        this.nhanvienNgaysinh = nhanvienNgaysinh;
-    }
-
     public String getNhanvienPhongban() {
         return nhanvienPhongban;
     }
 
     public void setNhanvienPhongban(String nhanvienPhongban) {
         this.nhanvienPhongban = nhanvienPhongban;
+    }
+
+    public Boolean getNhanvienGioitinh() {
+        return nhanvienGioitinh;
+    }
+
+    public void setNhanvienGioitinh(Boolean nhanvienGioitinh) {
+        this.nhanvienGioitinh = nhanvienGioitinh;
+    }
+
+    public Date getNhanvienNgaysinh() {
+        return nhanvienNgaysinh;
+    }
+
+    public void setNhanvienNgaysinh(Date nhanvienNgaysinh) {
+        this.nhanvienNgaysinh = nhanvienNgaysinh;
     }
     
     

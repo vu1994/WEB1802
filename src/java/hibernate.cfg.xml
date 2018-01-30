@@ -44,7 +44,7 @@ Contributor(s):
     <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
     <property name="hibernate.connection.username">root</property>
     <property name="hibernate.connection.password"/>
-    <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/capphatthietbi</property>
+    <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/capphatthietbi?characterEncoding=UTF-8</property>
     <mapping class="com.cusc.model.ThietBiModel"/>
     <mapping class="com.cusc.model.DanhMucTinhTrangModel"/>
     <mapping class="com.cusc.model.DanhMucThietBiModel"/>

@@ -58,4 +58,20 @@ public class NhanVienProvider implements Serializable {
         return listNhanVien;
     }
 
+    
+    public boolean addNhanVien(NhanVienModel objNhanVien){
+        Session session = HibernateUtil.currentSession();
+        try {
+            session.beginTransaction();
+            session.saveOrUpdate(objNhanVien);
+            session.getTransaction().commit();
+	} catch (Exception e) {
+            session.getTransaction().rollback();
+            e.printStackTrace();
+            return false;
+	} finally {
+            session.close();
+	}
+        return true;
+    }
 }

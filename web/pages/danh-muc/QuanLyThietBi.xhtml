@@ -146,19 +146,20 @@
                                                 <div class="row">
                                                     <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
                                                         <h:outputLabel value="Phòng ban"/>
-                                                        <b:selectOneMenu value="#{DanhMucNhanVienController.selectedPhongBan}">
-                                                            <f:selectItem itemLabel="-- Tất cả --" itemValue="0"/>
-                                                            <f:selectItem itemLabel="GOV" itemValue="1"/>
-                                                            <f:selectItem itemLabel="BIZ" itemValue="2"/>
-                                                            <f:selectItem itemLabel="UNI" itemValue="3"/>
-                                                            <f:selectItem itemLabel="ITO" itemValue="4"/>
-                                                            <f:ajax listener="#{DanhMucNhanVienController.actionChangePhongBan()}" render="selectNhanVien" />
+                                                        <b:selectOneMenu id="selectPhongBan" value="#{DanhMucNhanVienController.selectedPhongBan}" required="true" requiredMessage="Vui lòng chọn phòng ban.">
+                                                            <f:selectItem itemLabel="-- Chọn phòng ban --" itemValue="" />
+                                                            <f:selectItems value="#{QuanLyPhongBanController.listPhongBan}" var="item" itemLabel="#{item.pb_ten}" itemValue="#{item.pb_id}" />
+                                                            <f:facet name="prepend">
+                                                                <b:iconAwesome name="fa-list" />
+                                                            </f:facet>
+                                                        <f:ajax listener="#{DanhMucNhanVienController.actionChangePhongBan()}" render="selectNhanVien" />
                                                         </b:selectOneMenu>
                                                         
                                                     </div>
                                                     <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
                                                         <h:outputLabel value="Nhân viên"/>
-                                                        <b:selectOneMenu value="#{QuanLyThietBiController.objThietBi.capChoNhanVienID}">
+                                                        <b:selectOneMenu id="selectNhanVien"
+                                                                         value="#{QuanLyThietBiController.objThietBi.capChoNhanVienID}">
                                                             <f:selectItem itemLabel="-- Chọn nhân viên --" itemValue=""/>
                                                             <f:selectItems value="#{DanhMucNhanVienController.listDmNhanVien}" var="item"
                                                                            itemLabel="#{item.nv_ten}" itemValue="#{item.nv_id}"/>

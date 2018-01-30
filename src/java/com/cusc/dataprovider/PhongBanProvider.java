@@ -5,7 +5,7 @@
  */
 package com.cusc.dataprovider;
 
-import com.cusc.model.DanhMucThietBiModel;
+import com.cusc.model.PhongBanModel;
 import com.cusc.util.HibernateUtil;
 import java.util.List;
 import java.io.Serializable;
@@ -38,6 +38,22 @@ public class PhongBanProvider implements Serializable {
             session.close();
 	}
         return listPhongBan;
+    }
+    
+     public boolean addPhongBan(PhongBanModel objPhongBan){
+        Session session = HibernateUtil.currentSession();
+        try {
+            session.beginTransaction();
+            session.saveOrUpdate(objPhongBan);
+            session.getTransaction().commit();
+	} catch (Exception e) {
+            session.getTransaction().rollback();
+            e.printStackTrace();
+            return false;
+	} finally {
+            session.close();
+	}
+        return true;
     }
 }
     
