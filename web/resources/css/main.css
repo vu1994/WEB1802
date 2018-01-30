@@ -62,5 +62,15 @@ a:hover {
 }
 .h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
     font-family: Times New Roman Georgia !important;
+}
+
+/*
+    Customize Bootfaces Css
+*/
+.input-group .input-group-addon {
+    border-left: 3px solid red;
+}
+
+.content-header > h1{
     color: #565656 !important;
 }

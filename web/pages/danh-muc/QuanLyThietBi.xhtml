@@ -68,7 +68,7 @@
                                                 <div class="row">
                                                     <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
                                                         <h:outputLabel value="Tên thiết bị"/>
-                                                        <b:inputText id="txtTenThietBi" class="required"
+                                                        <b:inputText id="txtTenThietBi"
                                                                      value="#{QuanLyThietBiController.objThietBi.thietBiTen}"
                                                                      a:placeholder="Nhập tên thiết bị ..."
                                                                      required="true"
@@ -81,7 +81,7 @@
                                                     </div>
                                                     <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
                                                         <h:outputLabel value="Nhóm thiết bị"/>
-                                                        <b:selectOneMenu id="selectNhomThietBi" class="required"
+                                                        <b:selectOneMenu id="selectNhomThietBi"
                                                                          value="#{QuanLyThietBiController.objThietBi.dmThietBiID}"
                                                                          required="true"
                                                                          requiredMessage="Vui lòng chọn nhóm thiết bị.">
@@ -90,6 +90,9 @@
                                                                            var="item"
                                                                            itemLabel="#{item.danhmuc_thietbi_ten}"
                                                                            itemValue="#{item.danhmuc_thietbi_id}"/>
+                                                            <f:facet name="prepend">
+                                                                <b:iconAwesome name="fa-list" />
+                                                            </f:facet>
                                                         </b:selectOneMenu>
                                                         <b:message for="selectNhomThietBi" show-icon="true"/>
                                                     </div>
@@ -111,11 +114,15 @@
                                                     </div>
                                                     <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
                                                         <h:outputLabel value="Ngày nhập"/>
-                                                        <b:datepicker id="dateNgayNhap" class="required"
+                                                        <b:datepicker id="dateNgayNhap"
                                                                       value="#{QuanLyThietBiController.objThietBi.thietBiNgayNhap}"
                                                                       required="true"
                                                                       requiredMessage="Vui lòng chọn ngày nhập thiết bị"
-                                                                      mode="popup-icon"/>
+                                                                      mode="popup">
+                                                            <f:facet name="prepend">
+                                                                <b:iconAwesome name="fa-calendar" />
+                                                            </f:facet>
+                                                        </b:datepicker>
                                                         <b:message for="dateNgayNhap"/>
                                                     </div>
                                                 </div>
@@ -161,7 +168,7 @@
                                                         <h:outputLabel value="Ngày cấp"/>
                                                         <b:datepicker id="dateNgayCap"
                                                                       value="#{QuanLyThietBiController.objThietBi.thietBiNgayCap}"
-                                                                      mode="popup-icon"/>
+                                                                      mode="popup"/>
                                                         
                                                     </div>
                                                 </div>
