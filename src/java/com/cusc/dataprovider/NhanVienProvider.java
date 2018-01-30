@@ -74,4 +74,36 @@ public class NhanVienProvider implements Serializable {
 	}
         return true;
     }
+    
+    public boolean editNhanVien(NhanVienModel objNhanVien){
+        Session session = HibernateUtil.currentSession();
+        try {
+            session.beginTransaction();
+            session.merge(objNhanVien);
+            session.getTransaction().commit();
+	} catch (Exception e) {
+            session.getTransaction().rollback();
+            e.printStackTrace();
+            return false;
+	} finally {
+            session.close();
+	}
+        return true;
+    }
+    
+     public boolean delDmNhanVien(int dmNhanVienID){
+        Session session = HibernateUtil.currentSession();
+        try {
+            session.beginTransaction();
+            session.createSQLQuery("DELETE FROM nhanvien WHERE nv_id = "+dmNhanVienID).executeUpdate();
+            session.getTransaction().commit();
+	} catch (Exception e) {
+            session.getTransaction().rollback();
+            e.printStackTrace();
+            return false;
+	} finally {
+            session.close();
+	}
+        return true;
+    }
 }

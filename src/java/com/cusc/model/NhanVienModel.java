@@ -47,7 +47,7 @@ public class NhanVienModel implements Serializable {
     private Date nhanvienNgaysinh;
     
     @Column(name = "pb_id")
-    private String nhanvienPhongban;
+    private int nhanvienPhongban;
 
     public NhanVienModel() {
     }
@@ -94,14 +94,6 @@ public class NhanVienModel implements Serializable {
         this.nhanvienSdt = nhanvienSdt;
     }
 
-    public String getNhanvienPhongban() {
-        return nhanvienPhongban;
-    }
-
-    public void setNhanvienPhongban(String nhanvienPhongban) {
-        this.nhanvienPhongban = nhanvienPhongban;
-    }
-
     public Boolean getNhanvienGioitinh() {
         return nhanvienGioitinh;
     }
@@ -116,6 +108,14 @@ public class NhanVienModel implements Serializable {
 
     public void setNhanvienNgaysinh(Date nhanvienNgaysinh) {
         this.nhanvienNgaysinh = nhanvienNgaysinh;
+    }
+
+    public int getNhanvienPhongban() {
+        return nhanvienPhongban;
+    }
+
+    public void setNhanvienPhongban(int nhanvienPhongban) {
+        this.nhanvienPhongban = nhanvienPhongban;
     }
     
     

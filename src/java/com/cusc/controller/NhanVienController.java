@@ -10,6 +10,9 @@ import com.cusc.model.DanhMucThietBiModel;
 import com.cusc.model.NhanVienModel;
 import com.cusc.util.WindowUitls;
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import javax.faces.bean.ManagedBean;
@@ -41,6 +44,11 @@ public class NhanVienController {
         nvProvider.addNhanVien(objNhanVien);
         WindowUitls.reload();
     }
+    public void actionSuaNhanVien() throws IOException{
+         System.out.println("tstststs");
+        nvProvider.editNhanVien(objNhanVien);
+        WindowUitls.reload();
+    }
     
     public void actionChangePhongBan(){
         if(selectedPhongBan == 0){
@@ -49,15 +57,32 @@ public class NhanVienController {
             listDmNhanVien = nvProvider.getListNhanVienTheoPhongBan(selectedPhongBan);
         } 
     }
+     public void actionXoaDmNhanVien(int dmNhanVienID){
+        nvProvider.delDmNhanVien(dmNhanVienID);
+        this.actionGetListDmNhanVien();
+    }
     
-     public void preActionEditNhanVien(Map mapDmNhanVien){
-         System.out.println("com.cusc.contr");
-         objNhanVien = new NhanVienModel();
+    
+     public void preActionEditNhanVien(Map mapDmNhanVien) throws ParseException{
+         System.out.println(">>>>" +mapDmNhanVien);
+        objNhanVien = new NhanVienModel();
         objNhanVien.setNhanvienID(Long.parseLong(mapDmNhanVien.get("nv_id").toString()));
         objNhanVien.setNhanvienTen(mapDmNhanVien.get("nv_ten").toString());
+        objNhanVien.setNhanvienGioitinh(Boolean.parseBoolean(mapDmNhanVien.get("nv_gioitinh").toString()));
         objNhanVien.setNhanvienDiaChi(mapDmNhanVien.get("nv_diachi").toString());
+        objNhanVien.setNhanvienEmail(mapDmNhanVien.get("nv_email").toString());
+        objNhanVien.setNhanvienSdt(mapDmNhanVien.get("nv_sdt").toString());
+        Date date = new SimpleDateFormat("yyyy-MM-dd").parse(mapDmNhanVien.get("nv_ngaysinh").toString());
+        objNhanVien.setNhanvienNgaysinh(date);
+        if(Integer.parseInt(mapDmNhanVien.get("nv_gioitinh").toString())==1){
+            objNhanVien.setNhanvienGioitinh(true);
+        }
+        else{
+            objNhanVien.setNhanvienGioitinh(false);
+        }
+        objNhanVien.setNhanvienPhongban(Integer.parseInt(mapDmNhanVien.get("pb_id").toString()));
         
-    }
+     }
     
     public NhanVienProvider getNvProvider() {
         return nvProvider;
