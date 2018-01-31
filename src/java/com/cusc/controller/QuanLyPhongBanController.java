@@ -10,14 +10,14 @@ import com.cusc.model.PhongBanModel;
 import java.util.List;
 import java.util.Map;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
+import javax.faces.bean.ViewScoped;
 
 /**
  *
  * @author thyen
  */
 @ManagedBean(name="QuanLyPhongBanController")
-@RequestScoped
+@ViewScoped
 public class QuanLyPhongBanController {
     
     private PhongBanModel objPhongBan = new PhongBanModel();

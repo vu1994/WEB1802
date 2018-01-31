@@ -16,14 +16,14 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
+import javax.faces.bean.ViewScoped;
 
 /**
  *
  * @author thyen
  */
 @ManagedBean(name="DanhMucNhanVienController")
-@RequestScoped
+@ViewScoped
 public class NhanVienController {
     private NhanVienProvider nvProvider = new NhanVienProvider();
     private List<Map> listDmNhanVien;
@@ -37,6 +37,12 @@ public class NhanVienController {
     
     public void actionGetListDmNhanVien(){
         listDmNhanVien = nvProvider.getListNhanVien();
+    }
+    
+    public void preActionNhanVien(){
+         System.out.println("thêm");
+         objNhanVien = new NhanVienModel();
+         
     }
     
      public void actionThemNhanVien() throws IOException{
@@ -78,12 +84,7 @@ public class NhanVienController {
         objNhanVien.setNhanvienSdt(mapDmNhanVien.get("nv_sdt").toString());
         Date date = new SimpleDateFormat("yyyy-MM-dd").parse(mapDmNhanVien.get("nv_ngaysinh").toString());
         objNhanVien.setNhanvienNgaysinh(date);
-        if(Integer.parseInt(mapDmNhanVien.get("nv_gioitinh").toString())==1){
-            objNhanVien.setNhanvienGioitinh(true);
-        }
-        else{
-            objNhanVien.setNhanvienGioitinh(false);
-        }
+        objNhanVien.setNhanvienGioitinh(Boolean.parseBoolean(mapDmNhanVien.get("nv_gioitinh").toString()));
         objNhanVien.setNhanvienPhongban(Integer.parseInt(mapDmNhanVien.get("pb_id").toString()));
          System.out.println(objNhanVien);
      }
