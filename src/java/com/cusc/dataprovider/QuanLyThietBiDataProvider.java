@@ -59,4 +59,19 @@ public class QuanLyThietBiDataProvider implements Serializable{
 	}
         return true;
     }
+    public boolean delThietBi(ThietBiModel objThietBi){
+        Session session = HibernateUtil.currentSession();
+        try {
+            session.beginTransaction();
+            session.delete(objThietBi);
+            session.getTransaction().commit();
+	} catch (Exception e) {
+            session.getTransaction().rollback();
+            e.printStackTrace();
+            return false;
+	} finally {
+            session.close();
+	}
+        return true;
+    }
 }

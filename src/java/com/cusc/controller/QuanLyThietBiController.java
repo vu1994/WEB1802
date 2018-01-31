@@ -7,6 +7,8 @@ package com.cusc.controller;
 
 import com.cusc.dataprovider.QuanLyThietBiDataProvider;
 import com.cusc.model.ThietBiModel;
+import com.cusc.util.WindowUtils;
+import java.io.IOException;
 import java.io.Serializable;
 import java.sql.Date;
 import java.util.ArrayList;
@@ -43,8 +45,8 @@ public class QuanLyThietBiController implements Serializable {
     
     public void preActionThemThietBi(){
         Calendar currentDate = Calendar.getInstance();
+        objThietBi = new ThietBiModel();
         objThietBi.setThietBiNgayNhap(currentDate.getTime());
-        viewMode = 1;
     }
     
     public void preActionEditThietBi(Map mapThietBi){
@@ -82,7 +84,6 @@ public class QuanLyThietBiController implements Serializable {
         }catch(NullPointerException e){
             objThietBi.setThietBiNgayThuHoi(null);
         }
-        viewMode = 1;
     }
     
     public void preActionCapPhat(Map mapThietBi){
@@ -102,20 +103,26 @@ public class QuanLyThietBiController implements Serializable {
         viewMode = 2;
     }
     
-    public void actionThemThietBi(){
+    public void actionThemThietBi() throws IOException{
         if(tbProvider.addThietBi(objThietBi)){
             System.out.println("true");
         }else {
             System.out.println("false");
         }
-        this.actionGetListThietBi();
-        viewMode = 0;
+        WindowUtils.reload();
     }
     
-    public void actionXoaThietBi(int thietBiID){
-        if(this.enableXoaThietBi(thietBiID)){
-            System.out.println("npvu true");
-        }else {
+    public void actionXoaThietBi(Map mapThietBi){
+        ThietBiModel objDelThietBi = new ThietBiModel();
+        try{
+            objDelThietBi.setThietBiID(Long.parseLong(mapThietBi.get("thietbi_id").toString()));
+            objDelThietBi.setThietBiTen(mapThietBi.get("thietbi_ten").toString());
+            if(this.enableXoaThietBi(objThietBi.getDmThietBiID())){
+                boolean delThietBi = tbProvider.delThietBi(objThietBi);
+            }else {
+                System.out.println("false");
+            }         
+        } catch(Exception e){
             
         }
     }

@@ -33,50 +33,6 @@
                                     <!-- form start -->
                                     <h:form id="formDanhMucThietBi">
                                         <div class="box-body">
-                                            <h:panelGroup rendered="#{DanhMucThietBiController.viewMode == 1}">
-                                                <div class="row">
-                                                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-                                                        <h:inputText id="txtAddTen"
-                                                                     a:placeholder="Nhập tên nhóm thiết bị..."
-                                                                     value="#{DanhMucThietBiController.strEditTen}"
-                                                                     styleClass="form-control"
-                                                                     required="true"
-                                                                     requiredMessage=" Vui lòng nhập tên nhóm thiết bị."/>
-                                                        <h:message for="txtAddTen" class="text-red fa fa-close" />
-                                                    </div>
-                                                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-                                                        <h:commandLink action="#{DanhMucThietBiController.actionThemThietBi()}" styleClass="btn btn-danger margin-r-5" >
-                                                            <i class="fa fa-save"></i> Lưu
-                                                        </h:commandLink>
-                                                        <h:commandLink styleClass="btn btn-default" >
-                                                            <f:ajax listener="#{DanhMucThietBiController.actionTroVe()}" render="formDanhMucThietBi" />
-                                                            <i class="fa fa-mail-reply"></i> Hủy bỏ
-                                                        </h:commandLink>
-                                                    </div>
-                                                </div>
-                                            </h:panelGroup>
-                                            <h:panelGroup rendered="#{DanhMucThietBiController.viewMode == 2}">
-                                                <div class="row">
-                                                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-                                                        <h:inputText id="txtEditTen"
-                                                                     a:placeholder="Nhập tên nhóm thiết bị..."
-                                                                     value="#{DanhMucThietBiController.objDmThietBi.dmThietBiTen}"
-                                                                     styleClass="form-control"
-                                                                     required="true"
-                                                                     requiredMessage=" Vui lòng nhập tên nhóm thiết bị."/>
-                                                        <h:message for="txtEditTen" class="text-red fa fa-close" />
-                                                    </div>
-                                                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-                                                        <h:commandLink action="#{DanhMucThietBiController.actionEditTenThietBi()}" styleClass="btn btn-danger margin-r-5" >
-                                                            <i class="fa fa-save"></i> Lưu
-                                                        </h:commandLink>
-                                                        <h:commandLink styleClass="btn btn-default" >
-                                                            <f:ajax listener="#{DanhMucThietBiController.actionTroVe()}" render="formDanhMucThietBi" />
-                                                            <i class="fa fa-mail-reply"></i> Hủy bỏ
-                                                        </h:commandLink>
-                                                    </div>
-                                                </div>
-                                            </h:panelGroup>
                                             <h:panelGroup rendered="#{DanhMucThietBiController.viewMode == 0}">
                                                 <div class="row">
                                                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-right">
@@ -84,7 +40,7 @@
                                                                          actionListener="#{DanhMucThietBiController.preActionThemThietBi()}"
                                                                          oncomplete="$('.formThemTBPopUp').modal()"
                                                                          styleClass="btn btn-danger" >
-                                                            <f:ajax execute="@this" render="amodal" />
+                                                            <f:ajax execute="@this" render="themNhomTBForm" />
                                                         </b:commandButton>
                                                     </div>
                                                 </div>
@@ -100,7 +56,7 @@
                                                                 <b:commandButton actionListener="#{DanhMucThietBiController.preActionEditTenThietBi(item)}"
                                                                                  oncomplete="$('.formThemTBPopUp').modal();" >
                                                                     <i class="fa fa-edit"></i>
-                                                                    <f:ajax execute="@this" render="amodal"/>
+                                                                    <f:ajax execute="@this" render="themNhomTBForm"/>
                                                                 </b:commandButton>
                                                                 <b:commandButton action="#{DanhMucThietBiController.actionXoaDmThietBi(item.danhmuc_thietbi_id)}"
                                                                                styleClass="btn text-red"
@@ -120,7 +76,7 @@
                         <!-- /.row -->
                     </section>
                     <!-- /.content -->
-                    <b:modal id="amodal" title="#{DanhMucThietBiController.editMode ? 'SỬA':'THÊM'} NHÓM THIẾT BỊ" styleClass="formThemTBPopUp"
+                    <b:modal id="amodal" title="CẬP NHẬT NHÓM THIẾT BỊ" styleClass="formThemTBPopUp"
                         closable="true"  close-on-escape="true" backdrop="true">
                         <b:form id="themNhomTBForm" horizontal="false">
                             <div class="row">
