@@ -78,6 +78,11 @@ public class QuanLyThietBiController implements Serializable {
         }catch(NullPointerException e){
             objThietBi.setThietBiNgayCap(null);
         }
+        try{
+            objThietBi.setThietBiTrangThaiCapPhat(mapThietBi.get("thietbi_trangthai_capphat").toString());
+        }catch(NullPointerException e){
+            objThietBi.setThietBiTrangThaiCapPhat(null);
+        }
         
         try{
             objThietBi.setThietBiNgayThuHoi(Date.valueOf(mapThietBi.get("thietbi_ngaythuhoi").toString()));
@@ -97,13 +102,31 @@ public class QuanLyThietBiController implements Serializable {
         }catch(NullPointerException e){
             objThietBi.setThietBiNgayNhap(null);
         }
-        Calendar currentDate = Calendar.getInstance();
-        objThietBi.setThietBiNgayCap(currentDate.getTime());
+        try{
+            objThietBi.setThietBiNgayCap(Date.valueOf(mapThietBi.get("thietbi_ngaycap").toString()));
+        }catch(NullPointerException e){
+            objThietBi.setThietBiNgayCap(null);
+        }
+        try{
+            objThietBi.setThietBiNguoiCap(Integer.parseInt(mapThietBi.get("thietbi_nguoicap").toString()));
+        }catch(NullPointerException e){
+            objThietBi.setThietBiNguoiCap(0);
+        }
+        try{
+            objThietBi.setCapChoNhanVienID(Integer.parseInt(mapThietBi.get("thietbi_capcho").toString()));
+        }catch(NullPointerException e){
+            objThietBi.setCapChoNhanVienID(0);
+        }
+        try{
+            objThietBi.setThietBiTrangThaiCapPhat(mapThietBi.get("thietbi_trangthai_capphat").toString());
+        }catch(NullPointerException e){
+            objThietBi.setThietBiTrangThaiCapPhat(null);
+        }
         objThietBi.setThietBiNgayThuHoi(null);
-        viewMode = 2;
     }
     
     public void actionThemThietBi() throws IOException{
+        System.out.println("npvu test: "+objThietBi.getThietBiID());
         if(tbProvider.addThietBi(objThietBi)){
             System.out.println("true");
         }else {
@@ -117,14 +140,15 @@ public class QuanLyThietBiController implements Serializable {
         try{
             objDelThietBi.setThietBiID(Long.parseLong(mapThietBi.get("thietbi_id").toString()));
             objDelThietBi.setThietBiTen(mapThietBi.get("thietbi_ten").toString());
-            if(this.enableXoaThietBi(objThietBi.getDmThietBiID())){
-                boolean delThietBi = tbProvider.delThietBi(objThietBi);
+            if(this.enableXoaThietBi(objDelThietBi.getDmThietBiID())){
+                boolean delThietBi = tbProvider.delThietBi(objDelThietBi);
             }else {
                 System.out.println("false");
             }         
         } catch(Exception e){
-            
+            e.printStackTrace();
         }
+        this.actionGetListThietBi();
     }
     
     public boolean enableEditThietBi(int thietBiID){
