@@ -70,7 +70,9 @@ a:hover {
 .input-group .input-group-addon {
     border-left: 3px solid red;
 }
-
+.input-group .removeRequiredCSS {
+    border-left: 1px solid #ccc !important;
+}
 .content-header > h1{
     color: #565656 !important;
 }
