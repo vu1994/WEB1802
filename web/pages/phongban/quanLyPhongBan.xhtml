@@ -22,7 +22,13 @@
                     </nav>
                 </header>-->
                 <!-- form start -->
-                
+                <style>
+                    .btn-edit {
+                        background-color: initial !important;
+                        color: #0891b3 !important;
+                        border: none !important;
+                    
+                </style>
                 <div class="content-wrapper" style="min-height: 946px;">
                     <!-- Content Header (Page header) -->
                     <section class="content-header">
@@ -36,7 +42,7 @@
                     </section>
                     <!-- Main content -->
                     <section class="content">
-                        <h:form role="form">
+                        <h:form role="form" id="phongBan">
                         <div class="row">
                             <div class="col-md-12">
                                 <!-- general form elements -->
@@ -71,7 +77,7 @@
                                                         <b:dataTableColumn value="#{item.nv_diachi}" label="Địa chỉ" headerStyleClass="text-center"/>
                                                         <b:dataTableColumn value="#{item.pb_ten}" label="Phòng ban" headerStyleClass="text-center"/>
                                                         <b:dataTableColumn label="Sửa" style="width:5%" orderable="false" class="text-center">
-                                                            <b:commandButton actionListener="#{DanhMucNhanVienController.preActionEditNhanVien(item)}" update="@form" oncomplete="$('.editNhanVienPopUp').modal()">
+                                                            <b:commandButton styleClass="btn-edit" actionListener="#{DanhMucNhanVienController.preActionEditNhanVien(item)}" update="@form" oncomplete="$('.editNhanVienPopUp').modal()">
                                                                          <i class="fa fa-edit"></i>
                                                             </b:commandButton>
                                                         </b:dataTableColumn>
@@ -79,8 +85,9 @@
                                                             <h:commandLink action="#{DanhMucNhanVienController.actionXoaDmNhanVien(item.nv_id)}"
                                                                                styleClass="btn text-red"
                                                                                onclick="return verifyDelete();">
+                                                                    <f:ajax render="phongBan" execute="@this"/>
                                                                     <i class="fa fa-trash"></i>
-                                                                </h:commandLink>
+                                                            </h:commandLink>
                                                         </b:dataTableColumn>
                                                     </b:dataTable>
                                                 </div>
@@ -88,7 +95,7 @@
                                         </div>
                                  
                                     <!-- Dialog Sua-->
-                                      <b:modal id="amodalSua" title="SỬA NHÂN VIÊN" styleClass="editNhanVienPopUp"
+                                      <b:modal id="amodalSua" title="CẬP NHẬT NHÂN VIÊN" styleClass="editNhanVienPopUp"
                                           closable="true"  close-on-escape="true" backdrop="true">
                                           <b:form id="editNVForm" horizontal="false">
                                               <div class="row">
@@ -101,12 +108,11 @@
                                                           </b:inputText>    
                                                           <b:message for="txtTenNV1" />
                                                   </div>
-                                                  <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                                                  <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3" >
                                                       <h:outputLabel value="Ngày sinh"/>
                                                           <b:datepicker id="dateNgaySinh1"
                                                                         value="#{DanhMucNhanVienController.objNhanVien.nhanvienNgaysinh}"
-                                                          
-                                                          mode="icon-popup">
+                                                                        mode="icon-popup">
                                                               <f:convertDateTime pattern = "dd/MM/yyyy" timeZone="GMT+7"/>
                                                           <f:facet name="prepend">
                                                           <b:iconAwesome name="fa-calendar" />
@@ -114,7 +120,13 @@
                                                           </b:datepicker>
                                                       <b:message for="dateNgaySinh1"/>
                                                   </div>
-                                                  <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2 selectRadio no-padding">
+                                                  <div class="col-xs-12 col-sm-12 col-md-1 col-lg-1">
+                                                      <h:outputLabel value="ID"/>
+                                                      <b:inputText id="txtidNV"  value="#{DanhMucNhanVienController.objNhanVien.nhanvienID}" disabled="true" style="padding-left: 7px !important;">
+                                                             
+                                                       </b:inputText>  
+                                                  </div>
+                                                  <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2 selectRadio no-padding" >
                                                       <h:outputLabel value="Giới tính" />
                                                           <h:selectOneRadio id="radioGioiTinhNV1" value="#{DanhMucNhanVienController.objNhanVien.nhanvienGioitinh}">
                                                               <f:selectItem itemLabel="Nam" itemValue="true" />
@@ -167,7 +179,7 @@
                                               </div>
                                               <div class="row margin-t-15">
                                                   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
-                                                      <b:commandButton action="#{DanhMucNhanVienController.actionSuaNhanVien()}"  styleClass="btn btn-danger margin-r-5" process="@form" update="@form">
+                                                      <b:commandButton action="#{DanhMucNhanVienController.actionEditNhanVien()}"  styleClass="btn btn-danger margin-r-5" update="@form" oncomplete="$('.themNhanVienPopUp').modal('hide')">
                                                           <i class="fa fa-save"></i> Lưu
                                                       </b:commandButton>
                                                       <b:button class="btn-huybo" dismiss="modal" icon-awesome="fa-mail-reply" value="Hủy bỏ">
@@ -263,12 +275,11 @@
                             </div>
                             <div class="row margin-t-15">
                                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
-                                    <b:commandButton action="#{DanhMucNhanVienController.actionThemNhanVien()}"  styleClass="btn btn-danger margin-r-5" process="@form" update="@form">
+                                    <b:commandButton action="#{DanhMucNhanVienController.actionThemNhanVien()}"  styleClass="btn btn-danger margin-r-5" process="@form"  oncomplete="$('.themNhanVienPopUp').modal('hide')">
+                                        <f:ajax render="phongBan" execute="@this"/>
                                         <i class="fa fa-save"></i> Lưu
                                     </b:commandButton>
                                     <b:button class="btn-huybo" dismiss="modal" icon-awesome="fa-mail-reply" value="Hủy bỏ">
-                                        
-                                        
                                     </b:button>
                                 </div>
                             </div>

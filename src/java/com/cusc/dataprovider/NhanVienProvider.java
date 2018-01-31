@@ -27,7 +27,7 @@ public class NhanVienProvider implements Serializable {
         List<Map> listNhanVien = new ArrayList();
         try {
             session.beginTransaction();
-            listNhanVien = session.createSQLQuery("SELECT nv.* ,pb_ten FROM nhanvien nv INNER JOIN phongban pb ON pb.pb_id = nv.pb_id").setResultTransformer(Transformers.ALIAS_TO_ENTITY_MAP).list();
+            listNhanVien = session.createSQLQuery("SELECT nv.* ,pb_ten FROM nhanvien nv INNER JOIN phongban pb ON pb.pb_id = nv.pb_id ORDER BY pb_ten,nv_ten ASC").setResultTransformer(Transformers.ALIAS_TO_ENTITY_MAP).list();
             session.getTransaction().commit();
             for(Map dmNhanVien : listNhanVien){
                 dmNhanVien.put("editTen", false);
@@ -75,11 +75,11 @@ public class NhanVienProvider implements Serializable {
         return true;
     }
     
-    public boolean editNhanVien(NhanVienModel objNhanVien){
+       public boolean updateDmNhanVien(NhanVienModel dmNhanVien){
         Session session = HibernateUtil.currentSession();
         try {
             session.beginTransaction();
-            session.merge(objNhanVien);
+            session.update(dmNhanVien);
             session.getTransaction().commit();
 	} catch (Exception e) {
             session.getTransaction().rollback();

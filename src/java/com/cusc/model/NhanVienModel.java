@@ -42,6 +42,16 @@ public class NhanVienModel implements Serializable {
     
     @Column(name = "nv_gioitinh")
     private Boolean nhanvienGioitinh=true;
+
+    @Override
+    public String toString() {
+        return "NhanVienModel{" + "nhanvienID=" + nhanvienID + ","
+                + " nhanvienTen=" + nhanvienTen + ", nhanvienDiaChi=" + 
+                nhanvienDiaChi + ", nhanvienEmail=" + nhanvienEmail + ","
+                + " nhanvienSdt=" + nhanvienSdt + ", nhanvienGioitinh=" +
+                nhanvienGioitinh + ", nhanvienNgaysinh=" + nhanvienNgaysinh + ", "
+                + "nhanvienPhongban=" + nhanvienPhongban + '}';
+    }
     
     @Column(name = "nv_ngaysinh")
     private Date nhanvienNgaysinh;

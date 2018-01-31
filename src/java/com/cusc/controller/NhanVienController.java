@@ -29,7 +29,7 @@ public class NhanVienController {
     private List<Map> listDmNhanVien;
     private int selectedPhongBan;
     private NhanVienModel objNhanVien = new NhanVienModel();
-
+    
     
     public NhanVienController(){
         this.actionGetListDmNhanVien();
@@ -42,12 +42,18 @@ public class NhanVienController {
      public void actionThemNhanVien() throws IOException{
          System.out.println("tstststs");
         nvProvider.addNhanVien(objNhanVien);
-        WindowUitls.reload();
+        this.actionGetListDmNhanVien();
     }
-    public void actionSuaNhanVien() throws IOException{
-         System.out.println("tstststs");
-        nvProvider.editNhanVien(objNhanVien);
-        WindowUitls.reload();
+     
+    public void actionEditNhanVien() throws IOException{
+        System.out.println(objNhanVien);
+        
+        if(nvProvider.updateDmNhanVien(objNhanVien)){
+            System.out.println("true");
+        } else {
+            System.out.println("false");
+        }
+      this.actionGetListDmNhanVien();
     }
     
     public void actionChangePhongBan(){
@@ -64,8 +70,6 @@ public class NhanVienController {
     
     
      public void preActionEditNhanVien(Map mapDmNhanVien) throws ParseException{
-         System.out.println(">>>>" +mapDmNhanVien);
-        objNhanVien = new NhanVienModel();
         objNhanVien.setNhanvienID(Long.parseLong(mapDmNhanVien.get("nv_id").toString()));
         objNhanVien.setNhanvienTen(mapDmNhanVien.get("nv_ten").toString());
         objNhanVien.setNhanvienGioitinh(Boolean.parseBoolean(mapDmNhanVien.get("nv_gioitinh").toString()));
@@ -81,7 +85,7 @@ public class NhanVienController {
             objNhanVien.setNhanvienGioitinh(false);
         }
         objNhanVien.setNhanvienPhongban(Integer.parseInt(mapDmNhanVien.get("pb_id").toString()));
-        
+         System.out.println(objNhanVien);
      }
     
     public NhanVienProvider getNvProvider() {

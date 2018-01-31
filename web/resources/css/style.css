@@ -78,12 +78,16 @@ img {
     width: 100%;
     padding: 50px 0px;
 }
-@media (min-width: 991px) {
+@media (min-width: 700px) {
     .home-overlay-fluid {
         background-color: rgba(0, 0, 0, 0.60);
         width: 100%;
         padding: 225px 0px;
 
+    }
+    .modal.in .modal-dialog{
+        margin-top: 150px;
+        width: 60%;
     }
     
     /* Home Section */
@@ -107,7 +111,8 @@ img {
         background: url(../img/home1.jpg) no-repeat 100% 100%;
         text-align: center;
     }
-
+    
+    
 }
 
 /* Landscape phones and portrait tablets */
@@ -123,6 +128,7 @@ img {
         background: url(../img/home1.jpg) no-repeat 100% 100%;
         text-align: center;
     }
+    
 }
 
 /* Landscape phones and portrait tablets */
@@ -760,10 +766,7 @@ Separator
     color: #ffffff !important;
 }
 
-.modal.in .modal-dialog{
-    margin-top: 150px;
-    width: 60%;
-}
+
 .modal-header{
     padding: 5px 15px !important;
     background: antiquewhite;
