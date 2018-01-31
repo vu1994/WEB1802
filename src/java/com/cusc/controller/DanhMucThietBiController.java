@@ -7,7 +7,7 @@ package com.cusc.controller;
 
 import com.cusc.dataprovider.DanhMucThietBiDataProvider;
 import com.cusc.model.DanhMucThietBiModel;
-import com.cusc.util.WindowUitls;
+import com.cusc.util.WindowUtils;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
@@ -24,7 +24,7 @@ public class DanhMucThietBiController {
     private List<Map> listDmThietBi;
     private DanhMucThietBiModel objDmThietBi = new DanhMucThietBiModel();
     private int viewMode = 0;
-    private String strEditTen;
+    private boolean editMode;
     private long longEditID;
     
     public DanhMucThietBiController(){
@@ -36,35 +36,33 @@ public class DanhMucThietBiController {
     }
     
     public void preActionEditTenThietBi(Map mapDmThietBi){
+        objDmThietBi = new DanhMucThietBiModel();
         objDmThietBi.setDmThietBiID(Long.parseLong(mapDmThietBi.get("danhmuc_thietbi_id").toString()));
         objDmThietBi.setDmThietBiTen(mapDmThietBi.get("danhmuc_thietbi_ten").toString());
-        viewMode = 2;
+        editMode = true;
     }
     
     public void preActionThemThietBi(){
-        strEditTen = "";
-        viewMode = 1;
+        objDmThietBi = new DanhMucThietBiModel();
+        editMode = false;
     }
     
     public void actionThemThietBi() throws IOException{
-        DanhMucThietBiModel dmThietBi = new DanhMucThietBiModel();
-        dmThietBi.setDmThietBiTen(strEditTen);
-        if(dmThietBiDp.addDmThietBi(dmThietBi)){
+        if(dmThietBiDp.updateDmThietBi(objDmThietBi)){
             System.out.println("true");
         } else {
             System.out.println("false");
         }
-        WindowUitls.reload();
+        WindowUtils.reload();
     }
     
-    public void actionEditTenThietBi(){
+    public void actionEditTenThietBi() throws IOException{
         if(dmThietBiDp.updateDmThietBi(objDmThietBi)){
             System.out.println("true" +objDmThietBi.getDmThietBiID());
         } else {
             System.out.println("false");
         }
-        listDmThietBi = dmThietBiDp.getListDmThietBi();
-        viewMode = 0;
+        WindowUtils.reload();
     }
     
     public void actionXoaDmThietBi(int dmThietBiID){
@@ -74,11 +72,6 @@ public class DanhMucThietBiController {
             System.out.println("false");
         }
         listDmThietBi = dmThietBiDp.getListDmThietBi();
-        viewMode = 0;
-    }
-    
-    public void actionTroVe(){
-        viewMode = 0;
     }
     
     // Getter & Setter
@@ -97,14 +90,6 @@ public class DanhMucThietBiController {
 
     public void setViewMode(int viewMode) {
         this.viewMode = viewMode;
-    }
-
-    public String getStrEditTen() {
-        return strEditTen;
-    }
-
-    public void setStrEditTen(String strEditTen) {
-        this.strEditTen = strEditTen;
     }
 
     public DanhMucThietBiDataProvider getDmThietBiDp() {
@@ -129,6 +114,14 @@ public class DanhMucThietBiController {
 
     public void setObjDmThietBi(DanhMucThietBiModel objDmThietBi) {
         this.objDmThietBi = objDmThietBi;
+    }
+
+    public boolean isEditMode() {
+        return editMode;
+    }
+
+    public void setEditMode(boolean editMode) {
+        this.editMode = editMode;
     }
 
 }

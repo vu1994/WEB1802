@@ -14,8 +14,8 @@ import javax.servlet.http.HttpServletRequest;
  *
  * @author cuscsoft
  */
-public class WindowUitls {
-    public WindowUitls(){
+public class WindowUtils {
+    public WindowUtils(){
         
     }
     public static void reload() throws IOException {

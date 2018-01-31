@@ -8,7 +8,7 @@ package com.cusc.controller;
 import com.cusc.dataprovider.NhanVienProvider;
 import com.cusc.model.DanhMucThietBiModel;
 import com.cusc.model.NhanVienModel;
-import com.cusc.util.WindowUitls;
+import com.cusc.util.WindowUtils;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

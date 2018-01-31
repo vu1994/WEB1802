@@ -68,7 +68,7 @@
                                                     </div>
                                                     <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
                                                         <h:commandLink action="#{DanhMucThietBiController.actionEditTenThietBi()}" styleClass="btn btn-danger margin-r-5" >
-                                                            <i class="fa fa-save"></i> Lưu fhgh
+                                                            <i class="fa fa-save"></i> Lưu
                                                         </h:commandLink>
                                                         <h:commandLink styleClass="btn btn-default" >
                                                             <f:ajax listener="#{DanhMucThietBiController.actionTroVe()}" render="formDanhMucThietBi" />
@@ -80,7 +80,12 @@
                                             <h:panelGroup rendered="#{DanhMucThietBiController.viewMode == 0}">
                                                 <div class="row">
                                                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-right">
-                                                        <b:button value="Thêm nhóm" onclick="$('.formThemTBPopUp').modal()" styleClass="btn btn-danger" />
+                                                        <b:commandButton value="Thêm nhóm"
+                                                                         actionListener="#{DanhMucThietBiController.preActionThemThietBi()}"
+                                                                         oncomplete="$('.formThemTBPopUp').modal()"
+                                                                         styleClass="btn btn-danger" >
+                                                            <f:ajax execute="@this" render="amodal" />
+                                                        </b:commandButton>
                                                     </div>
                                                 </div>
                                                 <div class="row margin-t-5">
@@ -92,14 +97,16 @@
                                                                 <h:outputText value="#{item.danhmuc_thietbi_ten}"/>
                                                             </b:dataTableColumn>
                                                             <b:dataTableColumn label="Hành động" style="width:15%" orderable="false" class="text-center">
-                                                                <h:commandLink action="#{DanhMucThietBiController.preActionEditTenThietBi(item)}" styleClass="btn">
+                                                                <b:commandButton actionListener="#{DanhMucThietBiController.preActionEditTenThietBi(item)}"
+                                                                                 oncomplete="$('.formThemTBPopUp').modal();" >
                                                                     <i class="fa fa-edit"></i>
-                                                                </h:commandLink>
-                                                                <h:commandLink action="#{DanhMucThietBiController.actionXoaDmThietBi(item.danhmuc_thietbi_id)}"
+                                                                    <f:ajax execute="@this" render="amodal"/>
+                                                                </b:commandButton>
+                                                                <b:commandButton action="#{DanhMucThietBiController.actionXoaDmThietBi(item.danhmuc_thietbi_id)}"
                                                                                styleClass="btn text-red"
                                                                                onclick="return verifyDelete();">
                                                                     <i class="fa fa-trash"></i>
-                                                                </h:commandLink>
+                                                                </b:commandButton>
                                                             </b:dataTableColumn>
                                                         </b:dataTable>
                                                     </div>
@@ -113,14 +120,14 @@
                         <!-- /.row -->
                     </section>
                     <!-- /.content -->
-                    <b:modal id="amodal" title="THÊM NHÓM THIẾT BỊ" styleClass="formThemTBPopUp"
+                    <b:modal id="amodal" title="#{DanhMucThietBiController.editMode ? 'SỬA':'THÊM'} NHÓM THIẾT BỊ" styleClass="formThemTBPopUp"
                         closable="true"  close-on-escape="true" backdrop="true">
                         <b:form id="themNhomTBForm" horizontal="false">
                             <div class="row">
                                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                                     <b:inputText id="txtAddTen"
                                                  a:placeholder="Nhập tên nhóm thiết bị..."
-                                                 value="#{DanhMucThietBiController.strEditTen}"
+                                                 value="#{DanhMucThietBiController.objDmThietBi.dmThietBiTen}"
                                                  required="true"
                                                  requiredMessage=" Vui lòng nhập tên nhóm thiết bị."/>
                                     <b:message for="txtAddTen"/>
@@ -130,8 +137,7 @@
                                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center margin-t-5">
                                     <b:commandButton actionListener="#{DanhMucThietBiController.actionThemThietBi()}"
                                                      styleClass="btn btn-danger margin-r-5"
-                                                     process="@form" update="@form" 
-                                                     ajax="true"
+                                                     process="@form" update="@form"
                                                      >
                                         <i class="fa fa-save"></i> Lưu
                                     </b:commandButton>
