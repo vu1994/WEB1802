@@ -7,7 +7,8 @@ and open the template in the editor.
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     
 <aside class="main-sidebar">
     <!-- sidebar: style can be found in sidebar.less -->
@@ -37,17 +38,20 @@ and open the template in the editor.
       <ul class="sidebar-menu tree" data-widget="tree">
         <li class="header">QUẢN LÝ PHÒNG BAN</li>
         <li class="treeview">
-          <a href="">
+          <a href="#{request.contextPath}/faces/pages/phongban/quanLyPhongBan.xhtml">
             <i class="fa fa-home"></i> <span>CUSC</span>
             <span class="pull-right-container">
               <span class="label label-primary pull-right">4</span>
             </span>
           </a>
             <ul class="treeview-menu">
-            <li><a href="#{request.contextPath}/faces/pages/phongban/quanLyPhongBan.xhtml" ><i class="fa fa-circle-o"></i> BIZ</a></li>
-            <li><a href="#{request.contextPath}/faces/pages/KiemKeKho.xhtml"><i class="fa fa-circle-o"></i> UNI</a></li>
-            <li><a href="#{request.contextPath}/faces/pages/ThongKeTonKho.xhtml" ><i class="fa fa-circle-o"></i>ITO</a></li>
-            <li><a href="#{request.contextPath}/faces/pages/KiemKeKho.xhtml"><i class="fa fa-circle-o"></i> GOV</a></li>
+                <c:forEach items="#{QuanLyPhongBanController.listPhongBan}" var="item">
+                    <li>
+                        <a href="#{request.contextPath}/faces/pages/phongban/quanLyPhongBan.xhtml?pb=#{item.pb_id}" >
+                            <i class="fa fa-circle-o"></i> #{item.pb_ten}
+                        </a>
+                    </li>
+                </c:forEach>
           </ul>
         </li>
         <li class="header">QUẢN LÝ THIẾT BỊ TIN HỌC</li>

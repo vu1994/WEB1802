@@ -32,11 +32,20 @@ public class NhanVienController {
     
     
     public NhanVienController(){
-        this.actionGetListDmNhanVien();
+        String pbID =  WindowUtils.getUrlParameter("pb");
+        if(pbID == null){
+            this.actionGetListDmNhanVien();
+        } else {
+            this.actionGetListDmNhanVienFilterPB(Integer.parseInt(pbID));
+        }
     }
     
     public void actionGetListDmNhanVien(){
         listDmNhanVien = nvProvider.getListNhanVien();
+    }
+    
+    public void actionGetListDmNhanVienFilterPB(int pb_id){
+        listDmNhanVien = nvProvider.getListNhanVienTheoPhongBan(pb_id);
     }
     
     public void preActionNhanVien(){

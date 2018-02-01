@@ -22,4 +22,9 @@ public class WindowUtils {
         ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
         ec.redirect(((HttpServletRequest) ec.getRequest()).getRequestURI());
     }
+    
+    public static String getUrlParameter(String key) {
+        HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        return request.getParameter(key);
+    }
 }
