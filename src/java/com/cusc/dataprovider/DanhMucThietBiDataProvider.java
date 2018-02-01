@@ -29,9 +29,6 @@ public class DanhMucThietBiDataProvider implements Serializable {
             session.beginTransaction();
             listDmThietBi = session.createSQLQuery("SELECT * FROM danhmuc_thietbi").setResultTransformer(Transformers.ALIAS_TO_ENTITY_MAP).list();
             session.getTransaction().commit();
-            for(Map dmThietBi : listDmThietBi){
-                dmThietBi.put("editTen", false);
-            }
 	} catch (Exception e) {
             e.printStackTrace();
 	} finally {

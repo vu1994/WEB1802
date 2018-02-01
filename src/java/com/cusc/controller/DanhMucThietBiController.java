@@ -9,6 +9,7 @@ import com.cusc.dataprovider.DanhMucThietBiDataProvider;
 import com.cusc.model.DanhMucThietBiModel;
 import com.cusc.util.WindowUtils;
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 import javax.faces.bean.ManagedBean;
@@ -19,7 +20,7 @@ import javax.faces.bean.ViewScoped;
  */
 @ManagedBean(name="DanhMucThietBiController")
 @ViewScoped
-public class DanhMucThietBiController {
+public class DanhMucThietBiController implements Serializable {
     private DanhMucThietBiDataProvider dmThietBiDp = new DanhMucThietBiDataProvider();
     private List<Map> listDmThietBi;
     private DanhMucThietBiModel objDmThietBi = new DanhMucThietBiModel();

@@ -254,6 +254,28 @@
                         <b:form id="capPhatTBForm" horizontal="false">
                             <div class="row">
                                 <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                                    <h:outputLabel value="Tên thiết bị: "/>
+                                    #{QuanLyThietBiController.objThietBi.thietBiTen}
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                                    <h:outputLabel value="Nhóm thiết bị: "/>
+                                    #{QuanLyThietBiController.objThietBi.dmThietBiTen}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                                    <h:outputLabel value="Tình trạng: "/>
+                                    #{QuanLyThietBiController.objThietBi.tinhTrangTen}
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                                    <h:outputLabel value="Ngày nhập: "/>
+                                    <h:outputText value="#{QuanLyThietBiController.objThietBi.thietBiNgayNhap}">
+                                        <f:convertDateTime pattern="dd/MM/yyyy"/>
+                                    </h:outputText>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
                                     <h:outputLabel value="Phòng ban"/>
                                     <b:selectOneMenu value="#{DanhMucNhanVienController.selectedPhongBan}">
                                         <f:selectItem itemLabel="-- Tất cả --" itemValue=""/>

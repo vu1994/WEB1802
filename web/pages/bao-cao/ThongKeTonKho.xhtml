@@ -36,24 +36,48 @@
                                         
                                         <div class="box-body">
                                             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                                                <b:dataTable value="#{ThongKeBaoCaoController.listThongKe}"
+                                                <b:dataTable value="#{ThongKeBaoCaoController.listNhomThietBi}"
                                                              var="item"
                                                              searching="true"
                                                              excel="true"
                                                              pdf="true"
                                                              >
-                                                    <b:dataTableColumn value="#{item.danhmuc_thietbi_ten}" label="Nhóm thiết bị"/>
-                                                    <b:dataTableColumn value="#{item.tongso}" label="Tổng số"/>
-                                                    <b:dataTableColumn value="#{item.ttMoi}" label="Mới nhập"/>
-                                                    <b:dataTableColumn value="#{item.ttDangSuDung}" label="Đang sử dụng"/>
-                                                    <b:dataTableColumn value="#{item.ttDaSuDung}" label="Đã sử dụng (Tồn)"/>
-                                                    <b:dataTableColumn value="#{item.ttBiHong}" label="Bị hỏng"/>
+                                                    <f:facet name="header">
+                                                        <tr>
+                                                            <th colspan="4" class="text-center"></th>
+                                                            <th colspan="4" class="text-center">Tình trạng thiết bị</th>
+                                                            <th colspan="3" class="text-center">Trạng thái cấp phát</th>
+                                                            </tr>
+                                                        <tr>
+                                                            <th class="text-center">Nhóm thiết bị</th>
+                                                            <th class="text-center">Tổng số</th>
+                                                            <th class="text-center">Đã cấp phát</th>
+                                                            <th class="text-center">Chưa cấp phát</th>
+                                                            
+                                                            <th class="text-center">Mới nhập</th>
+                                                            <th class="text-center">Đang sử dụng</th>
+                                                            <th class="text-center">Đã sử dụng (Tồn)</th>
+                                                            <th class="text-center">Bị hỏng</th>
+                                                          
+                                                            <th class="text-center">Cấp mới</th>
+                                                            <th class="text-center">Cấp bổ sung</th>
+                                                            <th class="text-center">Thu hồi</th>
+                                                        </tr>
+                                                      </f:facet>
+                                                    <b:dataTableColumn value="#{item.danhmuc_thietbi_ten}"/>
+                                                    <b:dataTableColumn value="#{item.tongso}"/>
+                                                    <b:dataTableColumn value="#{item.ttChuaCapPhat}"/>
+                                                    <b:dataTableColumn value="#{item.ttDaCapPhat}"/>
                                                     
-                                                    <b:dataTableColumn value="#{item.ttCapMoi}" label="Cấp mới"/>
-                                                    <b:dataTableColumn value="#{item.ttCapBoSung}" label="Cấp bổ sung"/>
-                                                    <b:dataTableColumn value="#{item.ttThuHoi}" label="Thu hồi"/>
-                                                    <b:dataTableColumn value="#{item.ttChuaCapPhat}" label="Chưa cấp phát"/>
-                                                    <b:dataTableColumn value="#{item.ttDaCapPhat}" label="Đã cấp phát"/>
+                                                    <b:dataTableColumn value="#{item.ttMoi}"/>
+                                                    <b:dataTableColumn value="#{item.ttDangSuDung}"/>
+                                                    <b:dataTableColumn value="#{item.ttDaSuDung}"/>
+                                                    <b:dataTableColumn value="#{item.ttBiHong}"/>
+                                                    
+                                                    <b:dataTableColumn value="#{item.ttCapMoi}"/>
+                                                    <b:dataTableColumn value="#{item.ttCapBoSung}"/>
+                                                    <b:dataTableColumn value="#{item.ttThuHoi}"/>
+                                                    
                                                     
                                                 </b:dataTable>
                                             </div>

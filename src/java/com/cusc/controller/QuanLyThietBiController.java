@@ -96,7 +96,9 @@ public class QuanLyThietBiController implements Serializable {
         objThietBi.setThietBiID(Long.parseLong(mapThietBi.get("thietbi_id").toString()));
         objThietBi.setThietBiTen(mapThietBi.get("thietbi_ten").toString());
         objThietBi.setDmThietBiID(Integer.parseInt(mapThietBi.get("danhmuc_thietbi_id").toString()));
+        objThietBi.setDmThietBiTen(mapThietBi.get("danhmuc_thietbi_ten").toString());
         objThietBi.setTinhTrangID(Integer.parseInt(mapThietBi.get("tinhtrang_id").toString()));
+        objThietBi.setTinhTrangTen(mapThietBi.get("tinhtrang_ten").toString());
         try{
             objThietBi.setThietBiNgayNhap(Date.valueOf(mapThietBi.get("thietbi_ngaynhap").toString()));
         }catch(NullPointerException e){

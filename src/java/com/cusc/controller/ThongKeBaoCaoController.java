@@ -31,10 +31,12 @@ public class ThongKeBaoCaoController implements Serializable {
     ThongKeBaoCaoDataprovider tkbcDp = new ThongKeBaoCaoDataprovider();
     
     public ThongKeBaoCaoController() {
-        if(listThongKe != null){
-            listThongKe.clear();
+        try{
+            this.actionGetListThongKeTonKho();
+        }catch(Exception e){
+            
         }
-        this.actionGetListThongKeTonKho();
+        
     }
     
     public void actionGetListThongKeTonKho(){
@@ -42,11 +44,11 @@ public class ThongKeBaoCaoController implements Serializable {
         DanhMucThietBiDataProvider dmTBProvider = new DanhMucThietBiDataProvider();
         QuanLyThietBiDataProvider tbProvider = new QuanLyThietBiDataProvider();
         listNhomThietBi = dmTBProvider.getListDmThietBi();
-        
+        System.out.println("size: "+listNhomThietBi.toString());
         // Lấy danh sách thiết bị theo từng nhóm
         for(Map mapNhomThietBi : listNhomThietBi){
             List<Map> listThietBi = tbProvider.getListThietBiByNhom(Long.parseLong(mapNhomThietBi.get("danhmuc_thietbi_id").toString()));
-            
+            System.out.println("npvu: "+listThietBi.toString());
             // Khai báo số liệu thống kê
             int tongso = 0;
             
@@ -68,6 +70,7 @@ public class ThongKeBaoCaoController implements Serializable {
             for(Map mapThietBi : listThietBi){
                 // Đếm tình trạng
                 int tinhTrang = Integer.parseInt(mapThietBi.get("tinhtrang_id").toString());
+                System.out.println("npvu :"+tinhTrang);
                 switch(tinhTrang){
                     case 1: ttMoi++; break;
                     case 2: ttDangSuDung++; break;
@@ -83,6 +86,7 @@ public class ThongKeBaoCaoController implements Serializable {
                     case "Đã thu hồi": ttThuHoi++; break;
                     default:ttChuaCapPhat++;
                 }
+                
             }
             mapNhomThietBi.put("tongso", tongso);
             mapNhomThietBi.put("ttMoi", ttMoi);
@@ -95,8 +99,9 @@ public class ThongKeBaoCaoController implements Serializable {
             mapNhomThietBi.put("ttThuHoi", ttThuHoi);
             mapNhomThietBi.put("ttChuaCapPhat", ttChuaCapPhat);
             mapNhomThietBi.put("ttDaCapPhat", tongso - ttChuaCapPhat);
+            System.out.println("npvu :"+mapNhomThietBi.toString());
         }
-        listThongKe.addAll(listNhomThietBi);
+        System.out.println("npvu: "+listThongKe.size());
     }
     
     public List<Map> actionFilterListThongKeTonKho(){
