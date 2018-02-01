@@ -28,7 +28,7 @@ public class QuanLyPhongBanController {
     private String pbID;
     public QuanLyPhongBanController() {
         pbID =  WindowUtils.getUrlParameter("pb");
-        setListPhongBanMenu(this.actionGetListPhongBan());
+        this.actionGetListPhongBanMenu();
         if(pbID == null){
             this.actionGetListPhongBan();
         } else {
@@ -38,6 +38,10 @@ public class QuanLyPhongBanController {
     }
     
     public List<Map> actionGetListPhongBan(){
+        setListPhongBan(pbProvider.getListPhongBan());
+        return listPhongBan;
+    }
+    public List<Map> actionGetListPhongBanMenu(){
         setListPhongBanMenu(pbProvider.getListPhongBan());
         return listPhongBan;
     }

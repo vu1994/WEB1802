@@ -36,10 +36,10 @@ and open the template in the editor.
       <!-- /.search form -->
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu tree" data-widget="tree">
-        <li class="header">QUẢN LÝ PHÒNG BAN</li>
+     
         <li class="treeview">
-          <a href="#{request.contextPath}/faces/pages/phongban/quanLyPhongBan.xhtml">
-            <i class="fa fa-home"></i> <span></span>
+            <a href="#" style="text-decoration: none">
+            <span>QUẢN LÝ PHÒNG BAN</span>
             <span class="pull-right-container">
               <span class="label label-primary pull-right">4</span>
             </span>
@@ -47,11 +47,11 @@ and open the template in the editor.
             <ul class="treeview-menu">
                     <li>
                         <a href="#{request.contextPath}/faces/pages/phongban/quanLyPhongBan.xhtml" >
-                            <i class="fa fa-circle-o"></i>CUSC
+                            <i class="fa fa-home"></i>CUSC
                         </a>
                     </li>
                 <c:forEach items="#{QuanLyPhongBanController.listPhongBanMenu}" var="item">
-                    <li>
+                    <li style="padding-left: 15px;">
                         <a href="#{request.contextPath}/faces/pages/phongban/quanLyPhongBan.xhtml?pb=#{item.pb_id}" >
                             <i class="fa fa-circle-o"></i> #{item.pb_ten}
                         </a>

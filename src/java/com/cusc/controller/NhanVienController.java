@@ -29,6 +29,7 @@ public class NhanVienController {
     private List<Map> listDmNhanVien;
     private int selectedPhongBan;
     private NhanVienModel objNhanVien = new NhanVienModel();
+    private Boolean editNVien;
     
     
     public NhanVienController(){
@@ -50,6 +51,7 @@ public class NhanVienController {
     
     public void preActionNhanVien(){
          System.out.println("thêm");
+         setEditNVien(false);
          objNhanVien = new NhanVienModel();
          
     }
@@ -57,7 +59,7 @@ public class NhanVienController {
      public void actionAddOrEditNhanVien() throws IOException{
         System.out.println("tstststs");
         nvProvider.addOrEditNhanVien(objNhanVien);
-        this.actionGetListDmNhanVien();
+       this.actionGetListDmNhanVien();
     }
     
     public void actionChangePhongBan(){
@@ -74,6 +76,7 @@ public class NhanVienController {
     
     
      public void preActionEditNhanVien(Map mapDmNhanVien) throws ParseException{
+        setEditNVien(true);
         objNhanVien.setNhanvienID(Long.parseLong(mapDmNhanVien.get("nv_id").toString()));
         objNhanVien.setNhanvienTen(mapDmNhanVien.get("nv_ten").toString());
         objNhanVien.setNhanvienGioitinh(Boolean.parseBoolean(mapDmNhanVien.get("nv_gioitinh").toString()));
@@ -117,6 +120,14 @@ public class NhanVienController {
 
     public void setSelectedPhongBan(int selectedPhongBan) {
         this.selectedPhongBan = selectedPhongBan;
+    }
+    
+    public Boolean getEditNVien() {
+        return editNVien;
+    }
+
+    public void setEditNVien(Boolean editNVien) {
+        this.editNVien = editNVien;
     }
     
     
