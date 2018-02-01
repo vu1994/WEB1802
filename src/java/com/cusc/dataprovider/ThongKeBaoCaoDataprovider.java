@@ -41,7 +41,7 @@ public class ThongKeBaoCaoDataprovider implements Serializable {
                     + " FROM thietbi tb"
                     + " LEFT JOIN danhmuc_thietbi dmtb ON tb.danhmuc_thietbi_id = dmtb.danhmuc_thietbi_id"
                     + " LEFT JOIN tinhtrang tt ON tb.tinhtrang_id = tt.tinhtrang_id"
-                    + " WHERE "+where + "GROUP BY tongso, ").setResultTransformer(Transformers.ALIAS_TO_ENTITY_MAP).list();
+                    + " WHERE "+where).setResultTransformer(Transformers.ALIAS_TO_ENTITY_MAP).list();
             session.getTransaction().commit();
 	} catch (Exception e) {
             e.printStackTrace();
