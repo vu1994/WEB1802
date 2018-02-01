@@ -59,7 +59,7 @@ public class NhanVienProvider implements Serializable {
     }
 
     
-    public boolean addNhanVien(NhanVienModel objNhanVien){
+    public boolean addOrEditNhanVien(NhanVienModel objNhanVien){
         Session session = HibernateUtil.currentSession();
         try {
             session.beginTransaction();

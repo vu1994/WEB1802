@@ -45,21 +45,10 @@ public class NhanVienController {
          
     }
     
-     public void actionThemNhanVien() throws IOException{
-         System.out.println("tstststs");
-        nvProvider.addNhanVien(objNhanVien);
+     public void actionAddOrEditNhanVien() throws IOException{
+        System.out.println("tstststs");
+        nvProvider.addOrEditNhanVien(objNhanVien);
         this.actionGetListDmNhanVien();
-    }
-     
-    public void actionEditNhanVien() throws IOException{
-        System.out.println(objNhanVien);
-        
-        if(nvProvider.updateDmNhanVien(objNhanVien)){
-            System.out.println("true");
-        } else {
-            System.out.println("false");
-        }
-      this.actionGetListDmNhanVien();
     }
     
     public void actionChangePhongBan(){
