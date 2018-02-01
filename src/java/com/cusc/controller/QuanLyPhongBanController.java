@@ -28,10 +28,21 @@ public class QuanLyPhongBanController implements Serializable{
     private PhongBanProvider pbProvider = new PhongBanProvider();
     private String pbID;
     public QuanLyPhongBanController() {
-        this.actionGetListPhongBan();
+        pbID =  WindowUtils.getUrlParameter("pb");
+        this.actionGetListPhongBanMenu();
+        if(pbID == null){
+            this.actionGetListPhongBan();
+        } else {
+            this.actionGetListDmPhongBanFilterPB(Integer.parseInt(pbID));
+        }
+        
     }
     
     public List<Map> actionGetListPhongBan(){
+        setListPhongBan(pbProvider.getListPhongBan());
+        return listPhongBan;
+    }
+    public List<Map> actionGetListPhongBanMenu(){
         setListPhongBanMenu(pbProvider.getListPhongBan());
         return listPhongBan;
     }

@@ -20,7 +20,7 @@
                         </h1>
                         <ol class="breadcrumb">
                             <li><a href="#{request.contextPath}"><i class="fa fa-dashboard"></i> Home</a></li>
-                            <li class="active"><a href="#{request.contextPath}/faces/pages/ThongKeTonKho.xhtml">Thống Kê Tồn Kho</a></li>
+                            <li class="active"><a href="#{request.contextPath}/faces/pages/bao-cao/ThongKeTonKho.xhtml">Thống Kê Tồn Kho</a></li>
                         </ol>
                     </section>
 
@@ -32,56 +32,54 @@
                                 <div class="box box-primary">
                                     <!-- form start -->
                                     <h:form role="form">
-
-                                        
                                         <div class="box-body">
-                                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                                                <b:dataTable value="#{ThongKeBaoCaoController.listNhomThietBi}"
-                                                             var="item"
-                                                             searching="true"
-                                                             excel="true"
-                                                             pdf="true"
-                                                             >
-                                                    <f:facet name="header">
-                                                        <tr>
-                                                            <th colspan="4" class="text-center"></th>
-                                                            <th colspan="4" class="text-center">Tình trạng thiết bị</th>
-                                                            <th colspan="3" class="text-center">Trạng thái cấp phát</th>
+                                            <div class="row">
+                                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                                    <b:dataTable value="#{ThongKeBaoCaoController.listNhomThietBi}"
+                                                                 var="item"
+                                                                 searching="true"
+                                                                 excel="true"
+                                                                 pdf="true"
+                                                                 >
+                                                        <f:facet name="header">
+                                                            <tr>
+                                                                <th colspan="4" class="text-center"></th>
+                                                                <th colspan="4" class="text-center">Tình trạng thiết bị</th>
+                                                                <th colspan="3" class="text-center">Trạng thái cấp phát</th>
+                                                                </tr>
+                                                            <tr>
+                                                                <th class="text-center">Nhóm thiết bị</th>
+                                                                <th class="text-center">Tổng số</th>
+                                                                <th class="text-center">Đã cấp phát</th>
+                                                                <th class="text-center">Chưa cấp phát</th>
+
+                                                                <th class="text-center">Mới nhập</th>
+                                                                <th class="text-center">Đang sử dụng</th>
+                                                                <th class="text-center">Đã sử dụng (Tồn)</th>
+                                                                <th class="text-center">Bị hỏng</th>
+
+                                                                <th class="text-center">Cấp mới</th>
+                                                                <th class="text-center">Cấp bổ sung</th>
+                                                                <th class="text-center">Thu hồi</th>
                                                             </tr>
-                                                        <tr>
-                                                            <th class="text-center">Nhóm thiết bị</th>
-                                                            <th class="text-center">Tổng số</th>
-                                                            <th class="text-center">Đã cấp phát</th>
-                                                            <th class="text-center">Chưa cấp phát</th>
-                                                            
-                                                            <th class="text-center">Mới nhập</th>
-                                                            <th class="text-center">Đang sử dụng</th>
-                                                            <th class="text-center">Đã sử dụng (Tồn)</th>
-                                                            <th class="text-center">Bị hỏng</th>
-                                                          
-                                                            <th class="text-center">Cấp mới</th>
-                                                            <th class="text-center">Cấp bổ sung</th>
-                                                            <th class="text-center">Thu hồi</th>
-                                                        </tr>
-                                                      </f:facet>
-                                                    <b:dataTableColumn value="#{item.danhmuc_thietbi_ten}"/>
-                                                    <b:dataTableColumn value="#{item.tongso}"/>
-                                                    <b:dataTableColumn value="#{item.ttChuaCapPhat}"/>
-                                                    <b:dataTableColumn value="#{item.ttDaCapPhat}"/>
-                                                    
-                                                    <b:dataTableColumn value="#{item.ttMoi}"/>
-                                                    <b:dataTableColumn value="#{item.ttDangSuDung}"/>
-                                                    <b:dataTableColumn value="#{item.ttDaSuDung}"/>
-                                                    <b:dataTableColumn value="#{item.ttBiHong}"/>
-                                                    
-                                                    <b:dataTableColumn value="#{item.ttCapMoi}"/>
-                                                    <b:dataTableColumn value="#{item.ttCapBoSung}"/>
-                                                    <b:dataTableColumn value="#{item.ttThuHoi}"/>
-                                                    
-                                                    
-                                                </b:dataTable>
+                                                          </f:facet>
+                                                        <b:dataTableColumn value="#{item.danhmuc_thietbi_ten}"/>
+                                                        <b:dataTableColumn value="#{item.tongso}"/>
+                                                        <b:dataTableColumn value="#{item.ttChuaCapPhat}"/>
+                                                        <b:dataTableColumn value="#{item.ttDaCapPhat}"/>
+
+                                                        <b:dataTableColumn value="#{item.ttMoi}"/>
+                                                        <b:dataTableColumn value="#{item.ttDangSuDung}"/>
+                                                        <b:dataTableColumn value="#{item.ttDaSuDung}"/>
+                                                        <b:dataTableColumn value="#{item.ttBiHong}"/>
+
+                                                        <b:dataTableColumn value="#{item.ttCapMoi}"/>
+                                                        <b:dataTableColumn value="#{item.ttCapBoSung}"/>
+                                                        <b:dataTableColumn value="#{item.ttThuHoi}"/>
+
+                                                    </b:dataTable>
+                                                </div>
                                             </div>
-                                            
                                         </div>
                                     </h:form>
                                 </div>

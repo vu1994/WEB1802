@@ -203,7 +203,7 @@
                                     <h:outputLabel value="Phòng ban" />
                                     <b:selectOneMenu id="selectPhongBan" value="#{DanhMucNhanVienController.objNhanVien.nhanvienPhongban}" required="true" requiredMessage="Vui lòng chọn phòng ban.">
                                         <f:selectItem itemLabel="-- Chọn phòng ban --" itemValue="" />
-                                        <f:selectItems value="#{QuanLyPhongBanController.listPhongBan}" var="item" itemLabel="#{item.pb_ten}" itemValue="#{item.pb_id}" />
+                                        <f:selectItems value="#{DanhMucNhanVienController.editNVien? QuanLyPhongBanController.listPhongBanMenu : QuanLyPhongBanController.listPhongBan}" var="item" itemLabel="#{item.pb_ten}" itemValue="#{item.pb_id}" />
                                         <f:facet name="prepend">
                                             <b:iconAwesome name="fa-list" />
                                         </f:facet>

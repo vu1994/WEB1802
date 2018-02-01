@@ -26,8 +26,8 @@ public class ThongKeBaoCaoController implements Serializable {
     
     private int selectedTinhTrang;
     private String filterName;
-    private List<Map> listThongKe;
     private List<Map> listNhomThietBi;
+    private List<Map> listThietBiModel;
     ThongKeBaoCaoDataprovider tkbcDp = new ThongKeBaoCaoDataprovider();
     
     public ThongKeBaoCaoController() {
@@ -44,11 +44,9 @@ public class ThongKeBaoCaoController implements Serializable {
         DanhMucThietBiDataProvider dmTBProvider = new DanhMucThietBiDataProvider();
         QuanLyThietBiDataProvider tbProvider = new QuanLyThietBiDataProvider();
         listNhomThietBi = dmTBProvider.getListDmThietBi();
-        System.out.println("size: "+listNhomThietBi.toString());
         // Lấy danh sách thiết bị theo từng nhóm
         for(Map mapNhomThietBi : listNhomThietBi){
             List<Map> listThietBi = tbProvider.getListThietBiByNhom(Long.parseLong(mapNhomThietBi.get("danhmuc_thietbi_id").toString()));
-            System.out.println("npvu: "+listThietBi.toString());
             // Khai báo số liệu thống kê
             int tongso = 0;
             
@@ -70,7 +68,6 @@ public class ThongKeBaoCaoController implements Serializable {
             for(Map mapThietBi : listThietBi){
                 // Đếm tình trạng
                 int tinhTrang = Integer.parseInt(mapThietBi.get("tinhtrang_id").toString());
-                System.out.println("npvu :"+tinhTrang);
                 switch(tinhTrang){
                     case 1: ttMoi++; break;
                     case 2: ttDangSuDung++; break;
@@ -99,14 +96,12 @@ public class ThongKeBaoCaoController implements Serializable {
             mapNhomThietBi.put("ttThuHoi", ttThuHoi);
             mapNhomThietBi.put("ttChuaCapPhat", ttChuaCapPhat);
             mapNhomThietBi.put("ttDaCapPhat", tongso - ttChuaCapPhat);
-            System.out.println("npvu :"+mapNhomThietBi.toString());
         }
-        System.out.println("npvu: "+listThongKe.size());
     }
     
     public List<Map> actionFilterListThongKeTonKho(){
-        listThongKe = tkbcDp.getDsThongKeTonKho(filterName, selectedTinhTrang);
-        return listThongKe;
+        listThietBiModel = tkbcDp.getDsThongKeTonKho(filterName, selectedTinhTrang);
+        return listThietBiModel;
     } 
     
     public List<DanhMucTinhTrangModel> actionGetListDMTinhTrang(){
@@ -130,12 +125,12 @@ public class ThongKeBaoCaoController implements Serializable {
         this.filterName = filterName;
     }
 
-    public List<Map> getListThongKe() {
-        return listThongKe;
+    public List<Map> getListThietBiModel() {
+        return listThietBiModel;
     }
 
-    public void setListThongKe(List<Map> listThongKe) {
-        this.listThongKe = listThongKe;
+    public void setListThietBiModel(List<Map> listThietBiModel) {
+        this.listThietBiModel = listThietBiModel;
     }
 
     public List<Map> getListNhomThietBi() {

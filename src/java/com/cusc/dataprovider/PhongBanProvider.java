@@ -29,9 +29,7 @@ public class PhongBanProvider implements Serializable {
             session.beginTransaction();
             listPhongBan = session.createSQLQuery("SELECT * FROM phongban").setResultTransformer(Transformers.ALIAS_TO_ENTITY_MAP).list();
             session.getTransaction().commit();
-            for(Map dmPhongBan : listPhongBan){
-                dmPhongBan.put("editTen", false);
-            }
+            
 	} catch (Exception e) {
             e.printStackTrace();
 	} finally {
