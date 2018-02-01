@@ -8,6 +8,7 @@ package com.cusc.controller;
 import com.cusc.dataprovider.PhongBanProvider;
 import com.cusc.model.PhongBanModel;
 import com.cusc.util.WindowUtils;
+import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 import javax.faces.bean.ManagedBean;
@@ -19,7 +20,7 @@ import javax.faces.bean.ViewScoped;
  */
 @ManagedBean(name="QuanLyPhongBanController")
 @ViewScoped
-public class QuanLyPhongBanController {
+public class QuanLyPhongBanController implements Serializable{
     
     private PhongBanModel objPhongBan = new PhongBanModel();
     private List<Map> listPhongBan;
@@ -27,14 +28,7 @@ public class QuanLyPhongBanController {
     private PhongBanProvider pbProvider = new PhongBanProvider();
     private String pbID;
     public QuanLyPhongBanController() {
-        pbID =  WindowUtils.getUrlParameter("pb");
-        setListPhongBanMenu(this.actionGetListPhongBan());
-        if(pbID == null){
-            this.actionGetListPhongBan();
-        } else {
-            this.actionGetListDmPhongBanFilterPB(Integer.parseInt(pbID));
-        }
-        
+        this.actionGetListPhongBan();
     }
     
     public List<Map> actionGetListPhongBan(){
