@@ -8,7 +8,7 @@
       xmlns:b="http://bootsfaces.net/ui">
     <body>
         
-        <ui:composition template="./../mainTemplate.xhtml">
+        <ui:composition template="./../../mainTemplate.xhtml">
             <ui:define name="title">THỐNG KÊ TỒN KHO</ui:define>
             <ui:define name="content">
 
@@ -36,14 +36,25 @@
                                         
                                         <div class="box-body">
                                             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                                                <b:dataTable id='myTable' value="#{ThongKeBaoCaoController.listThietBiModel}"
+                                                <b:dataTable value="#{ThongKeBaoCaoController.listThongKe}"
                                                              var="item"
                                                              searching="true"
                                                              excel="true"
                                                              pdf="true"
                                                              >
-                                                    <b:dataTableColumn value="#{item.thietbi_ten}" label="Tên thiết bị"/>
-                                                    <b:dataTableColumn value="#{item.tinhtrang_ten}" label="Tình trạng"/>
+                                                    <b:dataTableColumn value="#{item.danhmuc_thietbi_ten}" label="Nhóm thiết bị"/>
+                                                    <b:dataTableColumn value="#{item.tongso}" label="Tổng số"/>
+                                                    <b:dataTableColumn value="#{item.ttMoi}" label="Mới nhập"/>
+                                                    <b:dataTableColumn value="#{item.ttDangSuDung}" label="Đang sử dụng"/>
+                                                    <b:dataTableColumn value="#{item.ttDaSuDung}" label="Đã sử dụng (Tồn)"/>
+                                                    <b:dataTableColumn value="#{item.ttBiHong}" label="Bị hỏng"/>
+                                                    
+                                                    <b:dataTableColumn value="#{item.ttCapMoi}" label="Cấp mới"/>
+                                                    <b:dataTableColumn value="#{item.ttCapBoSung}" label="Cấp bổ sung"/>
+                                                    <b:dataTableColumn value="#{item.ttThuHoi}" label="Thu hồi"/>
+                                                    <b:dataTableColumn value="#{item.ttChuaCapPhat}" label="Chưa cấp phát"/>
+                                                    <b:dataTableColumn value="#{item.ttDaCapPhat}" label="Đã cấp phát"/>
+                                                    
                                                 </b:dataTable>
                                             </div>
                                             
