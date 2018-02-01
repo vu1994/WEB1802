@@ -39,13 +39,18 @@ and open the template in the editor.
         <li class="header">QUẢN LÝ PHÒNG BAN</li>
         <li class="treeview">
           <a href="#{request.contextPath}/faces/pages/phongban/quanLyPhongBan.xhtml">
-            <i class="fa fa-home"></i> <span>CUSC</span>
+            <i class="fa fa-home"></i> <span></span>
             <span class="pull-right-container">
               <span class="label label-primary pull-right">4</span>
             </span>
           </a>
             <ul class="treeview-menu">
-                <c:forEach items="#{QuanLyPhongBanController.listPhongBan}" var="item">
+                    <li>
+                        <a href="#{request.contextPath}/faces/pages/phongban/quanLyPhongBan.xhtml" >
+                            <i class="fa fa-circle-o"></i>CUSC
+                        </a>
+                    </li>
+                <c:forEach items="#{QuanLyPhongBanController.listPhongBanMenu}" var="item">
                     <li>
                         <a href="#{request.contextPath}/faces/pages/phongban/quanLyPhongBan.xhtml?pb=#{item.pb_id}" >
                             <i class="fa fa-circle-o"></i> #{item.pb_ten}

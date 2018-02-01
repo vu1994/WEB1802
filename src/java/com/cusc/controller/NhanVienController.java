@@ -39,7 +39,7 @@ public class NhanVienController {
             this.actionGetListDmNhanVienFilterPB(Integer.parseInt(pbID));
         }
     }
-    
+   
     public void actionGetListDmNhanVien(){
         listDmNhanVien = nvProvider.getListNhanVien();
     }

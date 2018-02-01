@@ -40,6 +40,23 @@ public class PhongBanProvider implements Serializable {
         return listPhongBan;
     }
     
+    public List<Map> getListPhongBanTheoId(int pbID){
+        Session session = HibernateUtil.currentSession();
+        List<Map> listPhongBanId = new ArrayList();
+        try {
+            session.beginTransaction();
+            listPhongBanId = session.createSQLQuery("SELECT * "
+                    + " FROM phongban"
+                    + " WHERE pb_id = "+pbID).setResultTransformer(Transformers.ALIAS_TO_ENTITY_MAP).list();
+            session.getTransaction().commit();
+	} catch (Exception e) {
+            e.printStackTrace();
+	} finally {
+            session.close();
+	}
+        return listPhongBanId;
+    }
+    
      public boolean addPhongBan(PhongBanModel objPhongBan){
         Session session = HibernateUtil.currentSession();
         try {

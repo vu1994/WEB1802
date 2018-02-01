@@ -7,6 +7,7 @@ package com.cusc.controller;
 
 import com.cusc.dataprovider.PhongBanProvider;
 import com.cusc.model.PhongBanModel;
+import com.cusc.util.WindowUtils;
 import java.util.List;
 import java.util.Map;
 import javax.faces.bean.ManagedBean;
@@ -22,14 +23,22 @@ public class QuanLyPhongBanController {
     
     private PhongBanModel objPhongBan = new PhongBanModel();
     private List<Map> listPhongBan;
+    private List<Map> listPhongBanMenu;
     private PhongBanProvider pbProvider = new PhongBanProvider();
-
+    private String pbID;
     public QuanLyPhongBanController() {
-        this.actionGetListPhongBan();
+        pbID =  WindowUtils.getUrlParameter("pb");
+        setListPhongBanMenu(this.actionGetListPhongBan());
+        if(pbID == null){
+            this.actionGetListPhongBan();
+        } else {
+            this.actionGetListDmPhongBanFilterPB(Integer.parseInt(pbID));
+        }
+        
     }
     
     public List<Map> actionGetListPhongBan(){
-        setListPhongBan(pbProvider.getListPhongBan());
+        setListPhongBanMenu(pbProvider.getListPhongBan());
         return listPhongBan;
     }
     
@@ -42,13 +51,43 @@ public class QuanLyPhongBanController {
         this.actionGetListPhongBan();
         
     }
-
+     
+     
+    public void actionGetListDmPhongBanFilterPB(int pb_id){
+        listPhongBan = pbProvider.getListPhongBanTheoId(pb_id);
+    }
+    
+    
     public List<Map> getListPhongBan() {
         return listPhongBan;
     }
 
     public void setListPhongBan(List<Map> listPhongBan) {
         this.listPhongBan = listPhongBan;
+    }
+
+    public List<Map> getListPhongBanMenu() {
+        return listPhongBanMenu;
+    }
+
+    public void setListPhongBanMenu(List<Map> listPhongBanMenu) {
+        this.listPhongBanMenu = listPhongBanMenu;
+    }
+
+    public PhongBanModel getObjPhongBan() {
+        return objPhongBan;
+    }
+
+    public void setObjPhongBan(PhongBanModel objPhongBan) {
+        this.objPhongBan = objPhongBan;
+    }
+
+    public String getPbID() {
+        return pbID;
+    }
+
+    public void setPbID(String pbID) {
+        this.pbID = pbID;
     }
 
    
