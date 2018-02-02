@@ -70,6 +70,22 @@ public class PhongBanProvider implements Serializable {
 	}
         return true;
     }
+     
+      public boolean delDmPhongBan(int dmPhongBanID){
+        Session session = HibernateUtil.currentSession();
+        try {
+            session.beginTransaction();
+            session.createSQLQuery("DELETE FROM phongban WHERE pb_id = "+dmPhongBanID).executeUpdate();
+            session.getTransaction().commit();
+	} catch (Exception e) {
+            session.getTransaction().rollback();
+            e.printStackTrace();
+            return false;
+	} finally {
+            session.close();
+	}
+        return true;
+    }
 }
     
     

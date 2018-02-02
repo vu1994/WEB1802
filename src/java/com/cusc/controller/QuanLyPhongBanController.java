@@ -9,6 +9,9 @@ import com.cusc.dataprovider.PhongBanProvider;
 import com.cusc.model.PhongBanModel;
 import com.cusc.util.WindowUtils;
 import java.io.Serializable;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import javax.faces.bean.ManagedBean;
@@ -57,7 +60,18 @@ public class QuanLyPhongBanController implements Serializable{
         
     }
      
-     
+      public void preActionEditPhongBan(Map mapDmPhongBan) throws ParseException{
+       
+        objPhongBan.setPhongbanID(Long.parseLong(mapDmPhongBan.get("pb_id").toString()));
+        objPhongBan.setPhongbanTen(mapDmPhongBan.get("pb_ten").toString());
+       
+         System.out.println(objPhongBan);
+     }
+      
+    public void actionXoaDmPhongBan(int dmPhongBanID){
+        pbProvider.delDmPhongBan(dmPhongBanID);
+        this.actionGetListPhongBanMenu();
+    }
     public void actionGetListDmPhongBanFilterPB(int pb_id){
         listPhongBan = pbProvider.getListPhongBanTheoId(pb_id);
     }

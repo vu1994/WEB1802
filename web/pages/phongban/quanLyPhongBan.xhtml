@@ -261,13 +261,27 @@
                                                                  responsive="true"
                                                                  style="width:100% !important;">
 
-                                                        <b:dataTableColumn value="#{item.pb_ten}" label="Phòng ban" headerStyleClass="text-center"/>
+                                        <b:dataTableColumn value="#{item.pb_ten}" label="Phòng ban" headerStyleClass="text-center"/>
+                                        <b:dataTableColumn label="Sửa" style="width:5%" orderable="false" class="text-center">
+                                            <b:commandButton styleClass="btn-edit" actionListener="#{QuanLyPhongBanController.preActionEditPhongBan(item)}" update="@form" oncomplete="$('.editPhongBanPopUp').modal()">
+                                                <i class="fa fa-edit"></i>
+                                                 <f:ajax render="editPBForm" execute="@this" />
+                                                </b:commandButton>
+                                            </b:dataTableColumn>
+                                            <b:dataTableColumn label="Xóa" style="width:5%" orderable="false" class="text-center">
+                                                <h:commandLink action="#{DanhMucNhanVienController.actionXoaPhongBan(item.pb_id)}"
+                                                               styleClass="btn text-red"
+                                                               onclick="return verifyDelete();">
+                                                    <f:ajax render="themPBForm" execute="@this"/>
+                                                    <i class="fa fa-trash"></i>
+                                                </h:commandLink>
+                                            </b:dataTableColumn>
                                     </b:dataTable>
                                 </div>
                             </div>
                         </b:form>
                      </b:modal>
-                </div> 
+               </div> 
             </ui:define>
 
         </ui:composition>
