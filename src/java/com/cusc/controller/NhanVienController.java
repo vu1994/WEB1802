@@ -10,6 +10,7 @@ import com.cusc.model.DanhMucThietBiModel;
 import com.cusc.model.NhanVienModel;
 import com.cusc.util.WindowUtils;
 import java.io.IOException;
+import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -24,7 +25,7 @@ import javax.faces.bean.ViewScoped;
  */
 @ManagedBean(name="DanhMucNhanVienController")
 @ViewScoped
-public class NhanVienController {
+public class NhanVienController implements Serializable{
     private NhanVienProvider nvProvider = new NhanVienProvider();
     private List<Map> listDmNhanVien;
     private int selectedPhongBan;

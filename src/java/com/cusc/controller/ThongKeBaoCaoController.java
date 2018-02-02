@@ -11,6 +11,7 @@ import com.cusc.dataprovider.ThongKeBaoCaoDataprovider;
 import com.cusc.dataprovider.TinhTrangDataprovider;
 import com.cusc.model.DanhMucTinhTrangModel;
 import java.io.Serializable;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.faces.bean.ManagedBean;
@@ -44,8 +45,28 @@ public class ThongKeBaoCaoController implements Serializable {
         DanhMucThietBiDataProvider dmTBProvider = new DanhMucThietBiDataProvider();
         QuanLyThietBiDataProvider tbProvider = new QuanLyThietBiDataProvider();
         listNhomThietBi = dmTBProvider.getListDmThietBi();
+        int size = 0;
+        if(listNhomThietBi.size() > 0){
+            size = listNhomThietBi.size();
+            Map mapTong = new HashMap();
+            mapTong.put("danhmuc_thietbi_ten", "Tổng số");
+            mapTong.put("tongso", 0);
+            mapTong.put("ttChuaCapPhat", 0);
+            mapTong.put("ttDaCapPhat", 0);
+            
+            mapTong.put("ttMoi", 0);
+            mapTong.put("ttDangSuDung", 0);
+            mapTong.put("ttDaSuDung", 0);
+            mapTong.put("ttBiHong", 0);
+            
+            mapTong.put("ttCapMoi", 0);
+            mapTong.put("ttCapBoSung", 0);
+            mapTong.put("ttThuHoi", 0);
+            listNhomThietBi.add(size, mapTong);
+        }
         // Lấy danh sách thiết bị theo từng nhóm
-        for(Map mapNhomThietBi : listNhomThietBi){
+        for(int i = 0; i <= size - 1; i++){
+            Map mapNhomThietBi = listNhomThietBi.get(i);
             List<Map> listThietBi = tbProvider.getListThietBiByNhom(Long.parseLong(mapNhomThietBi.get("danhmuc_thietbi_id").toString()));
             // Khai báo số liệu thống kê
             int tongso = 0;
@@ -76,26 +97,40 @@ public class ThongKeBaoCaoController implements Serializable {
                 }
                 
                 // Đếm trạng thái cấp phát
-                String trangThaiCP = mapThietBi.get("thietbi_trangthai_capphat").toString();
+                String trangThaiCP = "";
+                if(mapThietBi.get("thietbi_trangthai_capphat") != null && mapThietBi.get("thietbi_trangthai_capphat") != ""){
+                    trangThaiCP = mapThietBi.get("thietbi_trangthai_capphat").toString();
+                }
                 switch(trangThaiCP){
                     case "Cấp mới": ttCapMoi++; break;
                     case "Cấp bổ sung": ttCapBoSung++; break;
                     case "Đã thu hồi": ttThuHoi++; break;
-                    default:ttChuaCapPhat++;
+                    case "": ttChuaCapPhat++; break;
                 }
-                
             }
             mapNhomThietBi.put("tongso", tongso);
+            listNhomThietBi.get(size).put("tongso", Integer.parseInt(listNhomThietBi.get(size).get("tongso").toString()) + tongso);
+            mapNhomThietBi.put("ttChuaCapPhat", ttChuaCapPhat);
+            listNhomThietBi.get(size).put("ttChuaCapPhat", Integer.parseInt(listNhomThietBi.get(size).get("ttChuaCapPhat").toString()) + ttChuaCapPhat);
+            mapNhomThietBi.put("ttDaCapPhat", tongso - ttChuaCapPhat);
+            listNhomThietBi.get(size).put("ttDaCapPhat", Integer.parseInt(listNhomThietBi.get(size).get("ttDaCapPhat").toString()) + (tongso - ttChuaCapPhat));
+            
             mapNhomThietBi.put("ttMoi", ttMoi);
+            listNhomThietBi.get(size).put("ttMoi", Integer.parseInt(listNhomThietBi.get(size).get("ttMoi").toString()) + ttMoi);
             mapNhomThietBi.put("ttDangSuDung", ttDangSuDung);
+            listNhomThietBi.get(size).put("ttDangSuDung", Integer.parseInt(listNhomThietBi.get(size).get("ttDangSuDung").toString()) + ttDangSuDung);
             mapNhomThietBi.put("ttDaSuDung", ttDaSuDung);
+            listNhomThietBi.get(size).put("ttDaSuDung", Integer.parseInt(listNhomThietBi.get(size).get("ttDaSuDung").toString()) + ttDaSuDung);
             mapNhomThietBi.put("ttBiHong", ttBiHong);
+            listNhomThietBi.get(size).put("ttBiHong", Integer.parseInt(listNhomThietBi.get(size).get("ttBiHong").toString()) + ttBiHong);
             
             mapNhomThietBi.put("ttCapMoi", ttCapMoi);
+            listNhomThietBi.get(size).put("ttCapMoi", Integer.parseInt(listNhomThietBi.get(size).get("ttCapMoi").toString()) + ttCapMoi);
             mapNhomThietBi.put("ttCapBoSung", ttCapBoSung);
+            listNhomThietBi.get(size).put("ttCapBoSung", Integer.parseInt(listNhomThietBi.get(size).get("ttCapBoSung").toString()) + ttCapBoSung);
             mapNhomThietBi.put("ttThuHoi", ttThuHoi);
-            mapNhomThietBi.put("ttChuaCapPhat", ttChuaCapPhat);
-            mapNhomThietBi.put("ttDaCapPhat", tongso - ttChuaCapPhat);
+            listNhomThietBi.get(size).put("ttThuHoi", Integer.parseInt(listNhomThietBi.get(size).get("ttThuHoi").toString()) + ttThuHoi);
+            
         }
     }
     
