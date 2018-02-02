@@ -69,7 +69,7 @@ public class QuanLyThietBiDataProvider implements Serializable{
         return listThietBi;
     }
     
-    public boolean addThietBi(ThietBiModel objThietBi){
+    public boolean updateThietBi(ThietBiModel objThietBi){
         Session session = HibernateUtil.currentSession();
         try {
             session.beginTransaction();

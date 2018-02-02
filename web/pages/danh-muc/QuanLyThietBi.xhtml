@@ -80,9 +80,17 @@
                                                                     <i class="fa fa-child"></i>
                                                                     <f:ajax execute="@this" render="capPhatTBForm" />
                                                                 </b:commandButton>
+                                                                <b:commandButton tooltip="Thu hồi thiết bị"
+                                                                                 actionListener="#{QuanLyThietBiController.preActionThuHoi(item)}"
+                                                                                 styleClass="text-red"
+                                                                                 oncomplete="$('.formThuHoiTBPopUp').modal()"
+                                                                                 >
+                                                                    <i class="fa fa-reply-all"></i>
+                                                                    <f:ajax execute="@this" render="thuHoiTBForm" />
+                                                                </b:commandButton>
                                                                 <b:commandButton tooltip="Xóa thiết bị"
                                                                                action="#{QuanLyThietBiController.actionXoaThietBi(item)}"
-                                                                               styleClass="btn text-red"
+                                                                               styleClass="text-red"
                                                                                onclick="return verifyDelete();">
                                                                     <i class="fa fa-trash"></i>
                                                                 </b:commandButton>
@@ -209,10 +217,9 @@
                                             <span class="input-group-addon removeRequiredCSS">
                                                 <span><i class="fa fa-list"></i></span></span>
                                             <b:selectOneMenu value="#{QuanLyThietBiController.objThietBi.thietBiTrangThaiCapPhat}">
-                                                <f:selectItem itemLabel="-- Chọn trạng thái cấp phát --" itemValue="0"/>
+                                                <f:selectItem itemLabel="-- Chọn trạng thái cấp phát --" itemValue=""/>
                                                 <f:selectItem itemLabel="Cấp mới" itemValue="Cấp mới"/>
                                                 <f:selectItem itemLabel="Cấp bổ sung" itemValue="Cấp bổ sung"/>
-                                                <f:selectItem itemLabel="Đã thu hồi" itemValue="Đã thu hồi"/>
                                             </b:selectOneMenu>
                                         </div>
                                     </div>
@@ -241,7 +248,7 @@
                                                      process="@form" update="@form" >
                                         <i class="fa fa-save"></i> Lưu
                                     </b:commandButton>
-                                    <b:button class="btn-huybo" dismiss="modal" icon-awesome="fa-mail-reply" value="Hủy bỏ">
+                                    <b:button class="btn-huybo" dismiss="modal" icon-awesome="fa-close" value="Hủy bỏ">
                                     </b:button>
                                 </div>
                             </div>
@@ -308,7 +315,6 @@
                                         <f:selectItem itemLabel="-- Chọn trạng thái cấp phát --" itemValue=""/>
                                         <f:selectItem itemLabel="Cấp mới" itemValue="Cấp mới"/>
                                         <f:selectItem itemLabel="Cấp bổ sung" itemValue="Cấp bổ sung"/>
-                                        <f:selectItem itemLabel="Đã thu hồi" itemValue="Đã thu hồi"/>
                                         <f:facet name="prepend">
                                             <b:iconAwesome name="fa-list" />
                                         </f:facet>
@@ -338,7 +344,38 @@
                                                      process="@form" update="@form" >
                                         <i class="fa fa-save"></i> Lưu
                                     </b:commandButton>
-                                    <b:button class="btn-huybo" dismiss="modal" icon-awesome="fa-mail-reply" value="Hủy bỏ">
+                                    <b:button class="btn-huybo" dismiss="modal" icon-awesome="fa-close" value="Hủy bỏ">
+                                    </b:button>
+                                </div>
+                            </div>
+                        </b:form>
+                    </b:modal>
+                    <b:modal id="modalThuHoi" title="THU HỒI THIẾT BỊ" styleClass="formThuHoiTBPopUp"
+                        closable="true"  close-on-escape="true" backdrop="true">
+                        <b:form id="thuHoiTBForm" horizontal="false">
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
+                                    <h:outputText value="Thiết bị "/>
+                                    <h:outputLabel value="#{QuanLyThietBiController.objThietBi.thietBiTen}" class="text-primary"/>
+                                    <h:outputText value=" đang được "/>
+                                    <h:outputLabel value="#{QuanLyThietBiController.tenNhanVien}" class="text-primary"/>
+                                    <h:outputText value=" sử dụng."/>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
+                                    <p>Bạn có chắc chắn muốn thu hồi?</p>
+                                </div>
+                            </div>
+
+                            <div class="row margin-t-15">
+                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
+                                    <b:commandButton action="#{QuanLyThietBiController.actionThuHoiThietBi()}"
+                                                     styleClass="btn btn-danger margin-r-5" ajax="true"
+                                                     process="@form" update="@form" >
+                                        <i class="fa fa-reply-all"></i> Thu hồi
+                                    </b:commandButton>
+                                    <b:button class="btn-huybo" dismiss="modal" icon-awesome="fa-close" value="Hủy bỏ">
                                     </b:button>
                                 </div>
                             </div>

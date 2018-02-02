@@ -22,6 +22,22 @@ import org.hibernate.transform.Transformers;
  */
 public class NhanVienProvider implements Serializable {  
     
+    public NhanVienModel getNhanVienByID(int nv_id){
+        Session session = HibernateUtil.currentSession();
+        NhanVienModel objNhanVien = new NhanVienModel();
+        try {
+            session.beginTransaction();
+            objNhanVien = (NhanVienModel) session.createSQLQuery("SELECT * FROM nhanvien WHERE nv_id = "+nv_id)
+                    .addEntity(NhanVienModel.class).uniqueResult();
+            session.getTransaction().commit();
+	} catch (Exception e) {
+            e.printStackTrace();
+	} finally {
+            session.close();
+	}
+        return objNhanVien;
+    }
+    
     public List<Map> getListNhanVien(){
         Session session = HibernateUtil.currentSession();
         List<Map> listNhanVien = new ArrayList();
