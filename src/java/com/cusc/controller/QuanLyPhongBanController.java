@@ -15,6 +15,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 
 /**
@@ -25,11 +26,15 @@ import javax.faces.bean.ViewScoped;
 @ViewScoped
 public class QuanLyPhongBanController implements Serializable{
     
+    @ManagedProperty(value = "#{DanhMucNhanVienController}")
+    private NhanVienController uiNhanVien;
     private PhongBanModel objPhongBan = new PhongBanModel();
     private List<Map> listPhongBan;
     private List<Map> listPhongBanAll;
     private PhongBanProvider pbProvider = new PhongBanProvider();
     private String pbID;
+    private Boolean actionEdit = true;
+    
     public QuanLyPhongBanController() {
         objPhongBan = new PhongBanModel();
         pbID =  WindowUtils.getUrlParameter("pb");
@@ -48,10 +53,11 @@ public class QuanLyPhongBanController implements Serializable{
     }
     public List<Map> actionGetListPhongBanAll(){
         setListPhongBanAll(pbProvider.getListPhongBan());
+        setActionEdit(true);
         return listPhongBan;
     }
     
-     public void actionAddorEditPhongBan(){
+    public void actionAddorEditPhongBan(){
        if(pbProvider.addEditPhongBan(objPhongBan)){
             System.out.println("true");
         }else {
@@ -63,9 +69,17 @@ public class QuanLyPhongBanController implements Serializable{
     }
      
     public void preActionEditPhongBan(Map mapDmPhongBan) throws ParseException{
-        mapDmPhongBan.put("editPB", true);
+       mapDmPhongBan.put("editPB", true);
+        setActionEdit(false);
+    }
+    
+    
+    public void actionEditPhongBan(Map mapDmPhongBan) throws ParseException{
         objPhongBan.setPhongbanID(Long.parseLong(mapDmPhongBan.get("pb_id").toString()));
         objPhongBan.setPhongbanTen(mapDmPhongBan.get("pb_ten").toString());
+        this.actionAddorEditPhongBan();
+        uiNhanVien.actionGetListDmNhanVien();
+        setActionEdit(true);
     }
      
    
@@ -108,6 +122,22 @@ public class QuanLyPhongBanController implements Serializable{
 
     public void setListPhongBanAll(List<Map> listPhongBanAll) {
         this.listPhongBanAll = listPhongBanAll;
+    }
+
+    public Boolean getActionEdit() {
+        return actionEdit;
+    }
+
+    public void setActionEdit(Boolean actionEdit) {
+        this.actionEdit = actionEdit;
+    }
+
+    public NhanVienController getUiNhanVien() {
+        return uiNhanVien;
+    }
+
+    public void setUiNhanVien(NhanVienController uiNhanVien) {
+        this.uiNhanVien = uiNhanVien;
     }
 
    

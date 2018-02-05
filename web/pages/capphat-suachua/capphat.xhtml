@@ -10,7 +10,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/> 
     <body>
        <ui:composition template="./../../mainTemplate.xhtml">
-            <ui:define name="title">QUẢN LÝ PHÒNG BAN</ui:define>
+            <ui:define name="title">QUẢN LÝ CẤP PHÁT - YÊU CẦU SỬA CHỮA</ui:define>
             <ui:define name="content">
 <!--                <header class="main-header">
                     <nav class="navbar navbar-static-top">
@@ -286,7 +286,7 @@
                                                              rendered="#{item.editPB}"
                                                              ajax="true">
                                                 <i class="fa fa-check"></i>
-                                                <f:ajax render="themPBForm phongBan menuPhongBan menuPhongBanCP menuPhongBanSC" execute="@this" />
+                                                <f:ajax render="@form" execute="@this" />
                                             </b:commandButton>
                                         
                                             <b:commandButton styleClass="btn-edit" 
