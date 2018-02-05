@@ -54,7 +54,6 @@ public class NhanVienController implements Serializable{
          System.out.println("thêm");
          setEditNVien(false);
          objNhanVien = new NhanVienModel();
-         
     }
     
      public void actionAddOrEditNhanVien() throws IOException{

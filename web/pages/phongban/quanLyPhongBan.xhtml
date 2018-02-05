@@ -55,7 +55,7 @@
                                         <div class="box-body">
                                             <div class="row">
                                                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-right">
-                                                    <b:commandButton value="Thêm phòng ban" actionListener="#{DanhMucNhanVienController.preActionNhanVien()}"
+                                                    <b:commandButton value="Thêm phòng ban"
                                                                      oncomplete="$('.themPhongBanPopUp').modal()"
                                                                       styleClass="btn btn-danger" 
                                                                       update="@form"
@@ -203,7 +203,7 @@
                                     <h:outputLabel value="Phòng ban" />
                                     <b:selectOneMenu id="selectPhongBan" value="#{DanhMucNhanVienController.objNhanVien.nhanvienPhongban}" required="true" requiredMessage="Vui lòng chọn phòng ban.">
                                         <f:selectItem itemLabel="-- Chọn phòng ban --" itemValue="" />
-                                        <f:selectItems value="#{DanhMucNhanVienController.editNVien? QuanLyPhongBanController.listPhongBanMenu : QuanLyPhongBanController.listPhongBan}" var="item" itemLabel="#{item.pb_ten}" itemValue="#{item.pb_id}" />
+                                        <f:selectItems value="#{DanhMucNhanVienController.editNVien? QuanLyPhongBanController.listPhongBanAll : QuanLyPhongBanController.listPhongBan}" var="item" itemLabel="#{item.pb_ten}" itemValue="#{item.pb_id}" />
                                         <f:facet name="prepend">
                                             <b:iconAwesome name="fa-list" />
                                         </f:facet>
@@ -253,7 +253,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                                    <b:dataTable id='myTablePB' value="#{QuanLyPhongBanController.listPhongBanMenu}"
+                                    <b:dataTable id='myTablePB' value="#{QuanLyPhongBanController.listPhongBanAll}"
                                                                  var="item"
                                                                  searching="true"
                                                                  excel="true"
@@ -261,17 +261,40 @@
                                                                  responsive="true"
                                                                  style="width:100% !important;">
 
-                                        <b:dataTableColumn value="#{item.pb_ten}" label="Phòng ban" headerStyleClass="text-center"/>
-                                        <b:dataTableColumn label="Sửa" style="width:5%" orderable="false" class="text-center">
-                                            <b:commandButton styleClass="btn-edit" actionListener="#{QuanLyPhongBanController.preActionEditPhongBan(item)}" update="@form" oncomplete="$('.editPhongBanPopUp').modal()">
+                                        <b:dataTableColumn label="Phòng ban" headerStyleClass="text-center">
+                                            <h:outputText value="#{item.pb_ten}" rendered="#{!item.editPB}"/>
+                                            <b:inputText value="#{QuanLyPhongBanController.objPhongBan.phongbanTen}" rendered="#{item.editPB}" ajax="true"/>              
+                                        </b:dataTableColumn>
+                                        <b:dataTableColumn label="Sửa" style="width:12%" orderable="false" class="text-center">
+                                            <b:commandButton styleClass="btn-edit" 
+                                                             actionListener="#{QuanLyPhongBanController.preActionEditPhongBan(item)}"
+                                                             update="@form"
+                                                             rendered="#{!item.editPB}">
                                                 <i class="fa fa-edit"></i>
-                                                 <f:ajax render="editPBForm" execute="@this" />
+                                                 <f:ajax render="themPBForm" execute="@this" />
+                                                </b:commandButton>
+                                            <b:commandButton styleClass="btn-edit" 
+                                                             actionListener="#{QuanLyPhongBanController.actionAddorEditPhongBan()}" 
+                                                             update="@form"
+                                                             rendered="#{item.editPB}"
+                                                             ajax="true">
+                                                <i class="fa fa-check"></i>
+                                                <f:ajax render="themPBForm" execute="@this" />
+                                                </b:commandButton>
+                                        
+                                            <b:commandButton styleClass="btn-edit" 
+                                                         actionListener="#{QuanLyPhongBanController.actionGetListPhongBanAll()}" 
+                                                         update="@form"
+                                                         rendered="#{item.editPB}">
+                                                <i class="fa fa-close"></i>
+                                                 <f:ajax render="themPBForm" execute="@this" />
                                                 </b:commandButton>
                                             </b:dataTableColumn>
                                             <b:dataTableColumn label="Xóa" style="width:5%" orderable="false" class="text-center">
                                                 <h:commandLink action="#{DanhMucNhanVienController.actionXoaPhongBan(item.pb_id)}"
                                                                styleClass="btn text-red"
-                                                               onclick="return verifyDelete();">
+                                                               onclick="return verifyDelete();"
+                                                               disabled="#{item.editPB}">
                                                     <f:ajax render="themPBForm" execute="@this"/>
                                                     <i class="fa fa-trash"></i>
                                                 </h:commandLink>

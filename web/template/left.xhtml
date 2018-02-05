@@ -50,7 +50,7 @@ and open the template in the editor.
                             <i class="fa fa-home"></i>CUSC
                         </a>
                     </li>
-                <c:forEach items="#{QuanLyPhongBanController.listPhongBanMenu}" var="item">
+                <c:forEach items="#{QuanLyPhongBanController.listPhongBanAll}" var="item">
                     <li style="padding-left: 15px;">
                         <a href="#{request.contextPath}/faces/pages/phongban/quanLyPhongBan.xhtml?pb=#{item.pb_id}" >
                             <i class="fa fa-circle-o"></i> #{item.pb_ten}

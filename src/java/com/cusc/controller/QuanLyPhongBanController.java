@@ -27,12 +27,13 @@ public class QuanLyPhongBanController implements Serializable{
     
     private PhongBanModel objPhongBan = new PhongBanModel();
     private List<Map> listPhongBan;
-    private List<Map> listPhongBanMenu;
+    private List<Map> listPhongBanAll;
     private PhongBanProvider pbProvider = new PhongBanProvider();
     private String pbID;
     public QuanLyPhongBanController() {
+        objPhongBan = new PhongBanModel();
         pbID =  WindowUtils.getUrlParameter("pb");
-        this.actionGetListPhongBanMenu();
+        this.actionGetListPhongBanAll();
         if(pbID == null){
             this.actionGetListPhongBan();
         } else {
@@ -40,37 +41,37 @@ public class QuanLyPhongBanController implements Serializable{
         }
         
     }
-    
+      
     public List<Map> actionGetListPhongBan(){
         setListPhongBan(pbProvider.getListPhongBan());
         return listPhongBan;
     }
-    public List<Map> actionGetListPhongBanMenu(){
-        setListPhongBanMenu(pbProvider.getListPhongBan());
+    public List<Map> actionGetListPhongBanAll(){
+        setListPhongBanAll(pbProvider.getListPhongBan());
         return listPhongBan;
     }
     
-     public void actionThemPhongBan(){
-        if(pbProvider.addPhongBan(objPhongBan)){
+     public void actionAddorEditPhongBan(){
+       if(pbProvider.addEditPhongBan(objPhongBan)){
             System.out.println("true");
         }else {
             System.out.println("false");
         }
-        this.actionGetListPhongBan();
+        this.actionGetListPhongBanAll();
+        objPhongBan = new PhongBanModel();
         
     }
      
-      public void preActionEditPhongBan(Map mapDmPhongBan) throws ParseException{
-       
+    public void preActionEditPhongBan(Map mapDmPhongBan) throws ParseException{
+        mapDmPhongBan.put("editPB", true);
         objPhongBan.setPhongbanID(Long.parseLong(mapDmPhongBan.get("pb_id").toString()));
         objPhongBan.setPhongbanTen(mapDmPhongBan.get("pb_ten").toString());
-       
-         System.out.println(objPhongBan);
-     }
-      
+    }
+     
+   
     public void actionXoaDmPhongBan(int dmPhongBanID){
         pbProvider.delDmPhongBan(dmPhongBanID);
-        this.actionGetListPhongBanMenu();
+        this.actionGetListPhongBanAll();
     }
     public void actionGetListDmPhongBanFilterPB(int pb_id){
         listPhongBan = pbProvider.getListPhongBanTheoId(pb_id);
@@ -84,15 +85,7 @@ public class QuanLyPhongBanController implements Serializable{
     public void setListPhongBan(List<Map> listPhongBan) {
         this.listPhongBan = listPhongBan;
     }
-
-    public List<Map> getListPhongBanMenu() {
-        return listPhongBanMenu;
-    }
-
-    public void setListPhongBanMenu(List<Map> listPhongBanMenu) {
-        this.listPhongBanMenu = listPhongBanMenu;
-    }
-
+    
     public PhongBanModel getObjPhongBan() {
         return objPhongBan;
     }
@@ -107,6 +100,14 @@ public class QuanLyPhongBanController implements Serializable{
 
     public void setPbID(String pbID) {
         this.pbID = pbID;
+    }
+
+    public List<Map> getListPhongBanAll() {
+        return listPhongBanAll;
+    }
+
+    public void setListPhongBanAll(List<Map> listPhongBanAll) {
+        this.listPhongBanAll = listPhongBanAll;
     }
 
    

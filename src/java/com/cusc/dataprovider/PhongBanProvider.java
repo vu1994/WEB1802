@@ -29,7 +29,12 @@ public class PhongBanProvider implements Serializable {
             session.beginTransaction();
             listPhongBan = session.createSQLQuery("SELECT * FROM phongban").setResultTransformer(Transformers.ALIAS_TO_ENTITY_MAP).list();
             session.getTransaction().commit();
-            
+            int stt = 1;
+            for(Map mapPhongBan : listPhongBan){
+                mapPhongBan.put("rowIndex", stt);
+                mapPhongBan.put("editPB", false);
+                stt++;
+            }
 	} catch (Exception e) {
             e.printStackTrace();
 	} finally {
@@ -55,7 +60,7 @@ public class PhongBanProvider implements Serializable {
         return listPhongBanId;
     }
     
-     public boolean addPhongBan(PhongBanModel objPhongBan){
+     public boolean addEditPhongBan(PhongBanModel objPhongBan){
         Session session = HibernateUtil.currentSession();
         try {
             session.beginTransaction();
