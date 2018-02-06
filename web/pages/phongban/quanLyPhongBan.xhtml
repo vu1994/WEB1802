@@ -6,21 +6,22 @@
       xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
       xmlns:f="http://xmlns.jcp.org/jsf/core"    
       xmlns:b="http://bootsfaces.net/ui">
-   
+
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/> 
     <body>
-       <ui:composition template="./../../mainTemplate.xhtml">
+
+        <ui:composition template="./../../mainTemplate.xhtml">
             <ui:define name="title">QUẢN LÝ PHÒNG BAN</ui:define>
             <ui:define name="content">
-<!--                <header class="main-header">
-                    <nav class="navbar navbar-static-top">
-                       Sidebar toggle button
-                      <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
-                        <span class="sr-only">Toggle navigation</span>
-                      </a>
-
-                    </nav>
-                </header>-->
+                <!--                <header class="main-header">
+                                    <nav class="navbar navbar-static-top">
+                                       Sidebar toggle button
+                                      <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+                                        <span class="sr-only">Toggle navigation</span>
+                                      </a>
+                
+                                    </nav>
+                                </header>-->
                 <!-- form start -->
                 <style>
                     .btn-edit {
@@ -28,7 +29,7 @@
                         color: #0891b3 !important;
                         border: none !important;
                     }
-                    
+
                     .btn-delete {
                         background-color: initial !important;
                         color: red !important;
@@ -52,29 +53,29 @@
                     <!-- Main content -->
                     <section class="content">
                         <h:form role="form" id="phongBan" class="phongBan">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <!-- general form elements -->
-                                <div class="box box-primary">
-<!--                                     form start 
-                                    <h:form role="form">-->
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <!-- general form elements -->
+                                    <div class="box box-primary">
+                                        <!--                                     form start 
+                                                                            <h:form role="form">-->
                                         <div class="box-body">
                                             <div class="row">
                                                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-right">
                                                     <b:commandButton value="Thêm phòng ban"
                                                                      oncomplete="$('.themPhongBanPopUp').modal()"
-                                                                      styleClass="btn btn-danger" 
-                                                                      update="@form"
-                                                                      rendered="#{QuanLyPhongBanController.pbID == null}"
-                                                                      style="margin-right: 10px"
-                                                                      >
+                                                                     styleClass="btn btn-danger" 
+                                                                     update="@form"
+                                                                     rendered="#{QuanLyPhongBanController.pbID == null}"
+                                                                     style="margin-right: 10px"
+                                                                     >
                                                         <f:ajax render="themPBForm" execute="@this" />
                                                     </b:commandButton>
                                                     <b:commandButton value="Thêm Nhân viên" actionListener="#{DanhMucNhanVienController.preActionNhanVien()}"
                                                                      oncomplete="$('.themNhanVienPopUp').modal()"
-                                                                      styleClass="btn btn-danger" 
-                                                                      update="@form"
-                                                                      >
+                                                                     styleClass="btn btn-danger" 
+                                                                     update="@form"
+                                                                     >
                                                         <f:ajax render="themNVForm" execute="@this" />
                                                     </b:commandButton>
                                                 </div>
@@ -100,61 +101,61 @@
                                                         <b:dataTableColumn value="#{item.pb_ten}" label="Phòng ban" headerStyleClass="text-center"/>
                                                         <b:dataTableColumn label="Sửa" style="width:5%" orderable="false" class="text-center">
                                                             <b:commandButton styleClass="btn-edit" actionListener="#{DanhMucNhanVienController.preActionEditNhanVien(item)}" update="@form" oncomplete="$('.themNhanVienPopUp').modal()">
-                                                                         <i class="fa fa-edit"></i>
-                                                                         <f:ajax render="themNVForm" execute="@this" />
+                                                                <i class="fa fa-edit"></i>
+                                                                <f:ajax render="themNVForm" execute="@this" />
                                                             </b:commandButton>
                                                         </b:dataTableColumn>
                                                         <b:dataTableColumn label="Xóa" style="width:5%" orderable="false" class="text-center">
                                                             <h:commandLink action="#{DanhMucNhanVienController.actionXoaDmNhanVien(item.nv_id)}"
-                                                                               styleClass="btn text-red"
-                                                                               onclick="return verifyDelete();">
-                                                                    <f:ajax render="phongBan" execute="@this"/>
-                                                                    <i class="fa fa-trash"></i>
+                                                                           styleClass="btn text-red"
+                                                                           onclick="return verifyDelete();">
+                                                                <f:ajax render="phongBan" execute="@this"/>
+                                                                <i class="fa fa-trash"></i>
                                                             </h:commandLink>
                                                         </b:dataTableColumn>
                                                     </b:dataTable>
                                                 </div>
                                             </div>
                                         </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                      </h:form>
-              </section>
-                     <!-- Dialog Thêm-->
+                        </h:form>
+                    </section>
+                    <!-- Dialog Thêm-->
                     <b:modal id="amodal" title="THÊM NHÂN VIÊN" styleClass="themNhanVienPopUp"
-                        closable="true"  close-on-escape="true" backdrop="true">
+                             closable="true"  close-on-escape="true" backdrop="true">
                         <b:form id="themNVForm" horizontal="false">
                             <div class="row">
                                 <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
                                     <h:outputLabel value="Họ tên nhân viên" />
-                                        <b:inputText id="txtTenNV"  value="#{DanhMucNhanVienController.objNhanVien.nhanvienTen}" placeholder="Nhập họ tên ..." required="true" requiredMessage="Vui lòng nhập họ tên!" >
-                                            <f:facet name="prepend">
-                                                <b:iconAwesome name="fa-user" />
-                                            </f:facet>
-                                        </b:inputText>    
-                                        <b:message for="txtTenNV" />
+                                    <b:inputText id="txtTenNV"  value="#{DanhMucNhanVienController.objNhanVien.nhanvienTen}" placeholder="Nhập họ tên ..." required="true" requiredMessage="Vui lòng nhập họ tên!" >
+                                        <f:facet name="prepend">
+                                            <b:iconAwesome name="fa-user" />
+                                        </f:facet>
+                                    </b:inputText>    
+                                    <b:message for="txtTenNV" />
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
                                     <h:outputLabel value="Ngày sinh"/>
-                                        <b:datepicker id="dateNgaySinh"
-                                                      value="#{DanhMucNhanVienController.objNhanVien.nhanvienNgaysinh}"
-                                        required="true"
-                                        requiredMessage="Vui lòng chọn ngày sinh"
-                                        mode="icon-popup">
+                                    <b:datepicker id="dateNgaySinh"
+                                                  value="#{DanhMucNhanVienController.objNhanVien.nhanvienNgaysinh}"
+                                                  required="true"
+                                                  requiredMessage="Vui lòng chọn ngày sinh"
+                                                  mode="icon-popup">
                                         <f:facet name="prepend">
-                                        <b:iconAwesome name="fa-calendar" />
+                                            <b:iconAwesome name="fa-calendar" />
                                         </f:facet>
-                                        </b:datepicker>
+                                    </b:datepicker>
                                     <b:message for="dateNgaySinh"/>
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2 selectRadio no-padding">
                                     <h:outputLabel value="Giới tính" />
-                                        <h:selectOneRadio id="radioGioiTinhNV" 
-                                                          value="#{DanhMucNhanVienController.objNhanVien.nhanvienGioitinh}">
-                                            <f:selectItem itemLabel="Nam" itemValue="true" />
-                                            <f:selectItem itemLabel="Nữ" itemValue="false"/>
-                                        </h:selectOneRadio>
+                                    <h:selectOneRadio id="radioGioiTinhNV" 
+                                                      value="#{DanhMucNhanVienController.objNhanVien.nhanvienGioitinh}">
+                                        <f:selectItem itemLabel="Nam" itemValue="true" />
+                                        <f:selectItem itemLabel="Nữ" itemValue="false"/>
+                                    </h:selectOneRadio>
                                     <b:message for="radioGioiTinhNV" />
                                 </div>
                             </div>
@@ -182,7 +183,7 @@
                                                  mask="email"
                                                  class="inputMask">
                                         <f:facet name="prepend">
-                                                <b:iconAwesome name="fa-envelope" />
+                                            <b:iconAwesome name="fa-envelope" />
                                         </f:facet>
                                     </b:inputText>
                                     <b:message for="txtEmailNV" />
@@ -200,7 +201,7 @@
                                                  maxlength="11"
                                                  class="inputMask">
                                         <f:facet name="prepend">
-                                                <b:iconAwesome name="fa-phone" />
+                                            <b:iconAwesome name="fa-phone" />
                                         </f:facet>
                                     </b:inputText>
                                     <b:message for="txtSdtNV" />
@@ -229,20 +230,20 @@
                             </div>
                         </b:form>
                     </b:modal>
-                     
+
                     <!--Modal Phòng Ban-->
-                     <b:modal id="amodal1" title="CẬP NHẬT PHÒNG BAN" styleClass="themPhongBanPopUp"
-                        closable="true"  close-on-escape="true" backdrop="true">
+                    <b:modal id="amodal1" title="CẬP NHẬT PHÒNG BAN" styleClass="themPhongBanPopUp"
+                             closable="true"  close-on-escape="true" backdrop="true">
                         <b:form id="themPBForm" horizontal="false">
                             <div class="row">
                                 <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
                                     <h:outputLabel value="Tên Phòng Ban" />
                                     <b:inputText id="txtTenPB"  value="#{QuanLyPhongBanController.objPhongBan.phongbanTen}" placeholder="Nhập tên phòng ban ..." required="true" requiredMessage="Vui lòng nhập tên phòng ban!" >
-                                            <f:facet name="prepend">
-                                                <b:iconAwesome name="fa-home" />
-                                            </f:facet>
-                                        </b:inputText>    
-                                        <b:message for="txtTenPB" />
+                                        <f:facet name="prepend">
+                                            <b:iconAwesome name="fa-home" />
+                                        </f:facet>
+                                    </b:inputText>    
+                                    <b:message for="txtTenPB" />
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6" style="padding-top: 25px;">
                                     <h:outputLabel value=" " />
@@ -260,12 +261,12 @@
                             <div class="row">
                                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                                     <b:dataTable id='myTablePB' value="#{QuanLyPhongBanController.listPhongBanAll}"
-                                                                 var="item"
-                                                                 searching="true"
-                                                                 excel="true"
-                                                                 pdf="true"
-                                                                 responsive="true"
-                                                                 style="width:100% !important;">
+                                                 var="item"
+                                                 searching="true"
+                                                 excel="true"
+                                                 pdf="true"
+                                                 responsive="true"
+                                                 style="width:100% !important;">
 
                                         <b:dataTableColumn label="Phòng ban" headerStyleClass="text-center">
                                             <h:outputText value="#{item.pb_ten}" rendered="#{!item.editPB}"/>
@@ -278,8 +279,8 @@
                                                              rendered="#{!item.editPB}"
                                                              disabled="#{!QuanLyPhongBanController.actionEdit}">
                                                 <i class="fa fa-edit"></i>
-                                                 <f:ajax render="themPBForm" execute="@this" />
-                                                </b:commandButton>
+                                                <f:ajax render="themPBForm" execute="@this" />
+                                            </b:commandButton>
                                             <b:commandButton styleClass="btn-edit" 
                                                              actionListener="#{QuanLyPhongBanController.actionEditPhongBan(item)}" 
                                                              update="@form"
@@ -288,34 +289,34 @@
                                                 <i class="fa fa-check"></i>
                                                 <f:ajax render="themPBForm phongBan menuPhongBan menuPhongBanCP menuPhongBanSC" execute="@this" />
                                             </b:commandButton>
-                                        
+
                                             <b:commandButton styleClass="btn-edit" 
-                                                         actionListener="#{QuanLyPhongBanController.actionGetListPhongBanAll()}" 
-                                                         update="@form"
-                                                         rendered="#{item.editPB}">
+                                                             actionListener="#{QuanLyPhongBanController.actionGetListPhongBanAll()}" 
+                                                             update="@form"
+                                                             rendered="#{item.editPB}">
                                                 <i class="fa fa-close"></i>
-                                                 <f:ajax render="themPBForm" execute="@this" />
-                                                </b:commandButton>
-                                            </b:dataTableColumn>
-                                            <b:dataTableColumn label="Xóa" style="width:5%" orderable="false" class="text-center">
-                                                <b:commandButton 
-                                                    action="#{QuanLyPhongBanController.actionXoaDmPhongBan(item.pb_id)}"
-                                                               styleClass="btn-delete"
-                                                               onclick="return verifyDelete();"
-                                                               disabled="#{!QuanLyPhongBanController.actionEdit}">
-                                                    <f:ajax render="themPBForm menuPhongBan menuPhongBanCP menuPhongBanSC" execute="@this"/>
-                                                    <i class="fa fa-trash"></i>
-                                                </b:commandButton>
-                                            </b:dataTableColumn>
+                                                <f:ajax render="themPBForm" execute="@this" />
+                                            </b:commandButton>
+                                        </b:dataTableColumn>
+                                        <b:dataTableColumn label="Xóa" style="width:5%" orderable="false" class="text-center">
+                                            <b:commandButton 
+                                                action="#{QuanLyPhongBanController.actionXoaDmPhongBan(item.pb_id)}"
+                                                styleClass="btn-delete"
+                                                onclick="return verifyDelete();"
+                                                disabled="#{!QuanLyPhongBanController.actionEdit}">
+                                                <f:ajax render="themPBForm menuPhongBan menuPhongBanCP menuPhongBanSC" execute="@this"/>
+                                                <i class="fa fa-trash"></i>
+                                            </b:commandButton>
+                                        </b:dataTableColumn>
                                     </b:dataTable>
                                 </div>
                             </div>
                         </b:form>
-                     </b:modal>
-               </div> 
+                    </b:modal>
+                </div> 
             </ui:define>
 
         </ui:composition>
-         
+
     </body>
 </html>

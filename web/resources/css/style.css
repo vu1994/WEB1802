@@ -795,3 +795,7 @@ h4{
 .selectRadio label{
     padding-left: 5px;
 }
+
+.menuLeft{
+    overflow: scroll;
+}

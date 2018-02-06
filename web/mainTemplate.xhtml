@@ -2,7 +2,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:b="http://bootsfaces.net/ui">
 
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -34,28 +35,36 @@
 
     <h:body styleClass="hold-transition skin-blue sidebar-mini">
         <div class="wrapper" style="position: unset;">
-            <ui:insert name="top">
+
+            <script>
+
+                var login = #{!UserController.mapLogin.logined or(UserController.mapLogin.logined and UserController.mapLogin.userRole==0)};
+                if (login) {
+                    alert("Xin lỗi bạn không có quyền trong chức năng này");
+                    location.href = 'http://localhost:8084/WEB1802';
+                }
+            </script>
+            <ui:insert name="top" rendered="#{!UserController.mapLogin.login or (UserController.mapLogin.login and UserController.mapLogin.userRole==1)}">
                 <ui:include src="template/top.xhtml"/>
             </ui:insert>
             <div>
-                <ui:insert name="left">
+                <ui:insert name="left" rendered="#{!UserController.mapLogin.login or (UserController.mapLogin.login and UserController.mapLogin.userRole==1)}">
                     <ui:include src="template/left.xhtml"/>
                 </ui:insert>
-               
-                <ui:insert name="content">
+
+                <ui:insert name="content" rendered="#{!UserController.mapLogin.login or (UserController.mapLogin.login and UserController.mapLogin.userRole==1)}">
                     <ui:include src="template/dashboard.xhtml"/>
                 </ui:insert>
             </div>
-           
-            <ui:insert name="bottom">
+
+            <ui:insert name="bottom" rendered="#{!UserController.mapLogin.login or (UserController.mapLogin.login and UserController.mapLogin.userRole==1)}">
                 <ui:include src="template/bottom.xhtml"/>
             </ui:insert>
-            
-            <ui:insert name="setting">
+
+            <ui:insert name="setting" rendered="#{!UserController.mapLogin.login or (UserController.mapLogin.login and UserController.mapLogin.userRole==1)}">
                 <ui:include src="template/setting.xhtml"/>
             </ui:insert>
         </div>
-        
     </h:body>
 
 </html>
