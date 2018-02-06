@@ -18,6 +18,7 @@ import java.util.List;
 import java.util.Map;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.persistence.Temporal;
 
 /**
  *
@@ -32,8 +33,10 @@ public class QuanLyThietBiController implements Serializable {
     private ThietBiModel objThietBi = new ThietBiModel();
     private boolean selectedCapPhat = false;
     private int viewMode = 0;
+    private int selectedNhomTB;
     private String tenNhanVien;
     private String pbID;
+    private Date ngayYeuCauSChua;
     /**
      * Creates a new instance of QuanLyThietBiController
      */
@@ -48,6 +51,10 @@ public class QuanLyThietBiController implements Serializable {
         }
         
         viewMode = 0;
+        Calendar currentDate = Calendar.getInstance();
+        objThietBi = new ThietBiModel();
+        objThietBi.setThietBiNgayNhap(currentDate.getTime());
+        
     }
     
     public void actionGetListThietBi(){
@@ -281,6 +288,15 @@ public class QuanLyThietBiController implements Serializable {
         setListThietBiCapPhat(tbProvider.getListThietBiCapPhatFilterPB(pb_id));
     }
     
+   
+   
+   public void actionChangeNhomTB(){
+        if(selectedNhomTB == 0){
+            this.actionGetListThietBi();
+        }else{
+            setListThietBi(tbProvider.getListThietBiByNhom(selectedNhomTB));
+        } 
+    }
     public boolean enableCapPhatThietBi(long thietBiID){
         return true;
     }
@@ -363,6 +379,22 @@ public class QuanLyThietBiController implements Serializable {
 
     public void setPbID(String pbID) {
         this.pbID = pbID;
+    }
+
+    public int getSelectedNhomTB() {
+        return selectedNhomTB;
+    }
+
+    public void setSelectedNhomTB(int selectedNhomTB) {
+        this.selectedNhomTB = selectedNhomTB;
+    }
+
+    public Date getNgayYeuCauSChua() {
+        return ngayYeuCauSChua;
+    }
+
+    public void setNgayYeuCauSChua(Date ngayYeuCauSChua) {
+        this.ngayYeuCauSChua = ngayYeuCauSChua;
     }
     
 }

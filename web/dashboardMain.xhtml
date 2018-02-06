@@ -50,7 +50,6 @@
             }
             .modal-header{
                 padding: 5px 15px;
-                background: antiquewhite;
                 border-bottom: 1px solid #e5e5e5;
                 height: 50px;
                 font-family: initial;
@@ -140,7 +139,8 @@
                             </div>
                             <div class="col-sm-6 col-xs-6 no-padding">
                                 <div class="single_register">
-                                    <b:link onclick="$('.formPreLogin').modal()" ><i class="fa fa-wrench fa-spin"/> YÊU CẦU SỬA CHỮA </b:link>
+                                    <!--                                    <b:link onclick="$('.formPreLogin').modal()" ><i class="fa fa-wrench fa-spin"/> YÊU CẦU SỬA CHỮA </b:link>-->
+                                    <b:link onclick="$('.formYCauSChuaPopUp').modal()" ><i class="fa fa-wrench fa-spin"/> YÊU CẦU SỬA CHỮA </b:link>
                                 </div>
                             </div>
                         </div>
@@ -190,7 +190,7 @@
                 <div class="row margin-t-15">
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
                         <b:button class="btn-huybo" dismiss="modal" 
-                                  icon-awesome="fa-reply-all"  
+                                  icon-awesome="fa-key"  
                                   onclick="$('.dangNhapPopUp').modal()" 
                                   value="Đăng nhập"
                                   styleClass="btn btn-danger"
@@ -198,6 +198,75 @@
                         </b:button>
                         <b:button class="btn-huybo" dismiss="modal" 
                                   icon-awesome="fa-close" value="Hủy bỏ">
+                        </b:button>
+                    </div>
+                </div>
+            </b:form>
+        </b:modal>
+
+        <!--Modal yêu cầu sửa chửa-->
+        <b:modal id="modalCapPhat" title="YÊU CẦU SỬA CHỮA" styleClass="formYCauSChuaPopUp"
+                 closable="true"  close-on-escape="true" backdrop="true">
+            <b:form id="yeuCauSuaChuaForm" horizontal="false">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                        <h:outputLabel value="Nhóm thiết bị"/>
+                        <b:selectOneMenu value="#{QuanLyThietBiController.selectedNhomTB}">
+                            <f:selectItem itemLabel="-- Tất cả --" itemValue=""/>
+                            <f:selectItems value="#{DanhMucThietBiController.listDmThietBi}" var="item" itemLabel="#{item.danhmuc_thietbi_ten}" itemValue="#{item.danhmuc_thietbi_id}" />          
+                            <f:facet name="prepend">
+                                <b:iconAwesome name="fa-align-justify" />
+                            </f:facet>
+                            <f:ajax listener="#{QuanLyThietBiController.actionChangeNhomTB()}" render="selectThietBiSuaChua" />
+                        </b:selectOneMenu>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                        <h:outputLabel value="Thiết bị"/>
+                        <b:selectOneMenu id="selectThietBiSuaChua"
+                                         required="true"
+                                         requiredMessage="Vui lòng chọn thiết bị"
+                                         value="#{QuanLyThietBiController.objThietBi.capChoNhanVienID}">
+                            <f:selectItem itemLabel="-- Chọn thiết bị --" itemValue=""/>
+                            <f:selectItems value="#{QuanLyThietBiController.listThietBi}" var="item"
+                                           itemLabel="#{item.thietbi_ten}" itemValue="#{item.thietbi_id}"/>
+                            <f:facet name="prepend">
+                                <b:iconAwesome name="fa-desktop" />
+                            </f:facet>
+                        </b:selectOneMenu>
+                        <b:message for="selectThietBiSuaChua"/>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                        <h:outputLabel value="Ngày yêu cầu"/>
+                        <b:dateTimePicker  id="dateNgayCap"
+                                           value="#{QuanLyThietBiController.objThietBi.thietBiNgayNhap}"
+                                           iconPosition='left'
+                                           allow-input-toggle='true'
+                                           rendered="true"
+                                           requiredMessage="Vui lòng chọn ngày cấp phát"
+                                           show-time="false"
+                                           show-date="true"
+                                           format="DD/MM/YYYY"
+                                           minDate="#{QuanLyThietBiController.objThietBi.thietBiNgayNhap}"
+                                            >
+                            
+                        </b:dateTimePicker >
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <b:inputTextarea label="Tình trạng" placeholder="Nhập các vấn đề hư hỏng của thiết bị hoặc tình trạng của thiết bị hiện tại..." />
+                    </div>
+                </div>
+                
+                <div class="row margin-t-15">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
+                        <b:commandButton action="#{QuanLyThietBiController.actionThemThietBi()}"
+                                         styleClass="btn btn-danger margin-r-5" ajax="true"
+                                         process="@form" update="@form" >
+                            <i class="fa fa-save"></i> Lưu
+                        </b:commandButton>
+                        <b:button class="btn-huybo" dismiss="modal" icon-awesome="fa-close" value="Hủy bỏ">
                         </b:button>
                     </div>
                 </div>
