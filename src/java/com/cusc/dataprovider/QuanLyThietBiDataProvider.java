@@ -9,6 +9,7 @@ import com.cusc.model.ThietBiModel;
 import com.cusc.util.HibernateUtil;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import org.hibernate.Session;
@@ -43,7 +44,26 @@ public class QuanLyThietBiDataProvider implements Serializable{
 	}
         return listThietBi;
     }
-    
+    public Map getThietBi(int thietBiId){
+        Session session = HibernateUtil.currentSession();
+        Map mapThietBi = new HashMap();
+        try {
+            session.beginTransaction();
+            mapThietBi = (Map) session.createSQLQuery("SELECT tb.*, dmtb.danhmuc_thietbi_ten, tt.tinhtrang_ten"
+                    + " FROM thietbi tb"
+                    + " LEFT JOIN danhmuc_thietbi dmtb ON tb.danhmuc_thietbi_id = dmtb.danhmuc_thietbi_id"
+                    + " LEFT JOIN tinhtrang tt ON tb.tinhtrang_id = tt.tinhtrang_id"
+                    + " WHERE tb.thietbi_id = :thietBiId")
+                    .setLong("thietBiId", thietBiId)
+                    .setResultTransformer(Transformers.ALIAS_TO_ENTITY_MAP).uniqueResult();
+            session.getTransaction().commit();
+	} catch (Exception e) {
+            e.printStackTrace();
+	} finally {
+            session.close();
+	}
+        return mapThietBi;
+    }
     public List<Map> getListThietBiByNhom(long nhomID){
         Session session = HibernateUtil.currentSession();
         List<Map> listThietBi = new ArrayList();
@@ -98,5 +118,57 @@ public class QuanLyThietBiDataProvider implements Serializable{
             session.close();
 	}
         return true;
+    }
+    
+    public List<Map> getListThietBiCapPhat(){
+        Session session = HibernateUtil.currentSession();
+        List<Map> listThietBiCapPhat = new ArrayList();
+        try {
+            session.beginTransaction();
+            listThietBiCapPhat = session.createSQLQuery("SELECT thietbi_id,nv_ten,pb_ten,thietbi_ten,thietbi_trangthai_capphat, thietbi_ngaycap " + 
+                    " FROM nhanvien nv " +
+                    " INNER JOIN phongban pb ON pb.pb_id = nv.pb_id " +
+                    " INNER JOIN thietbi tb ON tb.thietbi_capcho = nv.nv_id " +
+                    " GROUP BY thietbi_id "+ 
+                    " ORDER BY pb_ten,nv_ten ")
+                   .setResultTransformer(Transformers.ALIAS_TO_ENTITY_MAP).list();
+            session.getTransaction().commit();
+            int stt = 1;
+            for(Map mapThietBiCapPhat : listThietBiCapPhat){
+                mapThietBiCapPhat.put("rowIndex", stt);
+                stt++;
+            }
+	} catch (Exception e) {
+            e.printStackTrace();
+	} finally {
+            session.close();
+	}
+        return listThietBiCapPhat;
+    }
+    
+     public List<Map> getListThietBiCapPhatFilterPB(int pbID){
+        Session session = HibernateUtil.currentSession();
+        List<Map> listThietBiCapPhat = new ArrayList();
+        try {
+            session.beginTransaction();
+            listThietBiCapPhat = session.createSQLQuery("SELECT nv_ten,pb_ten,thietbi_ten,thietbi_trangthai_capphat, thietbi_ngaycap "
+                    +" FROM nhanvien nv " 
+                    +" INNER JOIN phongban pb ON pb.pb_id = nv.pb_id " 
+                    +" INNER JOIN thietbi tb ON tb.thietbi_capcho = nv.nv_id "
+                    +" WHERE nv.pb_id = "+pbID 
+                    +" ORDER BY pb_ten,nv_ten ")
+                   .setResultTransformer(Transformers.ALIAS_TO_ENTITY_MAP).list();
+            session.getTransaction().commit();
+            int stt = 1;
+            for(Map mapThietBiCapPhat : listThietBiCapPhat){
+                mapThietBiCapPhat.put("rowIndex", stt);
+                stt++;
+            }
+	} catch (Exception e) {
+            e.printStackTrace();
+	} finally {
+            session.close();
+	}
+        return listThietBiCapPhat;
     }
 }

@@ -246,12 +246,12 @@
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6" style="padding-top: 25px;">
                                     <h:outputLabel value=" " />
-                                    <b:commandButton actionListener="#{QuanLyPhongBanController.actionThemPhongBan()}"
+                                    <b:commandButton actionListener="#{QuanLyPhongBanController.actionAddorEditPhongBan()}"
                                                      styleClass="btn btn-danger margin-r-5"
                                                      process="@form" update="themPBForm"
                                                      ajax="true">
                                         <i class="fa fa-save"></i> Lưu
-                                        <f:ajax render="@form" execute="@this"/>
+                                        <f:ajax render="themPBForm phongBan menuPhongBan menuPhongBanCP menuPhongBanSC" execute="@this"/>
                                     </b:commandButton>
                                     <b:button class="btn-huybo" dismiss="modal" icon-awesome="fa-close" value="Hủy bỏ">
                                     </b:button>
@@ -299,11 +299,11 @@
                                             </b:dataTableColumn>
                                             <b:dataTableColumn label="Xóa" style="width:5%" orderable="false" class="text-center">
                                                 <b:commandButton 
-                                                               action="#{DanhMucNhanVienController.actionXoaPhongBan(item.pb_id)}"
+                                                    action="#{QuanLyPhongBanController.actionXoaDmPhongBan(item.pb_id)}"
                                                                styleClass="btn-delete"
                                                                onclick="return verifyDelete();"
                                                                disabled="#{!QuanLyPhongBanController.actionEdit}">
-                                                    <f:ajax render="themPBForm" execute="@this"/>
+                                                    <f:ajax render="themPBForm menuPhongBan menuPhongBanCP menuPhongBanSC" execute="@this"/>
                                                     <i class="fa fa-trash"></i>
                                                 </b:commandButton>
                                             </b:dataTableColumn>

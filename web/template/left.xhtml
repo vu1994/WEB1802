@@ -13,6 +13,7 @@ and open the template in the editor.
     <style>
         .skin-blue .sidebar-menu>li.header {
             color: #87cbe8;
+            font-weight: 700; 
         }
     </style>   
 <aside class="main-sidebar">
@@ -112,54 +113,58 @@ and open the template in the editor.
           </a>
         </li> 
         <li class="header">CẤP PHÁT - SỬA CHỮA</li>
+        <h:panelGroup id="menuPhongBanCP">
         <li class="treeview">
-            <a href="#" style="text-decoration: none">
-            <i class="fa fa-desktop"></i><span>Quản lý cấp phát</span>
+            <a href="#" style="text-decoration: none;padding: 12px 5px 12px 15px;margin-right: 5px;">
+            <i class="fa fa-desktop" style="margin-right: 10px;"></i><span>Quản lý cấp phát</span>
+           
             <span class="pull-right-container">
-              <span class="label label-primary pull-right">4</span>
+                <span class="label label-primary pull-right">#{QuanLyPhongBanController.slPhongBan}</span>
             </span>
-          </a>
+            </a>
             <ul class="treeview-menu">
                     <li>
-                        <a href="#{request.contextPath}/faces/pages/phongban/quanLyPhongBan.xhtml" >
+                        <a href="#{request.contextPath}/faces/pages/capphat-suachua/quanlycapphat.xhtml" >
                             <i class="fa fa-home"></i>CUSC
                         </a>
                     </li>
-                <h:panelGroup id="menuPhongBanCP">
+                
                     <c:forEach items="#{QuanLyPhongBanController.listPhongBanAll}" var="item">
-                        <li  style="padding-left:30px !important;padding-bottom:10px !important;">
-                            <a href="#{request.contextPath}/faces/pages/phongban/quanLyPhongBan.xhtml?pb=#{item.pb_id}" >
+                        <li   style="padding-left:15px !important;">
+                            <a href="#{request.contextPath}/faces/pages/capphat-suachua/quanlycapphat.xhtml?pb=#{item.pb_id}" >
                                 <i class="fa fa-circle-o"></i> #{item.pb_ten}
                             </a>
                         </li>
                     </c:forEach>
-                </h:panelGroup>
-          </ul>
+            </ul>
         </li>
+        </h:panelGroup>
+        <h:panelGroup id="menuPhongBanSC">
         <li class="treeview">
-            <a href="#" style="text-decoration: none">
-            <i class="fa fa-wrench"></i><span>Quản lý sửa chữa</span>
+            <a href="#" style="text-decoration: none;padding: 12px 5px 12px 15px;margin-right: 5px;">
+            <i class="fa fa-wrench" style="margin-right: 10px;"></i><span>Quản lý sửa chữa</span>
+           
             <span class="pull-right-container">
-              <span class="label label-primary pull-right">4</span>
+                <span class="label label-primary pull-right">#{QuanLyPhongBanController.slPhongBan}</span>
             </span>
-          </a>
+            </a>
             <ul class="treeview-menu">
                     <li>
-                        <a href="#{request.contextPath}/faces/pages/phongban/quanLyPhongBan.xhtml" >
+                        <a href="#{request.contextPath}/faces/pages/capphat-suachua/quanlycapphat.xhtml" >
                             <i class="fa fa-home"></i>CUSC
                         </a>
                     </li>
-               <h:panelGroup id="menuPhongBanSC">
+                
                     <c:forEach items="#{QuanLyPhongBanController.listPhongBanAll}" var="item">
-                        <li  style="padding-left:30px !important;padding-bottom:10px !important;">
-                            <a href="#{request.contextPath}/faces/pages/phongban/quanLyPhongBan.xhtml?pb=#{item.pb_id}" >
+                        <li   style="padding-left:15px !important;">
+                            <a href="#{request.contextPath}/faces/pages/capphat-suachua/quanlycapphat.xhtml?pb=#{item.pb_id}" >
                                 <i class="fa fa-circle-o"></i> #{item.pb_ten}
                             </a>
                         </li>
                     </c:forEach>
-                </h:panelGroup>
-          </ul>
+            </ul>
         </li>
+        </h:panelGroup>
       </ul>
     </section>
     <!-- /.sidebar -->

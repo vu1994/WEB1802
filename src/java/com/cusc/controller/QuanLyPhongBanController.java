@@ -33,6 +33,7 @@ public class QuanLyPhongBanController implements Serializable{
     private List<Map> listPhongBanAll;
     private PhongBanProvider pbProvider = new PhongBanProvider();
     private String pbID;
+    private Integer slPhongBan;
     private Boolean actionEdit = true;
     
     public QuanLyPhongBanController() {
@@ -44,7 +45,7 @@ public class QuanLyPhongBanController implements Serializable{
         } else {
             this.actionGetListDmPhongBanFilterPB(Integer.parseInt(pbID));
         }
-        
+        setSlPhongBan(pbProvider.getSoLuongPhongBan());
     }
       
     public List<Map> actionGetListPhongBan(){
@@ -65,6 +66,7 @@ public class QuanLyPhongBanController implements Serializable{
         }
         this.actionGetListPhongBanAll();
         objPhongBan = new PhongBanModel();
+        setSlPhongBan(pbProvider.getSoLuongPhongBan());
         
     }
      
@@ -86,6 +88,7 @@ public class QuanLyPhongBanController implements Serializable{
     public void actionXoaDmPhongBan(int dmPhongBanID){
         pbProvider.delDmPhongBan(dmPhongBanID);
         this.actionGetListPhongBanAll();
+        setSlPhongBan(pbProvider.getSoLuongPhongBan());
     }
     public void actionGetListDmPhongBanFilterPB(int pb_id){
         listPhongBan = pbProvider.getListPhongBanTheoId(pb_id);
@@ -138,6 +141,14 @@ public class QuanLyPhongBanController implements Serializable{
 
     public void setUiNhanVien(NhanVienController uiNhanVien) {
         this.uiNhanVien = uiNhanVien;
+    }
+
+    public Integer getSlPhongBan() {
+        return slPhongBan;
+    }
+
+    public void setSlPhongBan(Integer slPhongBan) {
+        this.slPhongBan = slPhongBan;
     }
 
    
