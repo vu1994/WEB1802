@@ -36,14 +36,9 @@ public class UserController implements Serializable{
      * Creates a new instance of UserController
      */
     public UserController() {
-        mapLogin.put("logined", false);
-        mapLogin.put("screenname", null);
-        mapLogin.put("nvTen", null);
-        mapLogin.put("nvID", null);
         screenname = null;
         password = null;
         nvTen = null;
-        System.out.println("npvu test");
         if(showGrowlSuccess){
             FacesContext context = FacesContext.getCurrentInstance();
             FacesMessage message = new FacesMessage("Đăng nhập thành công");
@@ -80,6 +75,14 @@ public class UserController implements Serializable{
         screenname = null;
         password = null;
         nvTen = null;
+    }
+    
+    public void logout() throws IOException{
+        mapLogin.put("logined", false);
+        mapLogin.put("screenname", null);
+        mapLogin.put("nvTen", null);
+        mapLogin.put("nvID", null);
+        WindowUtils.reload();
     }
 
     public String getScreenname() {
