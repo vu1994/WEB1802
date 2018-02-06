@@ -1,1 +1,0 @@
-Thu m?c này dùng d? luu các thay d?i trong database
