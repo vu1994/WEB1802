@@ -27,7 +27,7 @@ public class UserValidation implements Validator{
     @Override
     public void validate(FacesContext fc, UIComponent uic, Object o) throws ValidatorException {
         UserDataProvider userProvider = new UserDataProvider();
-        uiUser.setObjUser(userProvider.getUserModelByScreenname(o.toString()));
+        System.out.println("npvu :"+o);
         if (uiUser.getObjUser() == null) {
            FacesMessage msg = new FacesMessage("",
                             "Tên đăng nhập không tồn tại");

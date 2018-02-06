@@ -76,6 +76,11 @@
                 <div class="home-overlay-fluid">
                     <div class="container">
                         <div class="row">
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                    <b:growl  showDetail="true" severity="info"  showSummary="false"/>
+                                </div>
+                            </div>
                             <div class="main_slider_area">
                                 <div class="slider">
                                     <div class="container">
@@ -156,16 +161,40 @@
         <b:modal id="amodal2" title="ĐĂNG NHẬP" styleClass="dangNhapPopUp"
                  closable="true"  close-on-escape="true" backdrop="true">
             <b:form id="loginForm">
-                <b:inputText id="usernameDiv" fieldId="j_username" name="j_username"
-                             value="#{UserController.screenname}"
-                             validator="com.cusc.validation.UserValidation"
-                             label="TÀI KHOẢN"/>
-                <b:message for="usernameDiv" />
-                <b:inputSecret id="passwordDiv" fieldId="j_password" name="j_password"
-                               value="#{UserController.password}"
-                               label="MẬT KHẨU"  />
-                <b:message for="passwordDiv" />
-                <b:commandButton update="@form" value="ĐĂNG NHẬP" onclick="ajax:UserController.login()" class="btn-danger"/>
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <b:messages showDetail="true" errorClass="error_msg" severity="error"/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <b:inputText id="usernameDiv"
+                                     value="#{UserController.screenname}"
+                                     a:placeholder="Tài khoản"
+                                     required="true"
+                                     requiredMessage="Vui lòng nhập tên tài khoản"
+                                     label="TÀI KHOẢN"/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <b:inputSecret id="passwordDiv"
+                                       value="#{UserController.password}"
+                                       a:placeholder="Mật khẩu"
+                                       required="true"
+                                       requiredMessage="Vui lòng nhập mật khẩu"
+                                       label="MẬT KHẨU"  />
+                    </div>
+                </div>
+                <div class="row margin-t-10">
+                    <div class="col-md-12 col-sm-12 col-xs-12 text-center">
+                        <b:commandButton process="@form"
+                                         update="@form"
+                                         value="ĐĂNG NHẬP"
+                                         action="#{UserController.login()}"
+                                         class="btn-danger"/>
+                    </div>
+                </div>
             </b:form>
         </b:modal>
 
