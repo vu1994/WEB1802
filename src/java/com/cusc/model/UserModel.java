@@ -36,6 +36,17 @@ public class UserModel implements Serializable {
     
     @Column(name = "nv_ten")
     private String nvTen;
+    
+    @Column (name = "user_role")
+    private int userRole;
+
+    public int getUserRole() {
+        return userRole;
+    }
+
+    public void setUserRole(int userRole) {
+        this.userRole = userRole;
+    }
 
     public long getUserID() {
         return userID;

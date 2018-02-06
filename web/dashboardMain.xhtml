@@ -71,12 +71,16 @@
         <!-- script căn chỉnh màn hình-->
 
         <h:form>        
-
+            <div class="col-md-12 col-sm-12 col-xs-12" style="text-align:right;top:10px">
+                <h:outputText class="text-red" rendered="#{UserController.mapLogin.logined}" value="Xin chào #{UserController.mapLogin.nvTen}!"/>
+            </div>
             <section id="home" class="home">
                 <div class="home-overlay-fluid">
                     <div class="container">
                         <div class="row">
                             <div class="row">
+
+
                                 <div class="col-md-12 col-sm-12 col-xs-12">
                                     <b:growl  showDetail="true" severity="info"  showSummary="false"/>
                                 </div>
@@ -86,46 +90,84 @@
                                     <div class="container">
                                         <div class="row">
                                             <div class="main_service text-center">
+                                                <h:panelGroup rendered="#{!UserController.mapLogin.logined or(UserController.mapLogin.logined and UserController.mapLogin.userRole==1)}">
                                                 <div class="col-md-3 col-sm-6 col-xs-6 icon1">
                                                     <div class="single_service wow fadeIn " data-wow-duration=".6s">
                                                         <div class="single_service_icon icon_one hvr-float-shadow">
-                                                            <h:outputLink value="faces/pages/danh-muc/QuanLyThietBi.xhtml"> <i class="fa fa-home"></i></h:outputLink>
+                                                            <b:link rendered="#{UserController.mapLogin.logined and UserController.mapLogin.userRole==1}" href="faces/pages/danh-muc/QuanLyThietBi.xhtml"> <i class="fa fa-home"></i></b:link>
+                                                            <b:link rendered="#{UserController.mapLogin.logined and UserController.mapLogin.userRole==0}" onclick="$('.formRole').modal()"><i class="fa fa-home"></i></b:link>
+                                                            <b:link rendered="#{!UserController.mapLogin.logined}" onclick="$('.formPreLogin').modal()"><i class="fa fa-home"></i></b:link>
                                                         </div>
                                                         <div class="single_service_deatels">
                                                             <h4>QUẢN LÝ KHO</h4>
                                                         </div>
                                                     </div>
                                                 </div>
+                                                </h:panelGroup>
+                                                <h:panelGroup rendered="#{!UserController.mapLogin.logined or(UserController.mapLogin.logined and UserController.mapLogin.userRole==1)}">
                                                 <div class="col-md-3 col-sm-6 col-xs-6 icon1">
                                                     <div class="single_service wow fadeIn" data-wow-duration="1.2s">
                                                         <div class="single_service_icon icon_two hvr-float-shadow">
-                                                            <a href="faces/pages/bao-cao/ThongKeTonKho.xhtml"><i class="fa fa-bar-chart fa-lg"  ></i></a>
+                                                            <b:link rendered="#{UserController.mapLogin.logined and UserController.mapLogin.userRole==1}" href="faces/pages/bao-cao/ThongKeTonKho.xhtml"><i class="fa fa-bar-chart fa-lg"></i></b:link>
+                                                            <b:link rendered="#{UserController.mapLogin.logined and UserController.mapLogin.userRole==0}" onclick="$('.formRole').modal()"><i class="fa fa-bar-chart fa-lg"></i></b:link>
+                                                            <b:link rendered="#{!UserController.mapLogin.logined}" onclick="$('.formPreLogin').modal()"><i class="fa fa-bar-chart fa-lg"></i></b:link>
                                                         </div>
                                                         <div class="single_service_deatels">
                                                             <h4>KIỂM KÊ KHO</h4>
                                                         </div>
                                                     </div>
                                                 </div>
+                                                </h:panelGroup>
+                                                <h:panelGroup rendered="#{!UserController.mapLogin.logined or(UserController.mapLogin.logined and UserController.mapLogin.userRole==1)}">
                                                 <div class="col-md-3 col-sm-6 col-xs-6 icon1">
                                                     <div class="single_service wow fadeIn" data-wow-duration="1.7s">
                                                         <div class="single_service_icon icon_three hvr-float-shadow">
-                                                            <a href="faces/pages/capphat-suachua/quanlycapphat.xhtml"><i class="fa fa-desktop"></i></a>
+                                                            <b:link rendered="#{UserController.mapLogin.logined and UserController.mapLogin.userRole==1}" href="faces/pages/capphat-suachua/quanlycapphat.xhtml"><i class="fa fa-desktop"></i></b:link>
+                                                            <b:link rendered="#{UserController.mapLogin.logined and UserController.mapLogin.userRole==0}" onclick="$('.formRole').modal()"><i class="fa fa-desktop"></i></b:link>
+                                                            <b:link rendered="#{!UserController.mapLogin.logined}" onclick="$('.formPreLogin').modal()"><i class="fa fa-desktop"></i></b:link>
                                                         </div>
                                                         <div class="single_service_deatels">
                                                             <h4>CẤP PHÁT</h4>
                                                         </div>
                                                     </div>
                                                 </div>
+                                                </h:panelGroup>
+                                                <h:panelGroup rendered="#{!UserController.mapLogin.logined or(UserController.mapLogin.logined and UserController.mapLogin.userRole==1)}">
                                                 <div class="col-md-3 col-sm-6 col-xs-6 icon1 ">
                                                     <div class="single_service wow fadeIn" data-wow-duration="2s">
                                                         <div class="single_service_icon icon_four hvr-float-shadow">
-                                                            <h:outputLink value="faces/pages/phongban/quanLyPhongBan.xhtml"><i class="fa fa-users"></i></h:outputLink>
+                                                            <b:link rendered="#{UserController.mapLogin.logined and UserController.mapLogin.userRole==1}" href="faces/pages/phongban/quanLyPhongBan.xhtml"><i class="fa fa-users"></i></b:link>
+                                                            <b:link rendered="#{UserController.mapLogin.logined and UserController.mapLogin.userRole==0}" onclick="$('.formRole').modal()"><i class="fa fa-users"></i></b:link>
+                                                            <b:link rendered="#{!UserController.mapLogin.logined}" onclick="$('.formPreLogin').modal()"><i class="fa fa-users"></i></b:link>
                                                         </div>
                                                         <div class="single_service_deatels">
                                                             <h4>PHÒNG BAN</h4>
                                                         </div>
                                                     </div>
                                                 </div>
+                                                </h:panelGroup>
+                                                <h:panelGroup rendered="#{UserController.mapLogin.logined and UserController.mapLogin.userRole==0}">
+                                                <div class="col-md-3 col-md-offset-3 col-sm-6 col-xs-6 icon1 ">
+                                                    <div class="single_service wow fadeIn" data-wow-duration="2s">
+                                                        <div class="single_service_icon icon_four hvr-float-shadow">
+                                                            <b:link href="faces/pages/phongban/quanLyPhongBan.xhtml"><i class="fa fa-wrench"></i></b:link>
+                                                        </div>
+                                                        <div class="single_service_deatels">
+                                                            <h4>QUẢN LÝ YÊU CẦU</h4>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                    <div class="col-md-3 col-sm-6 col-xs-6 icon1 ">
+                                                    <div class="single_service wow fadeIn" data-wow-duration="2s">
+                                                        <div class="single_service_icon icon_one hvr-float-shadow">
+                                                            <b:link href="faces/pages/phongban/quanLyPhongBan.xhtml"><i class="fa fa-user"></i></b:link>
+                                                        </div>
+                                                        <div class="single_service_deatels">
+                                                            <h4>THÔNG TIN CÁ NHÂN</h4>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                </h:panelGroup>
                                             </div>
                                         </div>
                                     </div>
@@ -139,13 +181,27 @@
                         <div class="row text-center">
                             <div class="col-sm-6 col-xs-6 no-padding">
                                 <div class="single_register single_login ">
-                                    <b:link onclick="$('.dangNhapPopUp').modal()" ><i class="fa fa-key fa-spin"/> ĐĂNG NHẬP</b:link>
+                                    <b:link rendered="#{!UserController.mapLogin.logined}"
+                                        onclick="$('.dangNhapPopUp').modal()" >
+                                        <i class="fa fa-sign-in"/> ĐĂNG NHẬP
+                                    </b:link>
+                                    <b:commandLink rendered="#{UserController.mapLogin.logined}"
+                                            >
+                                        <i class="fa fa-sign-out"/> ĐĂNG XUẤT
+                                        <f:ajax listener="#{UserController.logout()}" render="@all"/>
+                                    </b:commandLink>
                                 </div>
                             </div>
                             <div class="col-sm-6 col-xs-6 no-padding">
                                 <div class="single_register">
-                                    <!--                                    <b:link onclick="$('.formPreLogin').modal()" ><i class="fa fa-wrench fa-spin"/> YÊU CẦU SỬA CHỮA </b:link>-->
-                                    <b:link onclick="$('.formYCauSChuaPopUp').modal()" ><i class="fa fa-wrench fa-spin"/> YÊU CẦU SỬA CHỮA </b:link>
+                                    <b:link rendered="#{!UserController.mapLogin.logined}"
+                                            onclick="$('.formPreLogin').modal()" >
+                                        <i class="fa fa-wrench fa-spin"/> YÊU CẦU SỬA CHỮA 
+                                    </b:link>
+                                    <b:link rendered="#{UserController.mapLogin.logined}"
+                                        onclick="$('.formYCauSChuaPopUp').modal()" >
+                                        <i class="fa fa-wrench fa-spin"/> YÊU CẦU SỬA CHỮA 
+                                    </b:link>
                                 </div>
                             </div>
                         </div>
@@ -232,6 +288,28 @@
                 </div>
             </b:form>
         </b:modal>
+        
+        <!-- modal Thông báo không có quyền-->
+
+        <b:modal id="modalRole" title="THÔNG BÁO TỪ HỆ THỐNG" styleClass="formRole"
+                 closable="true"  close-on-escape="true" backdrop="true">
+            <b:form id="Roleform" horizontal="false">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
+                        <h:outputText value="Bạn "/>
+                        <h:outputLabel value="KHÔNG CÓ QUYỀN TRUY CẬP" class="text-danger"/>
+                        <h:outputText value=" chức năng này!"/>
+                    </div>
+                </div>
+                <div class="row margin-t-15">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
+                        <b:button class="btn-huybo" dismiss="modal" 
+                                  icon-awesome="fa-close" value="Đồng ý">
+                        </b:button>
+                    </div>
+                </div>
+            </b:form>
+        </b:modal>
 
         <!--Modal yêu cầu sửa chửa-->
         <b:modal id="modalCapPhat" title="YÊU CẦU SỬA CHỮA" styleClass="formYCauSChuaPopUp"
@@ -276,8 +354,8 @@
                                            show-date="true"
                                            format="DD/MM/YYYY"
                                            minDate="#{QuanLyThietBiController.objThietBi.thietBiNgayNhap}"
-                                            >
-                            
+                                           >
+
                         </b:dateTimePicker >
 
                     </div>
@@ -287,7 +365,7 @@
                         <b:inputTextarea label="Tình trạng" placeholder="Nhập các vấn đề hư hỏng của thiết bị hoặc tình trạng của thiết bị hiện tại..." />
                     </div>
                 </div>
-                
+
                 <div class="row margin-t-15">
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
                         <b:commandButton action="#{QuanLyThietBiController.actionThemThietBi()}"

@@ -58,6 +58,7 @@ public class UserController implements Serializable{
                 mapLogin.put("screenname", objUser.getUserScreenname());
                 mapLogin.put("nvTen", objUser.getNvTen());
                 mapLogin.put("nvID", objUser.getNvID());
+                mapLogin.put("userRole", objUser.getUserRole());
                 showGrowlSuccess = true;
                 WindowUtils.reload();
             } else {
@@ -82,6 +83,7 @@ public class UserController implements Serializable{
         mapLogin.put("screenname", null);
         mapLogin.put("nvTen", null);
         mapLogin.put("nvID", null);
+        mapLogin.put("userRole", null);
         WindowUtils.reload();
     }
 
