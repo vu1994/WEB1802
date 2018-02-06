@@ -47,6 +47,8 @@
         <style>
             .modal.in .modal-dialog{
                 margin-top: 150px;
+                width:300px !important;
+                margin: 150px auto !important;
             }
             .modal-header{
                 padding: 5px 15px;
@@ -153,18 +155,19 @@
         
       
         
-        <b:modal id="amodal2" title="ĐĂNG NHẬP" styleClass=" dangNhapPopUp"
+        <b:modal id="amodal2" title="ĐĂNG NHẬP" styleClass="dangNhapPopUp"
                  closable="true"  close-on-escape="true" backdrop="true">
             <b:form id="loginForm">
                 <b:inputText id="usernameDiv" fieldId="j_username" name="j_username"
-                             value="#{loginBean.username}"
+                             value="#{UserController.screenname}"
+                             validator="com.cusc.validation.UserValidation"
                              label="TÀI KHOẢN"/>
-                <b:message for="@previous" />
+                <b:message for="usernameDiv" />
                 <b:inputSecret id="passwordDiv" fieldId="j_password" name="j_password"
-                               value="#{loginBean.password}"
+                               value="#{UserController.password}"
                                label="MẬT KHẨU"  />
                 <b:message for="passwordDiv" />
-                <b:commandButton update="@form" value="ĐĂNG NHẬP" onclick="ajax:loginBean.login2()" class="btn-danger"/>
+                <b:commandButton update="@form" value="ĐĂNG NHẬP" onclick="ajax:UserController.login()" class="btn-danger"/>
             </b:form>
         </b:modal>
     </h:body>
