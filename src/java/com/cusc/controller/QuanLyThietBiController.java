@@ -17,6 +17,7 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Map;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 import javax.persistence.Temporal;
 
@@ -28,6 +29,8 @@ import javax.persistence.Temporal;
 @ViewScoped
 public class QuanLyThietBiController implements Serializable {
     QuanLyThietBiDataProvider tbProvider = new QuanLyThietBiDataProvider();
+    @ManagedProperty(value = "#{UserController}")
+    private UserController uiUser;
     private List<Map> listThietBi = new ArrayList<>();
     private List<Map> listThietBiCapPhat = new ArrayList<>();
     private ThietBiModel objThietBi = new ThietBiModel();
@@ -294,7 +297,9 @@ public class QuanLyThietBiController implements Serializable {
         if(selectedNhomTB == 0){
             this.actionGetListThietBi();
         }else{
-            setListThietBi(tbProvider.getListThietBiByNhom(selectedNhomTB));
+            System.out.println(">>>>>"+Long.parseLong(uiUser.getMapLogin().get("nvID").toString()) +">>>"+ selectedNhomTB);
+            setListThietBi(tbProvider.getListThietBiByNhomNV(selectedNhomTB,Long.parseLong(uiUser.getMapLogin().get("nvID").toString())));
+            System.out.println(">>>"+listThietBi);
         } 
     }
     public boolean enableCapPhatThietBi(long thietBiID){
@@ -395,6 +400,14 @@ public class QuanLyThietBiController implements Serializable {
 
     public void setNgayYeuCauSChua(Date ngayYeuCauSChua) {
         this.ngayYeuCauSChua = ngayYeuCauSChua;
+    }
+
+    public UserController getUiUser() {
+        return uiUser;
+    }
+
+    public void setUiUser(UserController uiUser) {
+        this.uiUser = uiUser;
     }
     
 }
