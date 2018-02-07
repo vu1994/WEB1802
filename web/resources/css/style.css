@@ -105,7 +105,10 @@ img {
         padding: 50px 0px;
 
     }
-    
+    .modal.in .modal-dialog{
+        margin-top: 150px;
+        width: 60%;
+    }
     /* Home Section */
     .home{
         background: url(../img/home1.jpg) no-repeat 100% 100%;
@@ -123,6 +126,10 @@ img {
         padding: 0px 0px;
 
     }
+    .modal.in .modal-dialog{
+        margin-top: 150px;
+        width: 60%;
+    }
        /* Home Section */
     .home{
         background: url(../img/home1.jpg) no-repeat 100% 100%;
@@ -138,6 +145,10 @@ img {
         width: 100%;
         padding: 125px 0px 186px;
 
+    }
+    .modal.in .modal-dialog{
+        margin-top: 150px;
+        width: 60%;
     }
        /* Home Section */
     .home{

@@ -64,7 +64,6 @@ public class QuanLyThietBiController implements Serializable {
     }
     
     public void callWhenLoadPage(){
-        System.out.println("npvu");
         showGrowl.showGrowlOnPageLoad();
     }
     
