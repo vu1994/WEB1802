@@ -44,6 +44,7 @@
 
     </h:head>
     <h:body>
+        <f:event listener="#{UserController.callWhenLoadPage()}" type="preRenderView" />
         <style>
             .modal.in .modal-dialog{
                 margin-top: 150px;
@@ -79,10 +80,8 @@
                     <div class="container">
                         <div class="row">
                             <div class="row">
-
-
                                 <div class="col-md-12 col-sm-12 col-xs-12">
-                                    <b:growl  showDetail="true" severity="info"  showSummary="false"/>
+                                    <b:growl  showDetail="true" severity="info"  showSummary="false" delay="3000"/>
                                 </div>
                             </div>
                             <div class="main_slider_area">
