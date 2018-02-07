@@ -41,7 +41,7 @@
                 var login = #{!UserController.mapLogin.logined or(UserController.mapLogin.logined and UserController.mapLogin.userRole==0)};
                 if (login) {
                     alert("Xin lỗi bạn không có quyền trong chức năng này");
-                    location.href = 'http://localhost:8084/WEB1802';
+                    location.href = '#{request.contextPath}';
                 }
             </script>
             <ui:insert name="top" rendered="#{!UserController.mapLogin.login or (UserController.mapLogin.login and UserController.mapLogin.userRole==1)}">

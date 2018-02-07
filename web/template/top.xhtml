@@ -7,7 +7,9 @@ and open the template in the editor.
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 <header class="main-header">
 
     <!-- Logo -->
@@ -224,7 +226,7 @@ and open the template in the editor.
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                 <h:graphicImage library="resources" name="img/user2-160x160.jpg" styleClass="user-image" alt="User Image"/>
-              <span class="hidden-xs">Alexander Pierce</span>
+                <span class="hidden-xs">#{UserController.mapLogin.nvTen}</span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
@@ -232,8 +234,8 @@ and open the template in the editor.
                 <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image"/>
 
                 <p>
-                  Alexander Pierce - Web Developer
-                  <small>Member since Nov. 2012</small>
+                  #{UserController.mapLogin.nvTen} - #{UserController.mapLogin.userRole == 1? "Quản trị viên":"Nhân viên"}
+                  <small></small>
                 </p>
               </li>
               <!-- Menu Body -->
@@ -257,7 +259,12 @@ and open the template in the editor.
                   <a href="#" class="btn btn-default btn-flat">Profile</a>
                 </div>
                 <div class="pull-right">
-                  <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                    <b:form>
+                        <b:commandLink class="btn btn-default btn-flat">
+                            Đăng xuất
+                            <f:ajax listener="#{UserController.logout()}" render="@this"/>
+                        </b:commandLink>
+                    </b:form>
                 </div>
               </li>
             </ul>

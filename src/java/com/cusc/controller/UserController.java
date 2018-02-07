@@ -7,6 +7,7 @@ package com.cusc.controller;
 
 import com.cusc.dataprovider.UserDataProvider;
 import com.cusc.model.UserModel;
+import com.cusc.util.ShowGrowlUtils;
 import com.cusc.util.WindowUtils;
 import java.io.IOException;
 import java.io.Serializable;
@@ -14,6 +15,7 @@ import java.util.HashMap;
 import java.util.Map;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.validator.ValidatorException;
@@ -25,27 +27,27 @@ import javax.faces.validator.ValidatorException;
 @ManagedBean (name="UserController")
 @SessionScoped
 public class UserController implements Serializable{
+    @ManagedProperty(value="#{ShowGrowlUtils}")
+    private ShowGrowlUtils showGrowl;
     private UserModel objUser = new UserModel();
     private Map<String, Object> mapLogin = new HashMap<>();
     private String screenname;
     private String password;
     private String nvTen;
-    private boolean showGrowlSuccess = false;
     
     /**
      * Creates a new instance of UserController
      */
     public UserController() {
+        
+    }
+    
+    public void callWhenLoadPage(){
         screenname = null;
         password = null;
         nvTen = null;
-        if(showGrowlSuccess){
-            FacesContext context = FacesContext.getCurrentInstance();
-            FacesMessage message = new FacesMessage("Đăng nhập thành công");
-            message.setSeverity(FacesMessage.SEVERITY_INFO);
-            context.addMessage(null, message);
-            showGrowlSuccess = false;
-        }
+        showGrowl.setMessage("Đăng nhập thành công");
+        showGrowl.showGrowlOnPageLoad();
     }
     
     public void login() throws IOException{
@@ -59,7 +61,7 @@ public class UserController implements Serializable{
                 mapLogin.put("nvTen", objUser.getNvTen());
                 mapLogin.put("nvID", objUser.getNvID());
                 mapLogin.put("userRole", objUser.getUserRole());
-                showGrowlSuccess = true;
+                showGrowl.setShowGrowlSuccess(true);
                 WindowUtils.reload();
             } else {
                 mapLogin.put("logined", false);
@@ -125,5 +127,13 @@ public class UserController implements Serializable{
 
     public void setMapLogin(Map<String, Object> mapLogin) {
         this.mapLogin = mapLogin;
+    }
+
+    public ShowGrowlUtils getShowGrowl() {
+        return showGrowl;
+    }
+
+    public void setShowGrowl(ShowGrowlUtils showGrowl) {
+        this.showGrowl = showGrowl;
     }
 }
