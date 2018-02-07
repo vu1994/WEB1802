@@ -13,12 +13,15 @@ import com.cusc.util.WindowUtils;
 import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 
 /**
  *
@@ -45,8 +48,11 @@ public class QuanLyYeuCauSCController implements Serializable {
         } else {
             this.actionGetListDmYeuCauFilterPB(Integer.parseInt(pbID));
         }
+        Calendar currentDate = Calendar.getInstance();
+        objYeuCauSC.setYeucauNgayYeuCau(currentDate.getTime());
      }
 
+   
     public List<Map> actionGetListYeuCau() {
         setListYeuCauSC(ycProvider.getListYeuCau());
         return listYeuCauSC;
@@ -63,19 +69,44 @@ public class QuanLyYeuCauSCController implements Serializable {
         }else{
             objYeuCauSC.setYeucauTinhTrangSC(0);
         }
-        this.actionAddorEditYeuCau();
-        this.actionGetListYeuCau();
+        this.actionEditYeuCau();
+        if (pbID == null) {
+            this.actionGetListYeuCau();
+        } else {
+            this.actionGetListDmYeuCauFilterPB(Integer.parseInt(pbID));
+        }
     }
 
     public void actionGetListDmYeuCauFilterPB(int pb_id) {
         listYeuCauSC = ycProvider.getListYeuCauTheoId(pb_id);
     }
     
-    public void actionAddorEditYeuCau(){
+    
+    public void actionAddYeuCau(){
+       objYeuCauSC.setYeucauNvID(Integer.parseInt(uiUser.getMapLogin().get("nvID").toString()));
+       objYeuCauSC.setYeucauTinhTrangSC(0);
        if(ycProvider.addEditYeuCau(objYeuCauSC)){
             System.out.println("true");
         }else {
             System.out.println("false");
+        }
+        this.actionGetListYeuCau();
+        objYeuCauSC = new YeuCauSuaChuaModel();
+       
+    }
+    
+    public void actionEditYeuCau(){
+       
+       if(ycProvider.addEditYeuCau(objYeuCauSC)){
+            FacesContext context = FacesContext.getCurrentInstance();
+            FacesMessage msg = new FacesMessage("Cập nhật thành công");
+            msg.setSeverity(FacesMessage.SEVERITY_INFO);
+            context.addMessage(null, msg);
+        }else {
+            FacesContext context = FacesContext.getCurrentInstance();
+            FacesMessage msg = new FacesMessage("Cập nhật thất bại");
+            msg.setSeverity(FacesMessage.SEVERITY_INFO);
+            context.addMessage(null, msg);
         }
         this.actionGetListYeuCau();
         objYeuCauSC = new YeuCauSuaChuaModel();

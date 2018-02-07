@@ -13,6 +13,7 @@
         <ui:composition template="./../../mainTemplate.xhtml">
             <ui:define name="title">QUẢN LÝ YÊU CẦU SỬA CHỮA</ui:define>
             <ui:define name="content">
+
                 <!--                <header class="main-header">
                                     <nav class="navbar navbar-static-top">
                                        Sidebar toggle button
@@ -61,6 +62,18 @@
                     <section class="content">
                         <h:form role="form" id="yeuCau" class="yeuCau">
                             <div class="row">
+                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                    <b:growl animation-enter="animated slideInDown"
+                                             animation-exit="animated flipOutX" 
+                                             showDetail="true" severity="info"  
+                                             showSummary="false" delay="2000"/>
+                                    <b:growl showDetail="true" 
+                                             severity="error"  
+                                             showSummary="false" 
+                                             delay="2000"/>
+                                </div>
+                            </div>
+                            <div class="row">
                                 <div class="col-md-12">
                                     <!-- general form elements -->
                                     <div class="box box-primary">
@@ -88,7 +101,8 @@
                                                         <b:dataTableColumn value="#{item.yeucau_tinhtranghong}" label="Tình trạng hư hỏng" headerStyleClass="text-center"/>
                                                         <b:dataTableColumn value="#{item.yeucau_tinhtrang_ten}"  label="Trạng thái xử lý" headerStyleClass="text-center"/>
                                                         <b:dataTableColumn style="width: 5%" class="text-center" label="" orderable="false">
-                                                            <b:commandButton tooltip="Cập nhật trạng thái xử lý #{item}"
+                                                            <b:commandButton tooltip="Cập nhật trạng thái xử lý"
+                                                                             process="@form" update="@form"
                                                                              actionListener="#{QuanLyYeuCauSCController.changeTrangThaiYeuCau(item)}"
                                                                              styleClass="#{item.yeucau_tinhtrangsc==0?'btn-delete':'btn-fixed'}"
                                                                              >

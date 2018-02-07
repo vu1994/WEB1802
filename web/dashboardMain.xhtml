@@ -317,7 +317,7 @@
                             <b:selectOneMenu id="selectThietBiSuaChua"
                                              required="true"
                                              requiredMessage="Vui lòng chọn thiết bị"
-                                             value="#{QuanLyThietBiController.objThietBi.capChoNhanVienID}">
+                                             value="#{QuanLyYeuCauSCController.objYeuCauSC.yeucauTbID}">
                                 <f:selectItem itemLabel="-- Chọn thiết bị --" itemValue=""/>
                                 <f:selectItems value="#{QuanLyThietBiController.listThietBi}" var="item"
                                                itemLabel="#{item.thietbi_ten}" itemValue="#{item.thietbi_id}"/>
@@ -331,7 +331,7 @@
                         <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4" style="display: #{!empty(QuanLyThietBiController.listThietBi)?'':'none'}">
                             <h:outputLabel value="Ngày yêu cầu"/>
                             <b:dateTimePicker  id="dateNgayCap"
-                                               value="#{QuanLyThietBiController.objThietBi.thietBiNgayNhap}"
+                                               value="#{QuanLyYeuCauSCController.objYeuCauSC.yeucauNgayYeuCau}"
                                                iconPosition='left'
                                                allow-input-toggle='true'
                                                rendered="true"
@@ -339,21 +339,20 @@
                                                show-time="false"
                                                show-date="true"
                                                format="DD/MM/YYYY"
-                                               minDate="#{QuanLyThietBiController.objThietBi.thietBiNgayNhap}"
+                                               minDate="#{QuanLyYeuCauSCController.objYeuCauSC.yeucauNgayYeuCau}"
                                                >
-
                             </b:dateTimePicker >
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="display: #{!empty(QuanLyThietBiController.listThietBi)?'':'none'}">
-                            <b:inputTextarea label="Tình trạng" placeholder="Nhập các vấn đề hư hỏng của thiết bị hoặc tình trạng của thiết bị hiện tại..." />
+                            <b:inputTextarea value="#{QuanLyYeuCauSCController.objYeuCauSC.yeucauTinhTrangHong}" label="Tình trạng" placeholder="Nhập các vấn đề hư hỏng của thiết bị hoặc tình trạng của thiết bị hiện tại..." />
                         </div>
                     </div>
                 
                 <div class="row margin-t-15">
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
-                        <b:commandButton action="#{QuanLyThietBiController.actionThemThietBi()}"
+                        <b:commandButton action="#{QuanLyYeuCauSCController.actionAddYeuCau()}"
                                          styleClass="btn btn-danger margin-r-5" ajax="true"
                                          process="@form" update="@form" 
                                          rendered="#{!empty(QuanLyThietBiController.listThietBi)}">
