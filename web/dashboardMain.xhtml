@@ -68,6 +68,10 @@
                 background-color: transparent !important;
                 text-decoration: none;
             }
+            .register .single_login, .register .single_register{
+                cursor: pointer;
+            }
+            
         </style>
         <!-- script căn chỉnh màn hình-->
 
@@ -179,9 +183,8 @@
                     <div class="container-fullwidth">
                         <div class="row text-center">
                             <div class="col-sm-6 col-xs-6 no-padding">
-                                <div class="single_register single_login ">
-                                    <b:link rendered="#{!UserController.mapLogin.logined}"
-                                            onclick="$('.dangNhapPopUp').modal()" >
+                                <div class="single_register single_login " onclick="$('.dangNhapPopUp').modal()">
+                                    <b:link rendered="#{!UserController.mapLogin.logined}">
                                         <i class="fa fa-sign-in"/> ĐĂNG NHẬP
                                     </b:link>
                                     <b:commandLink rendered="#{UserController.mapLogin.logined}"
@@ -192,13 +195,13 @@
                                 </div>
                             </div>
                             <div class="col-sm-6 col-xs-6 no-padding">
-                                <div class="single_register">
-                                    <b:link rendered="#{!UserController.mapLogin.logined}"
-                                            onclick="$('.formPreLogin').modal()" >
+                                <div class="single_register" onclick="$('.formPreLogin').modal()"  style="display:#{!UserController.mapLogin.logined?'block':'none'}">
+                                    <b:link >
                                         <i class="fa fa-wrench fa-spin"/> YÊU CẦU SỬA CHỮA 
                                     </b:link>
-                                    <b:link rendered="#{UserController.mapLogin.logined}"
-                                            onclick="$('.formYCauSChuaPopUp').modal()" >
+                                </div>
+                                <div class="single_register" onclick="$('.formYCauSChuaPopUp').modal()" style="display:#{UserController.mapLogin.logined?'block':'none'}">
+                                    <b:link>
                                         <i class="fa fa-wrench fa-spin"/> YÊU CẦU SỬA CHỮA 
                                     </b:link>
                                 </div>
