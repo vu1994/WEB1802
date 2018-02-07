@@ -8,6 +8,7 @@ package com.cusc.controller;
 import com.cusc.dataprovider.NhanVienProvider;
 import com.cusc.dataprovider.QuanLyThietBiDataProvider;
 import com.cusc.model.ThietBiModel;
+import com.cusc.util.ShowGrowlUtils;
 import com.cusc.util.WindowUtils;
 import java.io.IOException;
 import java.io.Serializable;
@@ -31,6 +32,8 @@ public class QuanLyThietBiController implements Serializable {
     QuanLyThietBiDataProvider tbProvider = new QuanLyThietBiDataProvider();
     @ManagedProperty(value = "#{UserController}")
     private UserController uiUser;
+    @ManagedProperty(value="#{ShowGrowlUtils}")
+    private ShowGrowlUtils showGrowl;
     private List<Map> listThietBi = new ArrayList<>();
     private List<Map> listThietBiCapPhat = new ArrayList<>();
     private ThietBiModel objThietBi = new ThietBiModel();
@@ -58,6 +61,11 @@ public class QuanLyThietBiController implements Serializable {
         objThietBi = new ThietBiModel();
         objThietBi.setThietBiNgayNhap(currentDate.getTime());
         
+    }
+    
+    public void callWhenLoadPage(){
+        System.out.println("npvu");
+        showGrowl.showGrowlOnPageLoad();
     }
     
     public void actionGetListThietBi(){
@@ -237,9 +245,11 @@ public class QuanLyThietBiController implements Serializable {
             objThietBi.setTinhTrangID(2);
         }
         if(tbProvider.updateThietBi(objThietBi)){
-            System.out.println("true");
+            showGrowl.setMessage("Cập nhật thành công");
+            showGrowl.setShowGrowlSuccess(true);
         }else {
-            System.out.println("false");
+            showGrowl.setMessage("Cập nhật thất bại");
+            showGrowl.setShowGrowlError(true);
         }
         WindowUtils.reload();
     }
@@ -252,9 +262,11 @@ public class QuanLyThietBiController implements Serializable {
             objThietBi.setThietBiNgayCap(null);
             objThietBi.setThietBiTrangThaiCapPhat("Đã thu hồi");
             if(tbProvider.updateThietBi(objThietBi)){
-
+                showGrowl.setMessage("Thu hồi thành công");
+                showGrowl.setShowGrowlSuccess(true);
             } else {
-
+                showGrowl.setMessage("Thu hồi thất bại");
+                showGrowl.setShowGrowlError(true);
             }
             WindowUtils.reload();
         } else {
@@ -269,8 +281,16 @@ public class QuanLyThietBiController implements Serializable {
             objDelThietBi.setThietBiTen(mapThietBi.get("thietbi_ten").toString());
             if(this.enableXoaThietBi(objDelThietBi.getThietBiID())){
                 boolean delThietBi = tbProvider.delThietBi(objDelThietBi);
+                if(delThietBi){
+                    showGrowl.setMessage("Xóa thành công");
+                    showGrowl.setShowGrowlSuccess(true);
+                } else {
+                    showGrowl.setMessage("Xóa thất bại");
+                    showGrowl.setShowGrowlError(true);
+                }
             }else {
-                System.out.println("false");
+                showGrowl.setMessage("Thiết bị này đang có người sử dụng !");
+                showGrowl.setShowGrowlError(true);
             }         
         } catch(Exception e){
             e.printStackTrace();
@@ -315,7 +335,11 @@ public class QuanLyThietBiController implements Serializable {
     }
     
     public boolean enableXoaThietBi(long thietBiID){
-        return true;
+        int result = Integer.parseInt(tbProvider.getThietBi(thietBiID).get("thietbi_capcho").toString());
+        if(result == 0){
+            return true;
+        }
+        return false;
     }
     
     public void showModalCapPhat(){
@@ -408,6 +432,14 @@ public class QuanLyThietBiController implements Serializable {
 
     public void setUiUser(UserController uiUser) {
         this.uiUser = uiUser;
+    }
+
+    public ShowGrowlUtils getShowGrowl() {
+        return showGrowl;
+    }
+
+    public void setShowGrowl(ShowGrowlUtils showGrowl) {
+        this.showGrowl = showGrowl;
     }
     
 }
