@@ -46,7 +46,7 @@ public class QuanLyThietBiDataProvider implements Serializable{
     }
     
     
-    public Map getThietBi(int thietBiId){
+    public Map getThietBi(long thietBiId){
         Session session = HibernateUtil.currentSession();
         Map mapThietBi = new HashMap();
         try {

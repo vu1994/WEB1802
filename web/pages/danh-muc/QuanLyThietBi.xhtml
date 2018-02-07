@@ -8,7 +8,6 @@
       xmlns:b="http://bootsfaces.net/ui">
 
     <body>
-
         <ui:composition template="./../../mainTemplate.xhtml">
 
             <ui:define name="title">
@@ -16,6 +15,7 @@
             </ui:define>
 
             <ui:define name="content">
+                <f:event listener="#{QuanLyThietBiController.callWhenLoadPage()}" type="preRenderView" />
                 <div class="content-wrapper" style="min-height: 946px;">
                     <!-- Content Header (Page header) -->
                     <section class="content-header">
@@ -30,6 +30,12 @@
 
                     <!-- Main content -->
                     <section class="content">
+                        <div class="row">
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <b:growl  showDetail="true" severity="info"  showSummary="false" delay="3000"/>
+                                <b:growl  showDetail="true" severity="error"  showSummary="false" delay="3000"/>
+                            </div>
+                        </div>
                         <div class="row">
                             <div class="col-md-12">
                                 <!-- general form elements -->
