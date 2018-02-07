@@ -89,12 +89,12 @@ img {
         margin-top: 150px;
         width: 60%;
     }
-    
+
     /* Home Section */
-.home{
-    background: url(../img/homebg.jpg) no-repeat 100% 100%;
-    text-align: center;
-}
+    .home{
+        background: url(../img/homebg.jpg) no-repeat 100% 100%;
+        text-align: center;
+    }
 
 }
 /* Portrait tablets and small desktops */
@@ -114,8 +114,8 @@ img {
         background: url(../img/home1.jpg) no-repeat 100% 100%;
         text-align: center;
     }
-    
-    
+
+
 }
 
 /* Landscape phones and portrait tablets */
@@ -130,12 +130,12 @@ img {
         margin-top: 150px;
         width: 60%;
     }
-       /* Home Section */
+    /* Home Section */
     .home{
         background: url(../img/home1.jpg) no-repeat 100% 100%;
         text-align: center;
     }
-    
+
 }
 
 /* Landscape phones and portrait tablets */
@@ -150,7 +150,7 @@ img {
         margin-top: 150px;
         width: 60%;
     }
-       /* Home Section */
+    /* Home Section */
     .home{
         background: url(../img/home1.jpg) no-repeat 100% 100%;
         text-align: center;
@@ -165,7 +165,7 @@ img {
         padding: 110px 0px 110px;
 
     }
-       /* Home Section */
+    /* Home Section */
     .home{
         background: url(../img/home1.jpg) no-repeat 100% 100%;
         text-align: center;
@@ -265,10 +265,10 @@ Separator
 }
 .register .single_login:hover{
     background: #33869a;
- }
- .single_register:hover{
-     background: rosybrown;
- }
+}
+.single_register:hover{
+    background: rosybrown;
+}
 
 
 /* domainsearce section */
@@ -332,11 +332,11 @@ Separator
 
 .sercelist .list-inline>li:last-child {
     border-right: 0px solid #ddd;
-    
+
 }
 .sercelist .list-inline.no-border>li {
     border-bottom: 0px solid #ddd;
-    
+
 }
 .sercelist .single_dotcom_serce ul.list-inline li{
     position: relative;
@@ -371,43 +371,43 @@ Separator
     margin:0 auto;
 }
 /*.pricing .pricing_head .icon_area{
-	border-top-left-radius: 10px;
-	border-top-right-radius: 20px;
-	border-bottom-right-radius: 30px;
-	border-bottom-left-radius: 35px;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 20px;
+        border-bottom-right-radius: 30px;
+        border-bottom-left-radius: 35px;
 }*/
 .pricing .pricing_head .icon_area.p_icon_one i{
-	border-top:5px solid #ffcc33;
-	border-left:5px solid #fff;
-	border-right:5px solid #fff;
-	color:#ffcc33;
+    border-top:5px solid #ffcc33;
+    border-left:5px solid #fff;
+    border-right:5px solid #fff;
+    color:#ffcc33;
 
 }
 .pricing .pricing_head .icon_area.p_icon_two i{
-	border-top:5px solid #7f8c8d;
-	border-right:5px solid #7f8c8d;
-	border-left:5px solid #fff;
-	border-bottom:5px solid #fff;
-	color:#7f8c8d;
+    border-top:5px solid #7f8c8d;
+    border-right:5px solid #7f8c8d;
+    border-left:5px solid #fff;
+    border-bottom:5px solid #fff;
+    color:#7f8c8d;
 }
 .pricing .pricing_head .icon_area.p_icon_three i{
-	border-bottom:5px solid #f85f40;
-	border-right:5px solid #f85f40;
-	border-top:5px solid #f85f40;
-	border-left:5px solid #fff;
-	color:#f85f40;
+    border-bottom:5px solid #f85f40;
+    border-right:5px solid #f85f40;
+    border-top:5px solid #f85f40;
+    border-left:5px solid #fff;
+    color:#f85f40;
 }
 .pricing .pricing_head .icon_area.p_icon_four i{
-	border:5px solid #1abc9c;
-	color:#1abc9c;
+    border:5px solid #1abc9c;
+    color:#1abc9c;
 }
 .pricing .pricing_head .icon_area i{
-	color:#ff0000;
-	font-size:1.0625rem;
-	padding:20px;
-	border-radius: 50%;
-	display: inline-block;
-	border-top:5px solid #ff0000;	
+    color:#ff0000;
+    font-size:1.0625rem;
+    padding:20px;
+    border-radius: 50%;
+    display: inline-block;
+    border-top:5px solid #ff0000;	
 }
 .single_pricing.pricing_color_one{
     border-top:5px solid #ffcc33;
@@ -476,22 +476,22 @@ Separator
 .single_pricing footer.pricing_footer h3{
     font-size:1.8975rem;
     margin-bottom:0px;
-	font-family: 'latobold';
+    font-family: 'latobold';
 }
 .single_pricing footer.pricing_footer h3 span.dolor{
     font-size:1.3rem;
-	font-family: 'latoheavy';
+    font-family: 'latoheavy';
 }
 .single_pricing footer.pricing_footer h3 span.month{
     font-size:0.8125rem;
-	font-family: 'latoregular';
-	
+    font-family: 'latoregular';
+
 }
 .single_pricing footer.pricing_footer a{
     font-size:0.9875rem;
     color:#282828;
     margin-top:20px;
-	font-family: 'latobold';
+    font-family: 'latobold';
 }
 .single_pricing footer.pricing_footer .separetor_one{
     border:3px solid #f9d423;
@@ -524,12 +524,12 @@ Separator
 .abouts_area .single_about h3{
     font-size:2.1875rem;
     font-family: 'latosemibold';
-        
+
 }
 .abouts_area .single_about p{
     font-size:1.125rem;
     font-family: 'latothin';
-        
+
 }
 
 
@@ -546,12 +546,12 @@ Separator
     font-size:1.0625rem;
     color:#303030;
     margin-bottom: 0px;
-    
+
 }
 .abouts_area .single_team .team_deatels p{
     color:#8e8e8e;
     font-size:0.9375rem;
-    
+
 }
 .abouts_area .single_team .team_deatels .team_socail{
     margin-left:-15px;
@@ -617,7 +617,7 @@ Separator
     color: #fff;
     border-radius: 50%;
     text-align: center;
-    
+
 }
 .single_service .single_service_icon.icon_one a i{
     background: #f1c40f;  
@@ -637,7 +637,7 @@ Separator
     color: white;
     font-family: Times New Roman Georgia;
     font-weight: bold;
-    
+
 }
 .single_service .single_service_deatels p{
     font-size: 1.01rem
@@ -665,8 +665,8 @@ Separator
 .footer .footer_menu li a{
     font-size:0.8125rem;
     font-family: 'latomedium';
-	padding: 0px 10px;
-	float:right;
+    padding: 0px 10px;
+    float:right;
 }
 .footer a, p{
     color:#686868;
@@ -698,28 +698,28 @@ Separator
 }
 
 .coppyright{
-	overflow:hidden;
-	display:block;
-	width:100%;
-	background:#3d3325;
-	text-align:center;
+    overflow:hidden;
+    display:block;
+    width:100%;
+    background:#3d3325;
+    text-align:center;
 }
 .coppyright p{
-	display:inline-block;
-	color:#fff;
-	margin:20px 0px;
+    display:inline-block;
+    color:#fff;
+    margin:20px 0px;
 }
 .coppyright p i{
-	display:inline-block;
-	color:#ff0000;
-	padding:0px 10px;
+    display:inline-block;
+    color:#ff0000;
+    padding:0px 10px;
 }
 .coppyright p a{
-	display:inline-block;
-	color:#ff0000;
-	font-weight:700;
-	padding:0px 10px;
-	font-size:18px;
+    display:inline-block;
+    color:#ff0000;
+    font-weight:700;
+    padding:0px 10px;
+    font-size:18px;
 }
 
 
@@ -727,37 +727,37 @@ Separator
 /* scrollup */
 
 .scrollup{
-	width: 30px;
-	height: 30px;
-	border-radius: 15px;
-	opacity: .3;
-	position: fixed;
-	bottom: 20px;
-	right: 25px;
-	color: #fff;
-	cursor: pointer;
-	background-color: #000;
-	z-index: 1000;
-	transition: opacity .5s, background-color .5s;
-	-moz-transition: opacity .5s, background-color .5s;
-	-webkit-transition: opacity .5s, background-color .5s;
+    width: 30px;
+    height: 30px;
+    border-radius: 15px;
+    opacity: .3;
+    position: fixed;
+    bottom: 20px;
+    right: 25px;
+    color: #fff;
+    cursor: pointer;
+    background-color: #000;
+    z-index: 1000;
+    transition: opacity .5s, background-color .5s;
+    -moz-transition: opacity .5s, background-color .5s;
+    -webkit-transition: opacity .5s, background-color .5s;
 }
 
 .scrollup:hover {
-	background: #222;
-	opacity: 1;
+    background: #222;
+    opacity: 1;
 }
 
 .scrollup i {
-	font-size: 13px;
-	position: absolute;
-	opacity: 1;
-	color: #fff;
-	left: 50%;
-	top: 50%;
-	margin-top: -7px;
-	margin-left: -6px;
-	text-decoration: none;
+    font-size: 13px;
+    position: absolute;
+    opacity: 1;
+    color: #fff;
+    left: 50%;
+    top: 50%;
+    margin-top: -7px;
+    margin-left: -6px;
+    text-decoration: none;
 
 }
 
@@ -809,4 +809,19 @@ h4{
 
 .menuLeft{
     overflow: scroll;
+}
+
+.btn-edit {
+    background-color: initial !important;
+    color: #0891b3 !important;
+    border: none !important;
+}
+
+.btn-delete {
+    background-color: initial !important;
+    color: red !important;
+    border: none !important;
+}
+.inputMask{
+    text-align: left !important;
 }

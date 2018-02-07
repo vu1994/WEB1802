@@ -71,7 +71,21 @@
             .register .single_login, .register .single_register{
                 cursor: pointer;
             }
-            
+            .btn-edit {
+                background-color: initial !important;
+                color: #0891b3 !important;
+                border: none !important;
+            }
+
+            .btn-delete {
+                background-color: initial !important;
+                color: red !important;
+                border: none !important;
+            }
+            .inputMask{
+                text-align: left !important;
+            }
+
         </style>
         <!-- script căn chỉnh màn hình-->
 
@@ -153,7 +167,14 @@
                                                     <div class="col-md-3 col-md-offset-3 col-sm-6 col-xs-6 icon1 ">
                                                         <div class="single_service wow fadeIn" data-wow-duration="2s">
                                                             <div class="single_service_icon icon_four hvr-float-shadow">
-                                                                <b:link href="faces/pages/phongban/quanLyPhongBan.xhtml"><i class="fa fa-wrench"></i></b:link>
+                                                                <b:link onclick="#{QuanLyYeuCauSCController.actionListDmYeuCauNvId()}" oncomplete="$('.yeuCauSuaChuaPopUp').modal()"><i class="fa fa-wrench"></i>
+                                                                    <f:ajax render="yeuCauSCForm" execute="@this"/>
+                                                                </b:link>
+                                                                <!--                                                                <b:commandButton  actionListener="" 
+                                                                                                                                               onclick="$('.yeuCauSuaChuaPopUp').modal()" update="@form">
+                                                                                                                                    <f:ajax render="yeuCauSCForm" execute="@this"/>
+                                                                                                                                    <i class="fa fa-wrench"></i>
+                                                                                                                                </b:commandButton>-->
                                                             </div>
                                                             <div class="single_service_deatels">
                                                                 <h4>QUẢN LÝ YÊU CẦU</h4>
@@ -349,20 +370,71 @@
                             <b:inputTextarea value="#{QuanLyYeuCauSCController.objYeuCauSC.yeucauTinhTrangHong}" label="Tình trạng" placeholder="Nhập các vấn đề hư hỏng của thiết bị hoặc tình trạng của thiết bị hiện tại..." />
                         </div>
                     </div>
-                
-                <div class="row margin-t-15">
-                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
-                        <b:commandButton action="#{QuanLyYeuCauSCController.actionAddYeuCau()}"
-                                         styleClass="btn btn-danger margin-r-5" ajax="true"
-                                         process="@form" update="@form" 
-                                         rendered="#{!empty(QuanLyThietBiController.listThietBi)}">
-                            <i class="fa fa-save"></i> Lưu
-                        </b:commandButton>
-                        <b:button class="btn-huybo" dismiss="modal" icon-awesome="fa-close" value="Hủy bỏ">
-                        </b:button>
+
+                    <div class="row margin-t-15">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
+                            <b:commandButton action="#{QuanLyYeuCauSCController.actionAddYeuCau()}"
+                                             styleClass="btn btn-danger margin-r-5" ajax="true"
+                                             process="@form" update="@form" 
+                                             rendered="#{!empty(QuanLyThietBiController.listThietBi)}">
+                                <i class="fa fa-save"></i> Lưu
+                            </b:commandButton>
+                            <b:button class="btn-huybo" dismiss="modal" icon-awesome="fa-close" value="Hủy bỏ">
+                            </b:button>
+                        </div>
+                    </div>
+                </h:panelGroup>
+            </b:form>
+        </b:modal>
+
+        <!--Modal Quản lý yêu cầu-->
+        <b:modal id="amodal1" title="QUẢN LÝ YÊU CẦU SỬA CHỮA" 
+                 styleClass="yeuCauSuaChuaPopUp"
+                 closable="true"  
+                 close-on-escape="true" 
+                 backdrop="true"
+                 rendered="#{UserController.mapLogin.logined and UserController.mapLogin.userRole==0}"
+                 >
+            <b:form id="yeuCauSCForm" horizontal="false">
+                <div class="row" style="margin-bottom: 10px">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <h:outputLabel value="Người yêu cầu :" styleClass="text-primary"/>
+                        <h:outputText value=" #{UserController.mapLogin.nvTen}" styleClass="text-danger" />
                     </div>
                 </div>
-                </h:panelGroup>
+
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <b:dataTable id='myTablePB' value="#{QuanLyYeuCauSCController.listYeuCauSCByNv}"
+                                     var="item"
+                                     searching="true"
+                                     excel="true"
+                                     pdf="true"
+                                     responsive="true"
+                                     style="width:100% !important;">
+
+                            <b:dataTableColumn label="STT" value="#{item.rowIndex}" headerStyleClass="text-center"/>
+                            <b:dataTableColumn label="Thiết bị" value="#{item.thietbi_ten}" headerStyleClass="text-center"/>    
+                            <b:dataTableColumn label="Ngày yêu cầu"  headerStyleClass="text-center">
+                                <h:outputText value="#{item.yeucau_ngayyeucau}" >
+                                    <f:convertDateTime pattern="dd/MM/yyyy" timeZone="GMT+7"/>
+                                </h:outputText>
+                            </b:dataTableColumn>
+                            <b:dataTableColumn value="#{item.yeucau_tinhtranghong}" label="Tình trạng hư hỏng" headerStyleClass="text-center"/>
+                            <b:dataTableColumn value="#{item.yeucau_tinhtrang_ten}"  label="Trạng thái xử lý" headerStyleClass="text-center"/>
+                            <b:dataTableColumn label="Hủy" style="width:5%" orderable="false" class="text-center">
+                                <b:commandButton styleClass="btn-delete" 
+                                                 actionListener="#{QuanLyYeuCauSCController.huyYeuCau(item)}" 
+                                                 update="@form" 
+                                                 oncomplete="$('.themNhanVienPopUp').modal()"
+                                                 rendered="#{item.yeucau_tinhtrangsc &lt;0 or item.yeucau_tinhtrangsc==0}">
+                                    <i class="fa fa-close"></i>
+                                    <f:ajax render="yeuCauSCForm" execute="@this" />
+                                </b:commandButton>
+                            </b:dataTableColumn>
+                        </b:dataTable>
+                    </div>
+                </div>
             </b:form>
         </b:modal>
     </h:body>

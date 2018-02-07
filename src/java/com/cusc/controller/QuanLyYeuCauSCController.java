@@ -35,6 +35,7 @@ public class QuanLyYeuCauSCController implements Serializable {
     private UserController uiUser;
     private YeuCauSuaChuaModel objYeuCauSC = new YeuCauSuaChuaModel();
     private List<Map> listYeuCauSC;
+    private List<Map> listYeuCauSCByNv;
     private YeuCauSuaChuaProvider ycProvider = new YeuCauSuaChuaProvider();
     private String pbID;
   
@@ -50,6 +51,7 @@ public class QuanLyYeuCauSCController implements Serializable {
         }
         Calendar currentDate = Calendar.getInstance();
         objYeuCauSC.setYeucauNgayYeuCau(currentDate.getTime());
+        
      }
 
    
@@ -57,6 +59,7 @@ public class QuanLyYeuCauSCController implements Serializable {
         setListYeuCauSC(ycProvider.getListYeuCau());
         return listYeuCauSC;
     }
+    
     public void changeTrangThaiYeuCau(Map mapDmYeuCau){
         System.out.println(">>>>"+mapDmYeuCau.toString());
         objYeuCauSC.setYeucauID(Long.parseLong(mapDmYeuCau.get("yeucau_id").toString()));
@@ -76,11 +79,32 @@ public class QuanLyYeuCauSCController implements Serializable {
             this.actionGetListDmYeuCauFilterPB(Integer.parseInt(pbID));
         }
     }
+    
+    public void huyYeuCau(Map mapDmYeuCau){
+        System.out.println(">>>>"+mapDmYeuCau.toString());
+        objYeuCauSC.setYeucauID(Long.parseLong(mapDmYeuCau.get("yeucau_id").toString()));
+        objYeuCauSC.setYeucauNgayYeuCau((Date)mapDmYeuCau.get("yeucau_ngayyeucau"));
+        objYeuCauSC.setYeucauNvID(Integer.parseInt(mapDmYeuCau.get("yeucau_nv_id").toString()));
+        objYeuCauSC.setYeucauTbID(Integer.parseInt(mapDmYeuCau.get("yeucau_tb_id").toString()));
+        objYeuCauSC.setYeucauTinhTrangHong(mapDmYeuCau.get("yeucau_tinhtranghong").toString());
+        objYeuCauSC.setYeucauTinhTrangSC(2);
+        this.actionEditYeuCau();
+        if (pbID == null) {
+            this.actionGetListYeuCau();
+        } else {
+            this.actionGetListDmYeuCauFilterPB(Integer.parseInt(pbID));
+        }
+    }
 
     public void actionGetListDmYeuCauFilterPB(int pb_id) {
         listYeuCauSC = ycProvider.getListYeuCauTheoId(pb_id);
     }
     
+    public void actionListDmYeuCauNvId(){
+        System.out.println("vô dc nè");
+        setListYeuCauSCByNv(ycProvider.getListYeuCauTheoNVId(Integer.parseInt(uiUser.getMapLogin().get("nvID").toString())));
+
+    }
     
     public void actionAddYeuCau(){
        objYeuCauSC.setYeucauNvID(Integer.parseInt(uiUser.getMapLogin().get("nvID").toString()));
@@ -143,6 +167,14 @@ public class QuanLyYeuCauSCController implements Serializable {
 
     public void setUiUser(UserController uiUser) {
         this.uiUser = uiUser;
+    }
+
+    public List<Map> getListYeuCauSCByNv() {
+        return listYeuCauSCByNv;
+    }
+
+    public void setListYeuCauSCByNv(List<Map> listYeuCauSCByNv) {
+        this.listYeuCauSCByNv = listYeuCauSCByNv;
     }
 
 }
