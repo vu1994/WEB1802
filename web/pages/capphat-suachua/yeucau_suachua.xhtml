@@ -29,7 +29,7 @@
                         color: #0891b3 !important;
                         border: none !important;
                     }
-                    
+
                     .btn-fixed {
                         background-color: initial !important;
                         color: #31963e !important;
@@ -88,15 +88,12 @@
                                                         <b:dataTableColumn value="#{item.yeucau_tinhtranghong}" label="Tình trạng hư hỏng" headerStyleClass="text-center"/>
                                                         <b:dataTableColumn value="#{item.yeucau_tinhtrang_ten}"  label="Trạng thái xử lý" headerStyleClass="text-center"/>
                                                         <b:dataTableColumn style="width: 5%" class="text-center" label="" orderable="false">
-                                                            <b:commandButton tooltip="Cập nhật trạng thái xử lý"
-                                                                             actionListener="#{QuanLyThietBiController.preActionThuHoi(item.thietbi_id)}"
+                                                            <b:commandButton tooltip="Cập nhật trạng thái xử lý #{item}"
+                                                                             actionListener="#{QuanLyYeuCauSCController.changeTrangThaiYeuCau(item)}"
                                                                              styleClass="#{item.yeucau_tinhtrangsc==0?'btn-delete':'btn-fixed'}"
-                                                                             
                                                                              >
-                                                                
-                                                               
                                                                 <i class="#{item.yeucau_tinhtrangsc==0?'fa fa-wrench':'fa fa-check'}"></i>
-<!--                                                                <f:ajax execute="@this" render="thuHoiTBForm" />-->
+                                                                <f:ajax execute="@this" render="yeuCau" />
                                                             </b:commandButton>
                                                         </b:dataTableColumn>
                                                     </b:dataTable>

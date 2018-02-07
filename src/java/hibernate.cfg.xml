@@ -51,5 +51,6 @@ Contributor(s):
     <mapping class="com.cusc.model.NhanVienModel"/>
     <mapping class="com.cusc.model.PhongBanModel"/>
     <mapping class="com.cusc.model.UserModel"/>
+    <mapping class="com.cusc.model.YeuCauSuaChuaModel"/>
   </session-factory>
 </hibernate-configuration>

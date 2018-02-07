@@ -37,7 +37,10 @@ public class YeuCauSuaChuaModel implements Serializable {
     
     @Column(name = "yeucau_tinhtranghong")
     private String yeucauTinhTrangHong;
-
+    
+    @Column(name = "yeucau_tinhtrangsc")
+    private Integer yeucauTinhTrangSC;
+    
     public long getYeucauID() {
         return yeucauID;
     }
@@ -77,8 +80,14 @@ public class YeuCauSuaChuaModel implements Serializable {
     public void setYeucauTinhTrangHong(String yeucauTinhTrangHong) {
         this.yeucauTinhTrangHong = yeucauTinhTrangHong;
     }
-    
-    
+
+    public Integer getYeucauTinhTrangSC() {
+        return yeucauTinhTrangSC;
+    }
+
+    public void setYeucauTinhTrangSC(Integer yeucauTinhTrangSC) {
+        this.yeucauTinhTrangSC = yeucauTinhTrangSC;
+    }
 
     
 }

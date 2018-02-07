@@ -28,8 +28,8 @@ public class YeuCauSuaChuaProvider implements Serializable {
         List<Map> listYeuCau = new ArrayList();
         try {
             session.beginTransaction();
-            listYeuCau = session.createSQLQuery("SELECT pb.pb_ten,nv.nv_ten,tb.thietbi_ten,tt.yeucau_tinhtrang_ten,yc.yeucau_tinhtrangsc,"
-                         + " yc.yeucau_ngayyeucau,yc.yeucau_tinhtranghong FROM yeucau_suachua yc "
+            listYeuCau = session.createSQLQuery("SELECT pb.pb_ten,nv.nv_ten,tb.thietbi_ten,tt.yeucau_tinhtrang_ten,yc.*"
+                         + " FROM yeucau_suachua yc "
                          + " INNER JOIN thietbi tb ON tb.thietbi_id = yc.yeucau_tb_id "
                          + " INNER JOIN nhanvien nv ON nv.nv_id = yc.yeucau_nv_id "
                          + " INNER JOIN yeucau_tinhtrang tt ON tt.yeucau_tinhtrang_id = yc.yeucau_tinhtrangsc"
@@ -53,8 +53,8 @@ public class YeuCauSuaChuaProvider implements Serializable {
         List<Map> listYeuCau = new ArrayList();
         try {
             session.beginTransaction();
-            listYeuCau = session.createSQLQuery("SELECT pb.pb_ten,nv.nv_ten,tb.thietbi_ten,tt.yeucau_tinhtrang_ten,yc.yeucau_tinhtrangsc,"
-                         + " yc.yeucau_ngayyeucau,yc.yeucau_tinhtranghong FROM yeucau_suachua yc "
+            listYeuCau = session.createSQLQuery("SELECT pb.pb_ten,nv.nv_ten,tb.thietbi_ten,tt.yeucau_tinhtrang_ten,yc.* "
+                         + " FROM yeucau_suachua yc "
                          + " INNER JOIN thietbi tb ON tb.thietbi_id = yc.yeucau_tb_id "
                          + " INNER JOIN nhanvien nv ON nv.nv_id = yc.yeucau_nv_id "
                          + " INNER JOIN phongban pb ON pb.pb_id = nv.pb_id "

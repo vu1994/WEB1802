@@ -28,7 +28,8 @@ import javax.faces.bean.ViewScoped;
 @ViewScoped
 public class QuanLyYeuCauSCController implements Serializable {
 
-    
+    @ManagedProperty(value = "#{UserController}")
+    private UserController uiUser;
     private YeuCauSuaChuaModel objYeuCauSC = new YeuCauSuaChuaModel();
     private List<Map> listYeuCauSC;
     private YeuCauSuaChuaProvider ycProvider = new YeuCauSuaChuaProvider();
@@ -50,46 +51,35 @@ public class QuanLyYeuCauSCController implements Serializable {
         setListYeuCauSC(ycProvider.getListYeuCau());
         return listYeuCauSC;
     }
-
-//    public List<Map> actionGetListPhongBanAll() {
-//        setListPhongBanAll(pbProvider.getListPhongBan());
-//        setActionEdit(true);
-//        return listPhongBan;
-//    }
-
-//    public void actionAddorEditPhongBan() {
-//        if (pbProvider.addEditPhongBan(objPhongBan)) {
-//            System.out.println("true");
-//        } else {
-//            System.out.println("false");
-//        }
-//        this.actionGetListPhongBanAll();
-//        objPhongBan = new PhongBanModel();
-//        setSlPhongBan(pbProvider.getSoLuongPhongBan());
-//
-//    }
-//
-//    public void preActionEditPhongBan(Map mapDmPhongBan) throws ParseException {
-//        mapDmPhongBan.put("editPB", true);
-//        setActionEdit(false);
-//    }
-
-//    public void actionEditPhongBan(Map mapDmPhongBan) throws ParseException {
-//        objPhongBan.setPhongbanID(Long.parseLong(mapDmPhongBan.get("pb_id").toString()));
-//        objPhongBan.setPhongbanTen(mapDmPhongBan.get("pb_ten").toString());
-//        this.actionAddorEditPhongBan();
-//        uiNhanVien.actionGetListDmNhanVien();
-//        setActionEdit(true);
-//    }
-//
-//    public void actionXoaDmPhongBan(int dmPhongBanID) {
-//        pbProvider.delDmPhongBan(dmPhongBanID);
-//        this.actionGetListPhongBanAll();
-//        setSlPhongBan(pbProvider.getSoLuongPhongBan());
-//    }
+    public void changeTrangThaiYeuCau(Map mapDmYeuCau){
+        System.out.println(">>>>"+mapDmYeuCau.toString());
+        objYeuCauSC.setYeucauID(Long.parseLong(mapDmYeuCau.get("yeucau_id").toString()));
+        objYeuCauSC.setYeucauNgayYeuCau((Date)mapDmYeuCau.get("yeucau_ngayyeucau"));
+        objYeuCauSC.setYeucauNvID(Integer.parseInt(mapDmYeuCau.get("yeucau_nv_id").toString()));
+        objYeuCauSC.setYeucauTbID(Integer.parseInt(mapDmYeuCau.get("yeucau_tb_id").toString()));
+        objYeuCauSC.setYeucauTinhTrangHong(mapDmYeuCau.get("yeucau_tinhtranghong").toString());
+        if(Integer.parseInt(mapDmYeuCau.get("yeucau_tinhtrangsc").toString())==0){
+            objYeuCauSC.setYeucauTinhTrangSC(1);
+        }else{
+            objYeuCauSC.setYeucauTinhTrangSC(0);
+        }
+        this.actionAddorEditYeuCau();
+        this.actionGetListYeuCau();
+    }
 
     public void actionGetListDmYeuCauFilterPB(int pb_id) {
         listYeuCauSC = ycProvider.getListYeuCauTheoId(pb_id);
+    }
+    
+    public void actionAddorEditYeuCau(){
+       if(ycProvider.addEditYeuCau(objYeuCauSC)){
+            System.out.println("true");
+        }else {
+            System.out.println("false");
+        }
+        this.actionGetListYeuCau();
+        objYeuCauSC = new YeuCauSuaChuaModel();
+       
     }
 
     public String getPbID() {
@@ -114,6 +104,14 @@ public class QuanLyYeuCauSCController implements Serializable {
 
     public void setListYeuCauSC(List<Map> listYeuCauSC) {
         this.listYeuCauSC = listYeuCauSC;
+    }
+
+    public UserController getUiUser() {
+        return uiUser;
+    }
+
+    public void setUiUser(UserController uiUser) {
+        this.uiUser = uiUser;
     }
 
 }
