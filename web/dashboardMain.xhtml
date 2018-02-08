@@ -204,12 +204,16 @@
                     <div class="container-fullwidth">
                         <div class="row text-center">
                             <div class="col-sm-6 col-xs-6 no-padding">
-                                <div class="single_register single_login " onclick="$('.dangNhapPopUp').modal()">
-                                    <b:link rendered="#{!UserController.mapLogin.logined}">
+                                <div class="single_register single_login"
+                                     onclick="$('.dangNhapPopUp').modal()"
+                                     style="display: #{!UserController.mapLogin.logined? 'block':'none'}">
+                                    <b:link>
                                         <i class="fa fa-sign-in"/> ĐĂNG NHẬP
                                     </b:link>
-                                    <b:commandLink rendered="#{UserController.mapLogin.logined}"
-                                                   >
+                                </div>
+                                <div class="single_register single_login"
+                                     style="display: #{UserController.mapLogin.logined? 'block':'none'}">
+                                    <b:commandLink>
                                         <i class="fa fa-sign-out"/> ĐĂNG XUẤT
                                         <f:ajax listener="#{UserController.logout()}" render="@all"/>
                                     </b:commandLink>
