@@ -10,6 +10,7 @@ import com.cusc.util.HibernateUtil;
 import java.util.List;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 import org.hibernate.Session;
 import org.hibernate.transform.Transformers;
@@ -74,6 +75,28 @@ public class PhongBanProvider implements Serializable {
             session.close();
 	}
         return listPhongBanId;
+    }
+    
+    public int getIDPhongBanByNVID(int nvID){
+        Session session = HibernateUtil.currentSession();
+        Map mapPhongBan = new HashMap<>();
+        int result = 0;
+        try {
+            session.beginTransaction();
+            mapPhongBan = (Map) session.createSQLQuery("SELECT * "
+                    + " FROM nhanvien nv "
+                    + " LEFT JOIN phongban pb ON nv.pb_id = pb.pb_id"
+                    + " WHERE nv.nv_id = "+nvID).uniqueResult();
+            session.getTransaction().commit();
+            if(mapPhongBan != null){
+                result = Integer.parseInt(mapPhongBan.get("pb_id").toString());
+            }
+	} catch (Exception e) {
+            e.printStackTrace();
+	} finally {
+            session.close();
+	}
+        return result;
     }
     
      public boolean addEditPhongBan(PhongBanModel objPhongBan){

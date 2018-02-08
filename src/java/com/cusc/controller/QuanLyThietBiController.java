@@ -20,8 +20,6 @@ import java.util.Map;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
-import javax.persistence.Temporal;
-
 /**
  *
  * @author SunnyNguyen
@@ -39,6 +37,8 @@ public class QuanLyThietBiController implements Serializable {
     private List<Map> listThietBiNV = new ArrayList<>();
     private ThietBiModel objThietBi = new ThietBiModel();
     private boolean selectedCapPhat = false;
+    private boolean requiredCapPhat = false;
+    private boolean showInfoCapPhat = false;
     private int viewMode = 0;
     private int selectedNhomTB;
     private String tenNhanVien;
@@ -76,9 +76,12 @@ public class QuanLyThietBiController implements Serializable {
         Calendar currentDate = Calendar.getInstance();
         objThietBi = new ThietBiModel();
         objThietBi.setThietBiNgayNhap(currentDate.getTime());
+        showInfoCapPhat = true;
+        requiredCapPhat = false;
     }
     
     public void preActionEditThietBi(Map mapThietBi){
+        requiredCapPhat = false;
         objThietBi = new ThietBiModel();
         objThietBi.setThietBiID(Long.parseLong(mapThietBi.get("thietbi_id").toString()));
         objThietBi.setThietBiTen(mapThietBi.get("thietbi_ten").toString());
@@ -86,8 +89,10 @@ public class QuanLyThietBiController implements Serializable {
         objThietBi.setTinhTrangID(Integer.parseInt(mapThietBi.get("tinhtrang_id").toString()));
         try{
             objThietBi.setCapChoNhanVienID(Integer.parseInt(mapThietBi.get("thietbi_capcho").toString()));
+            showInfoCapPhat = objThietBi.getCapChoNhanVienID() == 0;
         }catch(NullPointerException e){
             objThietBi.setCapChoNhanVienID(0);
+            showInfoCapPhat = true;
         }
         
         try{
@@ -154,6 +159,21 @@ public class QuanLyThietBiController implements Serializable {
             objThietBi.setThietBiTrangThaiCapPhat(null);
         }
         objThietBi.setThietBiNgayThuHoi(null);
+        try{
+            objThietBi.setPhongBanID(Integer.parseInt(mapThietBi.get("pb_id").toString()));
+        }catch(NullPointerException e){
+            objThietBi.setPhongBanID(0);
+        }
+        try{
+            objThietBi.setPhongBanTen(mapThietBi.get("pb_ten").toString());
+        }catch(NullPointerException e){
+            objThietBi.setPhongBanTen(null);
+        }
+        try{
+            objThietBi.setCapChoNhanVienTen(mapThietBi.get("nv_ten").toString());
+        }catch(NullPointerException e){
+            objThietBi.setCapChoNhanVienTen(null);
+        }
     }
     
     public void preActionThuHoi(Map mapThietBi){
@@ -322,6 +342,15 @@ public class QuanLyThietBiController implements Serializable {
            setListThietBiNV(tbProvider.getListThietBiByNhomNV(selectedNhomTB,Long.parseLong(uiUser.getMapLogin().get("nvID").toString())));
         } 
     }
+   public void actionCheckCapPhat(){
+       if(objThietBi.getCapChoNhanVienID() != 0 
+               || objThietBi.getThietBiTrangThaiCapPhat() != null 
+               || objThietBi.getThietBiNgayCap() != null){
+           requiredCapPhat = true;
+       } else {
+           requiredCapPhat = false;
+       }
+   }
     public boolean enableCapPhatThietBi(long thietBiID){
         return true;
     }
@@ -448,6 +477,22 @@ public class QuanLyThietBiController implements Serializable {
 
     public void setListThietBiNV(List<Map> listThietBiNV) {
         this.listThietBiNV = listThietBiNV;
+    }
+
+    public boolean isRequiredCapPhat() {
+        return requiredCapPhat;
+    }
+
+    public void setRequiredCapPhat(boolean requiredCapPhat) {
+        this.requiredCapPhat = requiredCapPhat;
+    }
+
+    public boolean isShowInfoCapPhat() {
+        return showInfoCapPhat;
+    }
+
+    public void setShowInfoCapPhat(boolean showInfoCapPhat) {
+        this.showInfoCapPhat = showInfoCapPhat;
     }
     
 }

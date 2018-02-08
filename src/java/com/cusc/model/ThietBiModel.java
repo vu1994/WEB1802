@@ -55,6 +55,15 @@ public class ThietBiModel implements Serializable {
     @Column(name = "thietbi_capcho")
     private int capChoNhanVienID;
     
+    @Transient
+    private String capChoNhanVienTen;
+    
+    @Transient
+    private int phongBanID;
+    
+    @Transient
+    private String phongBanTen;
+    
     @Column(name = "thietbi_nguoicap")
     private int thietBiNguoiCap;
     
@@ -164,6 +173,30 @@ public class ThietBiModel implements Serializable {
 
     public void setThietBiTrangThaiCapPhat(String thietBiTrangThaiCapPhat) {
         this.thietBiTrangThaiCapPhat = thietBiTrangThaiCapPhat;
+    }
+
+    public int getPhongBanID() {
+        return phongBanID;
+    }
+
+    public void setPhongBanID(int phongBanID) {
+        this.phongBanID = phongBanID;
+    }
+
+    public String getPhongBanTen() {
+        return phongBanTen;
+    }
+
+    public void setPhongBanTen(String phongBanTen) {
+        this.phongBanTen = phongBanTen;
+    }
+
+    public String getCapChoNhanVienTen() {
+        return capChoNhanVienTen;
+    }
+
+    public void setCapChoNhanVienTen(String capChoNhanVienTen) {
+        this.capChoNhanVienTen = capChoNhanVienTen;
     }
 
 }

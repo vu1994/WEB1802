@@ -26,10 +26,12 @@ public class QuanLyThietBiDataProvider implements Serializable{
         List<Map> listThietBi = new ArrayList();
         try {
             session.beginTransaction();
-            listThietBi = session.createSQLQuery("SELECT tb.*, dmtb.danhmuc_thietbi_ten, tt.tinhtrang_ten"
+            listThietBi = session.createSQLQuery("SELECT tb.*, pb.*, nv.nv_ten, dmtb.danhmuc_thietbi_ten, tt.tinhtrang_ten"
                     + " FROM thietbi tb"
                     + " LEFT JOIN danhmuc_thietbi dmtb ON tb.danhmuc_thietbi_id = dmtb.danhmuc_thietbi_id"
                     + " LEFT JOIN tinhtrang tt ON tb.tinhtrang_id = tt.tinhtrang_id"
+                    + " LEFT JOIN nhanvien nv ON tb.thietbi_capcho = nv.nv_id"
+                    + " LEFT JOIN phongban pb ON nv.pb_id = pb.pb_id"
                     + "  ").setResultTransformer(Transformers.ALIAS_TO_ENTITY_MAP).list();
             session.getTransaction().commit();
             int stt = 1;
