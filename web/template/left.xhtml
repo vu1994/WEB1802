@@ -27,9 +27,9 @@ and open the template in the editor.
                 <div class="pull-left info">
                     <p style="font-size:12px; color:#b8c7ce"> 
                         <i><small style="font-size:8px;color:#{UserController.mapLogin.userRole == 1?'#d68383':'blue'}">
-                            [#{UserController.mapLogin.userRole == 1?"Quản trị viên":"Nhân viên"}]
+                                [#{UserController.mapLogin.userRole == 1?"Quản trị viên":"Nhân viên"}]
                             </small></i>
-                        #{UserController.mapLogin.nvTen}
+                            #{UserController.mapLogin.nvTen}
                     </p>
                     <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
                 </div>
@@ -48,21 +48,22 @@ and open the template in the editor.
             <!-- sidebar menu: : style can be found in sidebar.less -->
             <ul class="sidebar-menu tree" data-widget="tree">
                 <li class="header">PHÒNG BAN</li>
-                <li class="treeview">
-                    <a href="#" style="text-decoration: none">
-                        <i class="fa fa-home"></i><span>Quản lý phòng ban</span>
-                        <span class="pull-right-container">
-                            <span class="label label-primary pull-right">4</span>
-                        </span>
-                    </a>
-                    <ul class="treeview-menu">
+                <h:panelGroup id="menuPhongBan">
+                    <li class="treeview">
+                        <a href="#" style="text-decoration: none;padding: 12px 5px 12px 15px;margin-right: 5px;">
+                            <i class="fa fa-wrench" style="margin-right: 10px;"></i><span>Quản lý phòng ban</span>
 
-                        <li>
-                            <a href="#{request.contextPath}/faces/pages/phongban/quanLyPhongBan.xhtml" >
-                                <i class="fa fa-align-justify"></i>CUSC
-                            </a>
-                        </li>
-                        <h:panelGroup id="menuPhongBan">
+                            <span class="pull-right-container">
+                                <span class="label label-primary pull-right">#{QuanLyPhongBanController.slPhongBan}</span>
+                            </span>
+                        </a>
+                        <ul class="treeview-menu">
+
+                            <li>
+                                <a href="#{request.contextPath}/faces/pages/phongban/quanLyPhongBan.xhtml" >
+                                    <i class="fa fa-align-justify"></i>CUSC
+                                </a>
+                            </li>
                             <c:forEach items="#{QuanLyPhongBanController.listPhongBanAll}" var="item">
                                 <li  style="padding-left:30px !important;padding-bottom:10px !important;">
                                     <a href="#{request.contextPath}/faces/pages/phongban/quanLyPhongBan.xhtml?pb=#{item.pb_id}" >
@@ -70,9 +71,9 @@ and open the template in the editor.
                                     </a>
                                 </li>
                             </c:forEach>
-                        </h:panelGroup>
-                    </ul>
-                </li>
+                        </ul>
+                    </li>
+                </h:panelGroup>
                 <li class="header">QUẢN LÝ THIẾT BỊ TIN HỌC</li>
                 <li class="treeview">
                     <a href="#">

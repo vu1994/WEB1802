@@ -41,9 +41,10 @@
                                     Morris.Donut({
                                         element: 'pie-chart',
                                         data: [
-                                            {label: "Mới nhập", value: #{ThongKeBaoCaoController.moiNhap}, color: '#FF8206'},
-                                            {label: "Đã sử dụng", value: #{ThongKeBaoCaoController.dangSuDung}, color: "#63DE59"},
+                                            
+                                            {label: "Đã sử dụng", value: #{ThongKeBaoCaoController.dangSuDung}, color: '#FF8206'},
                                             {label: "Đang sử dụng", value: #{ThongKeBaoCaoController.daSuDung}},
+                                            {label: "Mới nhập", value: #{ThongKeBaoCaoController.moiNhap}, color: "#63DE59" },
                                             {label: "Bị hỏng", value: #{ThongKeBaoCaoController.hong}, color: 'red'}
                                         ]
                                     });
@@ -56,9 +57,10 @@
                                     Morris.Donut({
                                         element: 'pie-chart1',
                                         data: [
-                                            {label: "Cấp mới", value: #{ThongKeBaoCaoController.capMoi}, color: '#FF8206'},
-                                            {label: "Bổ sung", value: #{ThongKeBaoCaoController.capBoSung}, color: "#63DE59"},
-                                            {label: "Thu hồi", value: #{ThongKeBaoCaoController.thuHoi}, color: 'red'}
+                                            {label: "Thu hồi", value: #{ThongKeBaoCaoController.thuHoi}, color: 'red'},
+                                            {label: "Bổ sung", value: #{ThongKeBaoCaoController.capBoSung}, color: '#FF8206'},
+                                            {label: "Cấp mới", value: #{ThongKeBaoCaoController.capMoi}, color: "#63DE59"}
+                                            
                                         ]
                                     });
                                 </script>
