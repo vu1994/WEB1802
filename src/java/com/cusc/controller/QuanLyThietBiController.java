@@ -313,7 +313,7 @@ public class QuanLyThietBiController implements Serializable {
     
    
    public void actionListThietBiNv(){
-       setListThietBiNV(tbProvider.getListThietBiByNV(Long.parseLong(uiUser.getMapLogin().get("nvID").toString())));
+           setListThietBiNV(tbProvider.getListThietBiByNV(Long.parseLong(uiUser.getMapLogin().get("nvID").toString())));
    }
    public void actionChangeNhomTB(){
         if(selectedNhomTB == 0){

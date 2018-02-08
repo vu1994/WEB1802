@@ -225,9 +225,10 @@
                                         <i class="fa fa-wrench fa-spin"/> YÊU CẦU SỬA CHỮA 
                                     </b:link>
                                 </div>
-                                <div class="single_register" onclick="$('.formYCauSChuaPopUp').modal()" style="display:#{UserController.mapLogin.logined?'block':'none'}">
-                                    <b:link>
+                                <div class="single_register" style="display:#{UserController.mapLogin.logined?'block':'none'}">
+                                    <b:link rendered="#{UserController.mapLogin.logined}" style="width: 100%" onclick="#{QuanLyThietBiController.actionListThietBiNv()}" oncomplete="$('.formYCauSChuaPopUp').modal()">
                                         <i class="fa fa-wrench fa-spin"/> YÊU CẦU SỬA CHỮA 
+                                        <f:ajax render="yeuCauSuaChuaForm" execute="@this"/>
                                     </b:link>
                                 </div>
                             </div>
@@ -334,17 +335,17 @@
                             </b:selectOneMenu>
                         </div>
 
-                        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4" style="padding-top: 30px;text-align: center;display: #{empty(QuanLyThietBiController.listThietBi)?'':'none'}">
+                        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4" style="padding-top: 30px;text-align: center;display: #{empty(QuanLyThietBiController.listThietBiNV)?'':'none'}">
                             <h:outputText value="Không có thiết bị cần sửa chữa" styleClass="text-red"/>
                         </div>
-                        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4" id="thietbi" style="display: #{!empty(QuanLyThietBiController.listThietBi)?'':'none'}">
+                        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4" id="thietbi" style="display: #{!empty(QuanLyThietBiController.listThietBiNV)?'':'none'}">
                             <h:outputLabel value="Thiết bị" />
                             <b:selectOneMenu id="selectThietBiSuaChua"
                                              required="true"
                                              requiredMessage="Vui lòng chọn thiết bị"
                                              value="#{QuanLyYeuCauSCController.objYeuCauSC.yeucauTbID}">
                                 <f:selectItem itemLabel="-- Chọn thiết bị --" itemValue=""/>
-                                <f:selectItems value="#{QuanLyThietBiController.listThietBi}" var="item"
+                                <f:selectItems value="#{QuanLyThietBiController.listThietBiNV}" var="item"
                                                itemLabel="#{item.thietbi_ten}" itemValue="#{item.thietbi_id}"/>
                                 <f:facet name="prepend">
                                     <b:iconAwesome name="fa-desktop" />
@@ -353,7 +354,7 @@
                             <b:message for="selectThietBiSuaChua"/>
                         </div>
 
-                        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4" style="display: #{!empty(QuanLyThietBiController.listThietBi)?'':'none'}">
+                        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4" style="display: #{!empty(QuanLyThietBiController.listThietBiNV)?'':'none'}">
                             <h:outputLabel value="Ngày yêu cầu"/>
                             <b:dateTimePicker  id="dateNgayCap"
                                                value="#{QuanLyYeuCauSCController.objYeuCauSC.yeucauNgayYeuCau}"
@@ -370,7 +371,7 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="display: #{!empty(QuanLyThietBiController.listThietBi)?'':'none'}">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="display: #{!empty(QuanLyThietBiController.listThietBiNV)?'':'none'}">
                             <b:inputTextarea value="#{QuanLyYeuCauSCController.objYeuCauSC.yeucauTinhTrangHong}" label="Tình trạng" placeholder="Nhập các vấn đề hư hỏng của thiết bị hoặc tình trạng của thiết bị hiện tại..." />
                         </div>
                     </div>
@@ -403,7 +404,7 @@
                 <div class="row" style="margin-bottom: 10px">
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                         <h:outputLabel value="Người yêu cầu :" styleClass="text-primary"/>
-                        <h:outputText value=" #{UserController.mapLogin.nvTen}" styleClass="text-danger" />
+                        <h:outputText value="#{UserController.mapLogin.nvTen}" styleClass="text-danger" />
                     </div>
                 </div>
 
