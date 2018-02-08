@@ -36,6 +36,7 @@ public class QuanLyThietBiController implements Serializable {
     private ShowGrowlUtils showGrowl;
     private List<Map> listThietBi = new ArrayList<>();
     private List<Map> listThietBiCapPhat = new ArrayList<>();
+    private List<Map> listThietBiNV = new ArrayList<>();
     private ThietBiModel objThietBi = new ThietBiModel();
     private boolean selectedCapPhat = false;
     private int viewMode = 0;
@@ -311,14 +312,14 @@ public class QuanLyThietBiController implements Serializable {
     }
     
    
-   
+   public void actionListThietBiNv(){
+       setListThietBiNV(tbProvider.getListThietBiByNV(Long.parseLong(uiUser.getMapLogin().get("nvID").toString())));
+   }
    public void actionChangeNhomTB(){
         if(selectedNhomTB == 0){
-            this.actionGetListThietBi();
+          setListThietBiNV(tbProvider.getListThietBiByNV(Long.parseLong(uiUser.getMapLogin().get("nvID").toString())));
         }else{
-            System.out.println(">>>>>"+Long.parseLong(uiUser.getMapLogin().get("nvID").toString()) +">>>"+ selectedNhomTB);
-            setListThietBi(tbProvider.getListThietBiByNhomNV(selectedNhomTB,Long.parseLong(uiUser.getMapLogin().get("nvID").toString())));
-            System.out.println(">>>"+listThietBi);
+           setListThietBiNV(tbProvider.getListThietBiByNhomNV(selectedNhomTB,Long.parseLong(uiUser.getMapLogin().get("nvID").toString())));
         } 
     }
     public boolean enableCapPhatThietBi(long thietBiID){
@@ -439,6 +440,14 @@ public class QuanLyThietBiController implements Serializable {
 
     public void setShowGrowl(ShowGrowlUtils showGrowl) {
         this.showGrowl = showGrowl;
+    }
+
+    public List<Map> getListThietBiNV() {
+        return listThietBiNV;
+    }
+
+    public void setListThietBiNV(List<Map> listThietBiNV) {
+        this.listThietBiNV = listThietBiNV;
     }
     
 }

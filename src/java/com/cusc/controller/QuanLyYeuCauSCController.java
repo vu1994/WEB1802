@@ -101,7 +101,7 @@ public class QuanLyYeuCauSCController implements Serializable {
     }
     
     public void actionListDmYeuCauNvId(){
-        System.out.println("vô dc nè");
+      
         setListYeuCauSCByNv(ycProvider.getListYeuCauTheoNVId(Integer.parseInt(uiUser.getMapLogin().get("nvID").toString())));
 
     }

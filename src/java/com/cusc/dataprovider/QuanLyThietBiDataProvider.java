@@ -118,6 +118,32 @@ public class QuanLyThietBiDataProvider implements Serializable{
         return listThietBi;
     }
     
+    public List<Map> getListThietBiByNV(long nvID){
+        Session session = HibernateUtil.currentSession();
+        List<Map> listThietBi = new ArrayList();
+        try {
+            session.beginTransaction();
+            listThietBi = session.createSQLQuery("SELECT tb.*, dmtb.danhmuc_thietbi_ten, tt.tinhtrang_ten"
+                    + " FROM thietbi tb"
+                    + " LEFT JOIN danhmuc_thietbi dmtb ON tb.danhmuc_thietbi_id = dmtb.danhmuc_thietbi_id"
+                    + " LEFT JOIN tinhtrang tt ON tb.tinhtrang_id = tt.tinhtrang_id"
+                    + " WHERE tb.thietbi_capcho =:nvID")
+                    .setLong("nvID", nvID)
+                    .setResultTransformer(Transformers.ALIAS_TO_ENTITY_MAP).list();
+            session.getTransaction().commit();
+            int stt = 1;
+            for(Map mapThietBi : listThietBi){
+                mapThietBi.put("rowIndex", stt);
+                stt++;
+            }
+	} catch (Exception e) {
+            e.printStackTrace();
+	} finally {
+            session.close();
+	}
+        return listThietBi;
+    }
+    
     public boolean updateThietBi(ThietBiModel objThietBi){
         Session session = HibernateUtil.currentSession();
         try {
@@ -180,7 +206,7 @@ public class QuanLyThietBiDataProvider implements Serializable{
         List<Map> listThietBiCapPhat = new ArrayList();
         try {
             session.beginTransaction();
-            listThietBiCapPhat = session.createSQLQuery("SELECT nv_ten,pb_ten,thietbi_ten,thietbi_trangthai_capphat, thietbi_ngaycap "
+            listThietBiCapPhat = session.createSQLQuery("SELECT thietbi_id,nv_ten,pb_ten,thietbi_ten,thietbi_trangthai_capphat, thietbi_ngaycap "
                     +" FROM nhanvien nv " 
                     +" INNER JOIN phongban pb ON pb.pb_id = nv.pb_id " 
                     +" INNER JOIN thietbi tb ON tb.thietbi_capcho = nv.nv_id "
