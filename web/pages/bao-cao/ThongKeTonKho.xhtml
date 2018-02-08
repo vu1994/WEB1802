@@ -16,6 +16,9 @@
                             font: 20px bold;
                             font-weight: bold;
                         }
+                        tspan{
+                            font-family: "Times New Roman";
+                        }
                     </style>
                     <!-- Content Header (Page header) -->
                     <section class="content-header" style="margin-bottom: 20px;">
@@ -38,10 +41,10 @@
                                     Morris.Donut({
                                         element: 'pie-chart',
                                         data: [
-                                            {label: "Mới nhập", value: 30, color: '#FF8206', font: 'Times New Roman Georgia'},
-                                            {label: "Đã sử dụng", value: 15, color: "#63DE59", font: 'Times New Roman Georgia'},
-                                            {label: "Đang sử dụng", value: 45, font: 'Times New Roman Georgia'},
-                                            {label: "Bị hỏng", value: 0, color: 'red', font: 'Times New Roman Georgia'}
+                                            {label: "Mới nhập", value: #{ThongKeBaoCaoController.moiNhap}, color: '#FF8206'},
+                                            {label: "Đã sử dụng", value: #{ThongKeBaoCaoController.dangSuDung}, color: "#63DE59"},
+                                            {label: "Đang sử dụng", value: #{ThongKeBaoCaoController.daSuDung}},
+                                            {label: "Bị hỏng", value: #{ThongKeBaoCaoController.hong}, color: 'red'}
                                         ]
                                     });
                                 </script>
@@ -53,9 +56,9 @@
                                     Morris.Donut({
                                         element: 'pie-chart1',
                                         data: [
-                                            {label: "Cấp mới", value: 30, color: '#FF8206', font: 'Times New Roman Georgia'},
-                                            {label: "Bổ sung", value: 15, color: "#63DE59", font: 'Times New Roman Georgia'},
-                                            {label: "Thu hồi", value: 10, color: 'red', font: 'Times New Roman Georgia'}
+                                            {label: "Cấp mới", value: #{ThongKeBaoCaoController.capMoi}, color: '#FF8206'},
+                                            {label: "Bổ sung", value: #{ThongKeBaoCaoController.capBoSung}, color: "#63DE59"},
+                                            {label: "Thu hồi", value: #{ThongKeBaoCaoController.thuHoi}, color: 'red'}
                                         ]
                                     });
                                 </script>

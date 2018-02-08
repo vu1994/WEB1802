@@ -51,4 +51,52 @@ public class ThongKeBaoCaoDataprovider implements Serializable {
 	}
         return listThietBi;
     }
+    
+    public Integer thongKeTrangThaiTB(int tinhtrangID){
+        Session session = HibernateUtil.currentSession();
+        Integer thongKe = 0;
+        try {
+            session.beginTransaction();
+            Object result = session.createSQLQuery("SELECT ((SELECT count(0) from thietbi WHERE tinhtrang_id=:tinhtrangID group by tinhtrang_id)  / count(0) ) * 100 from thietbi")
+                    .setInteger("tinhtrangID", tinhtrangID)
+                    .uniqueResult();
+            if(result!=null){
+            thongKe = Integer.parseInt(String.format("%.0f", result));
+            }
+            session.getTransaction().commit();;
+            
+	} catch (Exception e) {
+            session.getTransaction().rollback();
+            e.printStackTrace();
+            return 0;
+	} finally {
+            session.close();
+	}
+//        System.out.println("com.cusc.dataprovider.ThongKeBaoCaoDataprovider.thongKeTrangThaiTB()"+thongKe);
+        return thongKe;
+    }
+    
+    public Integer thongKeTrangThaiCP(String tinhtrangCP){
+        Session session = HibernateUtil.currentSession();
+        Integer thongKe = 0;
+        try {
+            session.beginTransaction();
+            Object result = session.createSQLQuery("SELECT ((SELECT count(0) from thietbi WHERE thietbi_trangthai_capphat LIKE (:tinhtrangCP) group by tinhtrang_id)  / (SELECT count(0) from thietbi WHERE thietbi_trangthai_capphat IS NOT NULL AND thietbi_trangthai_capphat != '')) * 100")
+                    .setString("tinhtrangCP", tinhtrangCP)
+                    .uniqueResult();
+            if(result!=null){
+            thongKe = Integer.parseInt(String.format("%.0f", result));
+            }
+            session.getTransaction().commit();;
+            
+	} catch (Exception e) {
+            session.getTransaction().rollback();
+            e.printStackTrace();
+            return 0;
+	} finally {
+            session.close();
+	}
+        System.out.println("com.cusc.dataprovider.ThongKeBaoCaoDataprovider.thongKeTrangThaiTB()"+thongKe);
+        return thongKe;
+    }
 }
