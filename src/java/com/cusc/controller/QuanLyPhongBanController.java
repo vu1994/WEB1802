@@ -94,6 +94,9 @@ public class QuanLyPhongBanController implements Serializable{
         listPhongBan = pbProvider.getListPhongBanTheoId(pb_id);
     }
     
+    public int getPhongBanByNVID(int nv_id){
+        return pbProvider.getIDPhongBanByNVID(nv_id);
+    }
     
     public List<Map> getListPhongBan() {
         return listPhongBan;
