@@ -89,11 +89,7 @@ public class QuanLyYeuCauSCController implements Serializable {
         objYeuCauSC.setYeucauTinhTrangHong(mapDmYeuCau.get("yeucau_tinhtranghong").toString());
         objYeuCauSC.setYeucauTinhTrangSC(2);
         this.actionEditYeuCau();
-        if (pbID == null) {
-            this.actionGetListYeuCau();
-        } else {
-            this.actionGetListDmYeuCauFilterPB(Integer.parseInt(pbID));
-        }
+        this.actionListDmYeuCauNvId();
     }
 
     public void actionGetListDmYeuCauFilterPB(int pb_id) {
