@@ -107,6 +107,7 @@
                                                                 <b:commandButton tooltip="Xóa thiết bị"
                                                                                action="#{QuanLyThietBiController.actionXoaThietBi(item)}"
                                                                                styleClass="text-red"
+                                                                               disabled="#{item.thietbi_capcho != 0}"
                                                                                onclick="return verifyDelete();">
                                                                     <i class="fa fa-trash"></i>
                                                                 </b:commandButton>
