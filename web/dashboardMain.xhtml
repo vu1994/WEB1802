@@ -380,7 +380,8 @@
                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
                             <b:commandButton action="#{QuanLyYeuCauSCController.actionAddYeuCau()}"
                                              styleClass="btn btn-danger margin-r-5" ajax="true"
-                                             process="@form" update="@form" 
+                                             process="@form" update="@form"
+                                             oncomplete="$('.formYCauSChuaPopUp').modal('hide')"
                                              rendered="#{!empty(QuanLyThietBiController.listThietBi)}">
                                 <i class="fa fa-save"></i> Lưu
                             </b:commandButton>
